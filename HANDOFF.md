@@ -108,7 +108,7 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
   → แก้ `work/<slug>/index.html` และ `data.js` ตรงๆ ได้, build จะไม่เขียนทับ
   → แต่ build ยังสร้าง `js/cases-index.js` (label การ์ดหน้า Home) จาก CSV อยู่
   → `work/README.md` ยังเขียนว่ามีแค่ government-project ที่เป็น bespoke — **ล้าสมัย**
-- ทุก case ใช้ layout Insight Panel ร่วมกัน (`css/insight-panels.css`); platform กับ ev-charger มี `case.css` ของตัวเองเพิ่ม
+- ทุก case ใช้ layout Insight Panel ร่วมกัน (`css/insight-panels.css`); มีแค่ platform ที่มี `case.css` ของตัวเองเพิ่ม (อีก 4 case ใช้ `insight-panels.css` อย่างเดียว)
 - เนื้อหาทั้ง 5 case เป็นของจริงแล้ว; ยกเว้น Reflection ของ custom-dashboard (draft ใน comment)
 - **ยังไม่ยืนยัน**: `timeline` ของ government-project, ev-charger, custom-dashboard (ยืนยันแล้วแค่ platform 2023–present และ JST < 1 เดือน)
 - More Projects: 8 รายการ **เหลือ 6/8 ยังเป็น mockup** (ของจริงแล้ว 2: Facility Management Platform,
