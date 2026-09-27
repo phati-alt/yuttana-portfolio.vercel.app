@@ -590,7 +590,7 @@
       if (!MOTION) return;
 
       const base = el.dataset.reverse === 'true' ? -1 : 1;
-      const speed = 70; // px per second
+      const speed = 40; // px per second — gentle, for the small chip rows
       const loop = gsap.to(track, {
         xPercent: -50,
         ease: 'none',
