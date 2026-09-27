@@ -3,7 +3,7 @@
    ============================================================
    This page's own design, used by nothing else. Where the other four
    cases share css/insight-panels.css, this one is deliberately quieter:
-   one narrow reading column, flat grey cards with no borders or shadows,
+   one reading column (960px), flat grey cards with no borders or shadows,
    two heading sizes, and a single accent — a pale water blue for the
    groundwater department — spent only on the numbered/icon tiles and the
    KPI figures. Buttons, links and nav keep the site's own --primary.
@@ -14,7 +14,7 @@
    ============================================================ */
 
 .gp {
-  --gp-col: 760px;
+  --gp-col: 960px;
   --gp-card: var(--paper-2);
   --gp-radius: 24px;
   --gp-accent-bg: #d7eef8;
@@ -64,7 +64,7 @@
 /* the cover sits wider than the reading column, on the card grey */
 .gp-cover {
   margin: clamp(2.5rem, 5vw, 4rem) auto 0;
-  max-width: calc(1120px + 2 * var(--gutter)); padding-inline: var(--gutter);
+  max-width: calc(1280px + 2 * var(--gutter)); padding-inline: var(--gutter);
 }
 .gp-cover img {
   display: block; width: 100%;
