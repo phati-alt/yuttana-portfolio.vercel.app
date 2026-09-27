@@ -37,6 +37,7 @@
 <meta name="theme-color" content="#1434cb">
 <link rel="stylesheet" href="../../css/tokens.css">
 <link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/case-page.css">
 
 <script>
   (function () {
@@ -208,75 +209,76 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
   </button>
 
-  <!-- Editorial layout, bespoke to the modal (not the case pages' panel
-       stack): an accent eyebrow + large title, an inline facts row, a
-       framed cover, then the write-up as a numbered narrative with big
-       ghost numerals rather than boxed sections, a pull-quote break, and
-       a bold stats strip. All text comes from data.js via
-       data-mp-modal-field; initMoreProjects() fills it on open. -->
-  <article class="mp-modal__inner">
-    <header class="mp-modal__hero">
-      <p class="mp-modal__eyebrow" data-mp-modal-field="category"></p>
-      <h2 class="mp-modal__title" id="mpModalTitle" data-mp-modal-field="title"></h2>
-      <p class="mp-modal__summary" data-mp-modal-field="summary"></p>
-      <ul class="mp-modal__facts">
-        <li><span data-i18n="cs.meta.roleLabel">Role</span><b data-mp-modal-field="role"></b></li>
-        <li><span data-i18n="more.modal.yearLabel">Year</span><b data-mp-modal-field="year"></b></li>
-        <li><span data-i18n="cs.meta.platformLabel">Platform</span><b data-mp-modal-field="platform"></b></li>
-      </ul>
+  <!-- Same design as the full case pages (css/case-page.css, .gp-*),
+       condensed into the dialog: chips, title and summary, the cover on
+       a grey mount, a three-cell record strip, then Problem / Process /
+       Solution with the quote between, and the two figures as KPI cells.
+       All text comes from data.js via data-mp-modal-field;
+       initMoreProjects() fills it on open. -->
+  <article class="mp-modal__inner gp">
+    <header class="gp-hero mp-gp-hero">
+      <div class="gp-col">
+        <ul class="gp-chips">
+          <li class="gp-chip gp-chip--dot" data-mp-modal-field="category"></li>
+          <li class="gp-chip" data-mp-modal-field="platform"></li>
+        </ul>
+        <h2 class="gp-hero__title" id="mpModalTitle" data-mp-modal-field="title"></h2>
+        <p class="gp-hero__summary" data-mp-modal-field="summary"></p>
+      </div>
     </header>
 
-    <figure class="mp-modal__cover">
-      <img data-mp-modal-img src="" alt="">
-    </figure>
+    <div class="gp-col">
+      <figure class="mp-gp-cover">
+        <img data-mp-modal-img src="" alt="">
+      </figure>
 
-    <div class="mp-modal__story">
-      <section class="mp-modal__chapter">
-        <span class="mp-modal__num" aria-hidden="true">01</span>
-        <div class="mp-modal__chapter-body">
-          <h3 class="mp-modal__chapter-title" data-i18n="cs.ip.findings">Problem</h3>
-          <p data-mp-modal-field="problem"></p>
-        </div>
-      </section>
-
-      <section class="mp-modal__chapter">
-        <span class="mp-modal__num" aria-hidden="true">02</span>
-        <div class="mp-modal__chapter-body">
-          <h3 class="mp-modal__chapter-title" data-i18n="cs.ip.process">Process</h3>
-          <p data-mp-modal-field="process"></p>
-        </div>
-      </section>
-
-      <blockquote class="mp-modal__quote" data-mp-modal-field="quote"></blockquote>
-
-      <section class="mp-modal__chapter">
-        <span class="mp-modal__num" aria-hidden="true">03</span>
-        <div class="mp-modal__chapter-body">
-          <h3 class="mp-modal__chapter-title" data-i18n="cs.ip.solution">Solution</h3>
-          <p data-mp-modal-field="solution"></p>
-        </div>
-      </section>
+      <dl class="gp-meta mp-gp-meta">
+        <div class="gp-meta__cell"><dt data-i18n="cs.meta.roleLabel">Role</dt><dd data-mp-modal-field="role"></dd></div>
+        <div class="gp-meta__cell"><dt data-i18n="more.modal.yearLabel">Year</dt><dd data-mp-modal-field="year"></dd></div>
+        <div class="gp-meta__cell"><dt data-i18n="cs.meta.platformLabel">Platform</dt><dd data-mp-modal-field="platform"></dd></div>
+      </dl>
     </div>
 
-    <div class="mp-modal__stats">
-      <div class="mp-modal__stat">
-        <strong data-mp-modal-field="stat1"></strong>
-        <span data-mp-modal-field="stat1Label"></span>
+    <section class="gp-section mp-gp-section">
+      <div class="gp-col">
+        <h3 class="gp-h2" data-i18n="cs.ip.findings">Problem</h3>
+        <p class="gp-body" data-mp-modal-field="problem"></p>
       </div>
-      <div class="mp-modal__stat">
-        <strong data-mp-modal-field="stat2"></strong>
-        <span data-mp-modal-field="stat2Label"></span>
-      </div>
-    </div>
+    </section>
 
-    <!-- Only for a project that also has a full case page (data.js
-         `caseUrl`); initMoreProjects() fills the href and unhides it. -->
-    <div class="mp-modal__more" data-mp-modal-more hidden>
-      <a class="btn btn--primary" href="#" data-mp-modal-link data-hover>
-        <span class="btn__label" data-i18n="cs.next.cta">View case study</span>
-        <span class="btn__circle">↗︎</span>
-      </a>
-    </div>
+    <section class="gp-section mp-gp-section">
+      <div class="gp-col">
+        <h3 class="gp-h2" data-i18n="cs.ip.process">Process</h3>
+        <p class="gp-body" data-mp-modal-field="process"></p>
+        <blockquote class="gp-pull" data-mp-modal-field="quote"></blockquote>
+      </div>
+    </section>
+
+    <section class="gp-section mp-gp-section">
+      <div class="gp-col">
+        <h3 class="gp-h2" data-i18n="cs.ip.solution">Solution</h3>
+        <p class="gp-body" data-mp-modal-field="solution"></p>
+      </div>
+    </section>
+
+    <section class="gp-section mp-gp-section mp-gp-section--last">
+      <div class="gp-col">
+        <h3 class="gp-h2" data-i18n="cs.ip.results">Results</h3>
+        <div class="gp-kpis mp-gp-kpis">
+          <div class="gp-kpi"><strong data-mp-modal-field="stat1"></strong><span data-mp-modal-field="stat1Label"></span></div>
+          <div class="gp-kpi"><strong data-mp-modal-field="stat2"></strong><span data-mp-modal-field="stat2Label"></span></div>
+        </div>
+
+        <!-- Only for a project that also has a full case page (data.js
+             `caseUrl`); initMoreProjects() fills the href and unhides it. -->
+        <div class="mp-modal__more" data-mp-modal-more hidden>
+          <a class="btn btn--primary" href="#" data-mp-modal-link data-hover>
+            <span class="btn__label" data-i18n="cs.next.cta">View case study</span>
+            <span class="btn__circle">↗︎</span>
+          </a>
+        </div>
+      </div>
+    </section>
   </article>
 </dialog>
 

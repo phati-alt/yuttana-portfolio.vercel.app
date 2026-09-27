@@ -1684,12 +1684,11 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
 }
 
 /* ---------- More Projects: cards + modal ---------- */
-/* Same treatment as the homepage case cards — rounded frame, slow image
-   push-in, label sliding up on hover — but laid out as a grid rather than
-   the homepage's scrubbed horizontal row, and sized by aspect-ratio
-   instead of the row's fixed viewport height. These covers are landscape
-   (roughly 3:2); forcing them into the case row's tall portrait frame
-   would crop the device mockups in half. */
+/* Same treatment and the same size as the homepage case cards — rounded
+   frame, slow image push-in, label sliding up on hover, a column up to
+   .case's 640px and .case__media's clamp(460px, 78vh, 680px) height,
+   cover anchored to the top — but laid out as a two-column grid rather
+   than the homepage's scrubbed horizontal row. */
 .mp-filter {
   display: flex; flex-wrap: wrap; gap: .6rem;
   margin-top: clamp(2rem, 4vw, 3rem);
@@ -1706,8 +1705,15 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
    explicit exception to tokens.css's "primary is for CTAs/links"
    guideline, made at the user's own direction for this control. */
 .mp-filter__btn.is-active { background: var(--primary); border-color: var(--primary); color: var(--primary-ink); }
+/* The page's .wrap gutter is wider than the homepage row's, which
+   would hold these columns under 640px on a laptop. The filter and the
+   grid break out of it to a width that fits two 640px cards, centred. */
+.mp-filter, .mp-grid {
+  --mp-grid-w: min(calc(1280px + var(--gap)), calc(100vw - 2.5rem));
+  width: var(--mp-grid-w); margin-inline: calc((100% - var(--mp-grid-w)) / 2);
+}
 .mp-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 640px));
   gap: var(--gap); margin-top: 1.5rem;
 }
 /* Filtered out: fully removed from layout rather than faded, since a
@@ -1723,11 +1729,11 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
   cursor: pointer;
 }
 .mp-card__media {
-  position: relative; display: block; aspect-ratio: 3 / 2;
+  position: relative; display: block; height: clamp(460px, 78vh, 680px);
   border-radius: var(--radius); overflow: hidden; background: var(--paper-2);
 }
 .mp-card__media img {
-  display: block; width: 100%; height: 100%; object-fit: cover;
+  display: block; width: 100%; height: 100%; object-fit: cover; object-position: top;
   transition: transform .9s var(--ease);
 }
 .mp-card:hover .mp-card__media img { transform: scale(1.06); }
@@ -1757,11 +1763,10 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
 }
 .mp-modal::backdrop { background: rgba(6, 10, 24, .62); backdrop-filter: blur(3px); }
 
-/* Editorial layout — deliberately NOT the case pages' boxed panel stack.
-   The horizontal inset (--mp-pad) is shared by the hero, story and stats;
-   the cover keeps a smaller inset so it reads as a framed hero shot. */
+/* The scrolling article. Its content uses the case pages' own layout
+   (css/case-page.css, .gp-*) — the rules after .mp-modal__close only
+   tighten that layout to fit inside a dialog. */
 .mp-modal__inner {
-  --mp-pad: clamp(1.5rem, 4vw, 4.5rem);
   flex: 1; min-width: 0;
   max-height: min(94vh, 1100px);
   overflow-y: auto;
@@ -1773,106 +1778,6 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
   -ms-overflow-style: none;           /* legacy Edge */
 }
 .mp-modal__inner::-webkit-scrollbar { width: 0; height: 0; display: none; }
-
-/* Hero — accent eyebrow, oversized title, standfirst, then an inline
-   facts row (mono label over value) instead of a bordered meta grid. */
-.mp-modal__hero {
-  padding: clamp(2.5rem, 5vw, 4.5rem) var(--mp-pad) clamp(1.5rem, 3vw, 2.25rem);
-}
-.mp-modal__eyebrow {
-  display: inline-flex; align-items: center; gap: .65rem; margin: 0;
-  font-family: var(--font-mono); font-size: .72rem; font-weight: 600;
-  letter-spacing: .18em; text-transform: uppercase; color: var(--primary);
-}
-.mp-modal__eyebrow::before {
-  content: ''; width: 1.75rem; height: 2px; border-radius: 2px;
-  background: var(--primary);
-}
-.mp-modal__title {
-  margin: 1rem 0 0;
-  font-size: clamp(2rem, 1.3rem + 3vw, 3.6rem); font-weight: 600;
-  letter-spacing: -.038em; line-height: 1.03; text-wrap: balance;
-  max-width: 18ch;
-}
-.mp-modal__summary {
-  margin: clamp(1rem, 2vw, 1.5rem) 0 0; max-width: 60ch;
-  font-size: var(--fs-lede); line-height: 1.5; color: var(--muted);
-}
-.mp-modal__facts {
-  display: flex; flex-wrap: wrap; gap: 1rem 2.5rem;
-  margin: clamp(1.75rem, 3vw, 2.5rem) 0 0; padding: 0; list-style: none;
-}
-.mp-modal__facts li { display: flex; flex-direction: column; gap: .3rem; }
-.mp-modal__facts span {
-  font-family: var(--font-mono); font-size: .64rem; font-weight: 600;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
-}
-.mp-modal__facts b { font-size: .98rem; font-weight: 500; }
-/* Capping the cover's height does two jobs at this panel width. Stretched
-   to a full 1280 the covers ran taller than the dialog itself, so opening a
-   project put a wall of image between the title and everything written
-   about it. And these files are 689px wide — filling that width meant
-   scaling them 1.86x, which visibly softens a screenshot full of small UI
-   text. Bounded by height and contained instead, they land near their
-   native size and stay sharp; the leftover space either side reads as a
-   mount, the same way the case pages inset their cover. */
-/* Framed hero shot — inset from the modal edge with a tinted mount and a
-   hairline, so it reads as a presented image rather than a full-bleed
-   banner. Height-capped and contained because these covers are only
-   689px wide: filling the panel would upscale ~1.86x and soften the small
-   UI text in the screenshots, so they sit near native size instead. */
-.mp-modal__cover {
-  margin: clamp(.5rem, 1.5vw, 1.25rem) var(--mp-pad) 0;
-  background: var(--paper-2); border: 1px solid var(--rule);
-  border-radius: var(--radius); overflow: hidden;
-  display: grid; place-items: center;
-  padding: clamp(1rem, 2.5vw, 2.5rem);
-}
-.mp-modal__cover img {
-  display: block; width: auto; height: auto;
-  max-width: 100%; max-height: 50vh; border-radius: var(--radius-sm);
-}
-
-/* Story — the write-up as a numbered narrative: an oversized ghost
-   numeral marks each chapter instead of a boxed section head, and the
-   chapters sit on open space rather than in cards. */
-.mp-modal__story {
-  padding: clamp(2.5rem, 5vw, 4rem) var(--mp-pad) 0;
-  display: flex; flex-direction: column; gap: clamp(2rem, 4vw, 3rem);
-}
-.mp-modal__chapter {
-  display: grid; grid-template-columns: auto 1fr;
-  gap: clamp(1.25rem, 3vw, 2.5rem); align-items: start;
-}
-.mp-modal__num {
-  font-family: var(--font-mono); font-weight: 700; line-height: 1;
-  font-size: clamp(2rem, 1.4rem + 2vw, 3.25rem);
-  color: var(--primary);
-}
-.mp-modal__chapter-title {
-  margin: .3rem 0 .85rem;
-  font-family: var(--font-mono); font-size: .74rem; font-weight: 700;
-  letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
-}
-.mp-modal__chapter-body p {
-  margin: 0; font-size: 1.02rem; line-height: 1.65; max-width: 64ch; color: var(--ink);
-}
-
-/* Pull-quote — a full-width editorial break between the chapters, set off
-   by hairlines and a large accent quote mark rather than a box. */
-.mp-modal__quote {
-  margin: 0; padding: clamp(1.5rem, 3vw, 2.25rem) 0;
-  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
-  font-size: clamp(1.3rem, 1rem + 1.4vw, 2rem); font-weight: 500;
-  font-style: italic; line-height: 1.4; letter-spacing: -.01em;
-  text-wrap: balance; color: var(--ink); max-width: 34ch;
-}
-.mp-modal__quote::before {
-  content: '\201C'; display: block;
-  font-family: var(--font-display); font-style: normal;
-  font-size: 3.5em; line-height: .5; color: var(--primary);
-  margin-bottom: .12em;
-}
 
 /* Pinned to the dialog corner (absolute inside the non-scrolling dialog),
    so it stays exactly put while the inner article scrolls under it — no
@@ -1890,38 +1795,34 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
   transition: background var(--speed) var(--ease), transform var(--speed) var(--ease);
 }
 .mp-modal__close:hover { background: var(--paper-2); transform: rotate(90deg); }
-/* Keep the hero's top line clear of the pinned close button. */
-.mp-modal__hero { padding-right: max(var(--mp-pad), 4rem); }
 
-/* Stats strip — a bold full-bleed band closing the modal: two oversized
-   mono figures split by a hairline. Neutral ink, not a metric-green,
-   since some values are short phrases ("Inline detail") rather than
-   numbers. Full width (no side margin) so it anchors the foot of the
-   panel like a colophon. */
-.mp-modal__stats {
-  margin-top: clamp(2.5rem, 5vw, 4rem);
-  display: grid; grid-template-columns: 1fr 1fr;
-  background: var(--paper-2); border-top: 1px solid var(--rule);
+/* Case-page layout inside the dialog: no fixed header to clear, and
+   tighter section spacing than a full page. */
+.mp-modal .gp-hero { padding-top: clamp(2.75rem, 5vw, 4rem); }
+.mp-modal .gp-hero .gp-col { padding-right: max(var(--gutter), 4rem); } /* clear the close button */
+.mp-gp-section { padding-top: clamp(2.5rem, 5vw, 3.5rem); }
+.mp-gp-section--last { padding-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+/* Cover on a grey mount, contained rather than stretched: these files
+   are only ~689px wide, and filling the column would upscale and soften
+   the small UI text in them. */
+.mp-gp-cover {
+  margin: clamp(2rem, 4vw, 2.75rem) 0 0; display: grid; place-items: center;
+  padding: clamp(1rem, 2.5vw, 2rem);
+  background: var(--gp-card); border-radius: var(--gp-radius);
 }
-.mp-modal__stat {
-  display: flex; flex-direction: column; gap: .55rem;
-  padding: clamp(1.75rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+.mp-gp-cover img {
+  display: block; width: auto; height: auto;
+  max-width: 100%; max-height: 50vh; border-radius: var(--radius-sm);
 }
-.mp-modal__stat:first-child { padding-left: var(--mp-pad); }
-.mp-modal__stat:last-child { padding-right: var(--mp-pad); }
-.mp-modal__stat + .mp-modal__stat { border-left: 1px solid var(--rule); }
-.mp-modal__stat strong {
-  font-family: var(--font-mono); font-weight: 700; line-height: 1;
-  font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem); letter-spacing: -.02em;
-  color: var(--ink); font-variant-numeric: tabular-nums;
-}
-.mp-modal__stat span { font-size: .9rem; line-height: 1.4; color: var(--muted); }
-
+/* .mp-modal prefix: case-page.css loads after this file and would
+   otherwise win with its 4-up .gp-meta / .gp-kpis */
+.mp-modal .mp-gp-meta { grid-template-columns: repeat(3, 1fr); }
+.mp-modal .mp-gp-kpis { grid-template-columns: repeat(2, 1fr); }
 @media (max-width: 560px) {
-  .mp-modal__stats { grid-template-columns: 1fr; }
-  .mp-modal__stat + .mp-modal__stat { border-left: 0; border-top: 1px solid var(--rule); }
-  .mp-modal__stat { padding-inline: var(--mp-pad); }
+  .mp-modal .mp-gp-meta, .mp-modal .mp-gp-kpis { grid-template-columns: 1fr; }
 }
+.mp-modal__more { margin-top: clamp(1.75rem, 3vw, 2.25rem); }
+.mp-modal__more[hidden] { display: none; }
 @media (max-width: 900px) {
   .mp-grid { grid-template-columns: 1fr; }
 }
@@ -2056,8 +1957,3 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
   position: fixed; left: 12px; bottom: 12px; z-index: 70;
 }
 .cs-audit__bar .cs-audit { position: static; }
-
-/* More Projects modal — "View case study" for a project that also has a
-   full case page (data.js `caseUrl`); hidden otherwise. */
-.mp-modal__more { padding: clamp(1.5rem, 3vw, 2.25rem) var(--mp-pad) clamp(2rem, 4vw, 3rem); }
-.mp-modal__more[hidden] { display: none; }
