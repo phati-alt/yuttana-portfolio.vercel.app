@@ -14,7 +14,7 @@
 
    `group` (top level, not translated — it's a machine value, not
    copy) is which filter button on the gallery page shows this card:
-   'platform', 'mobile' or 'dashboard'. It's a broader grouping than
+   'platform', 'mobile', 'dashboard' or 'website'. It's a broader grouping than
    the `category` text shown on the card itself, so a project can read
    as "IoT Monitoring" on its label while filtering under "Product
    Platform". Add a fourth group here and a matching button in
@@ -313,6 +313,50 @@ window.MORE_PROJECTS = {
       stat1Label: 'หน้าจอที่ออกแบบ',
       stat2: '5',
       stat2Label: 'Core Flow ที่ส่งมอบ'
+    }
+  },
+
+  /* Moved here from the homepage's full cases. Its full page still
+     exists at work/wordpress-website/ (slug predates the JST rename),
+     so `caseUrl` makes the modal link through to it. Every sentence
+     below is taken verbatim from that page's data.js — nothing new
+     written. `year` is a placeholder: the source only says "under 1
+     month", not which year. */
+  'jst-group': {
+    audit: 'real',
+    group: 'website',
+    caseUrl: '../wordpress-website/',
+    en: {
+      category: 'Website',
+      title: 'JST Group',
+      summary: 'A corporate website redesign with a recruitment section added - so a candidate can see the open roles and knows where to go, rather than hunting for the way in.',
+      role: 'UX/UI Designer — solo, design and prototype',
+      year: '—',
+      platform: 'Corporate website — desktop, tablet, mobile',
+      problem: 'JST Group wanted their corporate site redesigned with a recruitment section added. Two things had to hold: the site had to read as a credible organisation, and a visitor had to see the open roles and know where to go to apply or leave their portfolio. Four pages, three breakpoints and a prototype, designed alone in under a month.',
+      process: 'The brief came in clear, and with a month and no one else on it, the leverage was in structure rather than exploration: separate the two audiences at navigation level, then build one set of patterns — section header, service card, statistic block, CTA band — and run every page off them. An interactive prototype came with the handover, because the brief was about where the entrances are, and that is a question static screens answer badly.',
+      quote: 'The brief was about entrances — where do I click. Static screens answer that badly; a prototype answers it in one session.',
+      solution: 'Corporate clients and job candidates arrive wanting different things. Their entrances are separated at navigation level, so neither has to walk through the other\'s content to reach their own. Featured jobs sit on the homepage and the recruitment page with a filter, rather than behind a submenu. A candidate does not have to look for them.',
+      stat1: '4',
+      stat1Label: 'Pages designed',
+      stat2: '3',
+      stat2Label: 'Device breakpoints'
+    },
+    th: {
+      category: 'เว็บไซต์',
+      title: 'JST Group',
+      summary: 'รีดีไซน์เว็บไซต์องค์กร พร้อมเพิ่มส่วน Recruitment เข้ามา ให้ผู้สมัครเห็นตำแหน่งงานว่างและรู้ว่าต้องเข้าจุดไหน แทนที่จะต้องไล่หาทางเข้าเอง',
+      role: 'UX/UI Designer — ทำคนเดียว ทั้งออกแบบและ Prototype',
+      year: '—',
+      platform: 'เว็บไซต์องค์กร — เดสก์ท็อป แท็บเล็ต มือถือ',
+      problem: 'JST Group ต้องการรีดีไซน์เว็บไซต์องค์กร โดยเพิ่มส่วน Recruitment เข้ามาใหม่ โจทย์หลักมีสองข้อ — เว็บต้องสื่อสารความน่าเชื่อถือขององค์กรได้ และผู้ใช้ต้องเห็นตำแหน่งงานที่ว่าง พร้อมรู้ว่าต้องเข้าจุดไหนหากจะสมัครงานหรือฝากผลงาน 4 หน้า 3 ขนาดหน้าจอ และ Prototype ออกแบบคนเดียวภายในไม่ถึงหนึ่งเดือน',
+      process: 'โจทย์จากลูกค้าชัดอยู่แล้ว และด้วยเวลาหนึ่งเดือนโดยไม่มีคนอื่นในทีม จุดที่ได้ผลที่สุดคือโครงสร้าง ไม่ใช่การทดลอง — แยกผู้ใช้สองกลุ่มตั้งแต่ระดับ Navigation แล้วสร้าง Pattern กลางชุดเดียว ทั้ง Section Header, Service Card, Statistic Block และ CTA Band แล้วให้ทุกหน้าเดินจากชุดนั้น พร้อมส่งมอบ Interactive Prototype ไปด้วย เพราะโจทย์คือเรื่องทางเข้าอยู่ตรงไหน ซึ่งเป็นคำถามที่ภาพนิ่งตอบได้ไม่ดี',
+      quote: 'โจทย์คือเรื่องทางเข้า — ต้องกดตรงไหน ภาพนิ่งตอบคำถามนี้ได้ไม่ดี แต่ Prototype ตอบได้จบในรอบเดียว',
+      solution: 'ลูกค้าองค์กรกับผู้สมัครงานเข้ามาด้วยเป้าหมายคนละอย่าง ทางเข้าของทั้งสองกลุ่มจึงถูกแยกตั้งแต่ระดับ Navigation ไม่มีใครต้องเดินผ่านเนื้อหาของอีกฝ่ายเพื่อไปถึงส่วนของตัวเอง Featured Jobs อยู่บนหน้าหลักและหน้า Recruitment พร้อมตัวกรอง แทนที่จะซ่อนไว้หลังเมนูย่อย ผู้สมัครจึงไม่ต้องค้นหา',
+      stat1: '4',
+      stat1Label: 'หน้าที่ออกแบบ',
+      stat2: '3',
+      stat2Label: 'ขนาดหน้าจอที่รองรับ'
     }
   }
 };

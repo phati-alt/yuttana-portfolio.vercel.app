@@ -108,6 +108,7 @@
         <button type="button" class="mp-filter__btn" data-mp-filter-value="platform" data-i18n="more.filter.platform">Product Platform</button>
         <button type="button" class="mp-filter__btn" data-mp-filter-value="mobile" data-i18n="more.filter.mobile">Mobile Application</button>
         <button type="button" class="mp-filter__btn" data-mp-filter-value="dashboard" data-i18n="more.filter.dashboard">Dashboard</button>
+        <button type="button" class="mp-filter__btn" data-mp-filter-value="website" data-i18n="more.filter.website">Website</button>
       </div>
       <div class="mp-grid" data-mp-grid>
         <button class="mp-card" type="button" data-mp-id="facility-management" data-reveal data-hover>
@@ -176,6 +177,15 @@
         <button class="mp-card" type="button" data-mp-id="drin-doctor" data-reveal data-hover>
           <span class="mp-card__media">
             <img src="assets/drin-doctor.png" alt="" loading="lazy">
+            <span class="mp-card__label">
+              <span class="mp-card__label-category" data-mp-field="category"></span>
+              <span class="mp-card__label-title" data-mp-field="title"></span>
+            </span>
+          </span>
+        </button>
+        <button class="mp-card" type="button" data-mp-id="jst-group" data-reveal data-hover>
+          <span class="mp-card__media">
+            <img src="assets/jst-group.png" alt="" loading="lazy">
             <span class="mp-card__label">
               <span class="mp-card__label-category" data-mp-field="category"></span>
               <span class="mp-card__label-title" data-mp-field="title"></span>
@@ -257,6 +267,15 @@
         <strong data-mp-modal-field="stat2"></strong>
         <span data-mp-modal-field="stat2Label"></span>
       </div>
+    </div>
+
+    <!-- Only for a project that also has a full case page (data.js
+         `caseUrl`); initMoreProjects() fills the href and unhides it. -->
+    <div class="mp-modal__more" data-mp-modal-more hidden>
+      <a class="btn btn--primary" href="#" data-mp-modal-link data-hover>
+        <span class="btn__label" data-i18n="cs.next.cta">View case study</span>
+        <span class="btn__circle">↗︎</span>
+      </a>
     </div>
   </article>
 </dialog>

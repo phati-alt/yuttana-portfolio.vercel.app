@@ -832,6 +832,8 @@
     const cards = [...grid.querySelectorAll('[data-mp-id]')];
     const fields = [...modal.querySelectorAll('[data-mp-modal-field]')];
     const modalImg = modal.querySelector('[data-mp-modal-img]');
+    const moreBox = modal.querySelector('[data-mp-modal-more]');
+    const moreLink = modal.querySelector('[data-mp-modal-link]');
     let openId = null;
 
     const entryFor = id => {
@@ -863,6 +865,12 @@
         const value = data[el.dataset.mpModalField];
         if (value !== undefined) el.textContent = value;
       });
+      // "View case study" only for a project that also has a full page.
+      const caseUrl = window.MORE_PROJECTS?.[openId]?.caseUrl;
+      if (moreBox && moreLink) {
+        moreBox.hidden = !caseUrl;
+        if (caseUrl) moreLink.href = caseUrl;
+      }
     };
 
     render();

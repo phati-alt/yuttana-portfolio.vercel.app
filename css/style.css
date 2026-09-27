@@ -2056,3 +2056,8 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
   position: fixed; left: 12px; bottom: 12px; z-index: 70;
 }
 .cs-audit__bar .cs-audit { position: static; }
+
+/* More Projects modal — "View case study" for a project that also has a
+   full case page (data.js `caseUrl`); hidden otherwise. */
+.mp-modal__more { padding: clamp(1.5rem, 3vw, 2.25rem) var(--mp-pad) clamp(2rem, 4vw, 3rem); }
+.mp-modal__more[hidden] { display: none; }

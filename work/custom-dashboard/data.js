@@ -74,7 +74,7 @@ window.CASE_DATA = {
     reflect3Title: "Sometimes the Best Screen Is an Empty One",
     reflect3Text: "Most dashboard work gets judged on how much data it can fit. This case was a reminder that sometimes an empty screen is the most valuable signal there is.",
 
-    nextTitle: "JST Group",
+    nextTitle: "Department of Groundwater Resources",
     dataStatus: "real"
   },
 
@@ -128,7 +128,7 @@ window.CASE_DATA = {
     reflect3Title: "บางครั้งหน้าจอที่ดีที่สุดคือหน้าจอที่ว่างเปล่า",
     reflect3Text: "งาน dashboard ส่วนใหญ่ถูกตัดสินจาก 'ใส่ข้อมูลได้เยอะแค่ไหน' แต่เคสนี้สอนว่าบางครั้งหน้าจอที่ว่างเปล่าคือสัญญาณที่มีค่าที่สุด",
 
-    nextTitle: "JST Group",
+    nextTitle: "กรมทรัพยากรน้ำบาดาล",
     dataStatus: "real"
   }
 };
