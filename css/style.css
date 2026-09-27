@@ -687,26 +687,23 @@ body {
    One top-to-bottom column instead (a plainer, faster read), plus a real
    drop shadow so each card actually looks like a physical card sitting on
    top of the one behind it — a small lift on hover sells that further. */
-/* One card surface for all five, in the site's own card language (the
-   flat grey of the case pages, with the brand-blue accent on the number)
-   instead of the five pastel tones each card used to have. Own tokens
-   rather than --paper-2/--ink: inside the band those are overridden for
-   the dark background, and these cards sit on top of it. */
+/* One card surface for all five, part of the band rather than set on it:
+   a step lighter than the band colour with a faint white hairline, white
+   titles, muted body copy and the number on a pale-blue tint (the same
+   dark-mode accent the case pages use). Built from var(--band) so it
+   follows the band in both themes (#020f27 light, #1a1f72 dark). Own
+   tokens rather than --paper-2/--ink, which the band overrides. */
 .stack__card {
-  --stack-bg: #f1f2f6; --stack-ink: #1a1a1a; --stack-muted: #656565;
-  --stack-acc-bg: #e1e6fc; --stack-acc-ink: #1434cb;
+  --stack-bg: color-mix(in srgb, #fff 6%, var(--band)); --stack-ink: #fff; --stack-muted: #a8b0c2;
+  --stack-acc-bg: rgba(179, 193, 255, .16); --stack-acc-ink: #b3c1ff;
   position: relative; overflow: hidden;
   background: var(--stack-bg); color: var(--stack-ink);
   border-radius: var(--radius); padding: clamp(1.5rem, 2.6vw, 2.5rem);
   min-height: clamp(220px, 30vh, 300px);
   display: flex; flex-direction: column; justify-content: center; gap: clamp(1rem, 2vw, 1.5rem);
-  border: 1px solid color-mix(in srgb, var(--stack-ink) 8%, transparent);
-  box-shadow: 0 24px 50px -28px rgba(0, 0, 0, .45);
+  border: 1px solid color-mix(in srgb, var(--stack-ink) 10%, transparent);
+  box-shadow: 0 24px 50px -28px rgba(0, 0, 0, .6);
   transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
-}
-:root[data-theme="dark"] .stack__card {
-  --stack-bg: color-mix(in srgb, #fff 8%, var(--band)); --stack-ink: #fff; --stack-muted: #a8b0c2;
-  --stack-acc-bg: rgba(179, 193, 255, .16); --stack-acc-ink: #b3c1ff;
 }
 .stack__card:hover { transform: translateY(-4px); box-shadow: 0 32px 60px -26px rgba(0, 0, 0, .5); }
 .stack__head, .stack__content { position: relative; z-index: 1; }
