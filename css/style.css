@@ -413,9 +413,8 @@ body {
    does happen. */
 .cases--scroll-enhanced .cases__pin .cases__grid { margin-block: auto; }
 .cases--scroll-enhanced .cases__grid { will-change: transform; }
-/* (Heights below were later cut to a 480px ceiling / 300px allowance, a
-   4:3 frame at the 640px card width, once the title moved under the
-   image — the reasoning is unchanged.)
+/* (Heights below were later cut to a 480px ceiling — a 4:3 frame at the
+   640px card width — the reasoning is unchanged.)
    .case__media's plain clamp(460px, 78vh, 680px) assumed the pin had the
    whole viewport to itself — true before the heading moved in above it.
    Now the nav (var(--header-h)) and the heading block both eat into that
@@ -429,7 +428,7 @@ body {
    still reaching the full 680px ceiling on any generously tall display,
    just no longer assuming vh alone tells the whole story. */
 .cases--scroll-enhanced .case__media {
-  height: clamp(340px, calc(100vh - var(--header-h) - 300px), 480px);
+  height: clamp(340px, calc(100vh - var(--header-h) - 200px), 480px);
 }
 .case {
   flex: 0 0 clamp(340px, 55vw, 640px); scroll-snap-align: start;
@@ -450,26 +449,80 @@ body {
 }
 .case:hover .case__media img { transform: scale(1.06); }
 
-/* Card text — a "Category • Platform • Scope" line and the title, set
-   UNDER the cover and always visible (it used to sit on a scrim over the
-   image and only slide in on hover, so a visitor skimming the row had to
-   hover each card to learn what it was). Meta comes from cardMeta in
-   content/cases.csv via js/cases-index.js; More Projects builds its line
-   from category + platform in its data.js. */
-.case__info,
-.mp-card__info { display: flex; flex-direction: column; gap: .35rem; padding-top: 1rem; }
-.case__meta,
-.mp-card__meta { margin: 0; font-size: .9rem; line-height: 1.4; color: var(--muted); }
-.mp-card__dot { margin-inline: .45em; opacity: .7; }
-.case__title,
-.mp-card__title {
-  display: block; margin: 0;
-  font-size: clamp(1.1rem, .9rem + .6vw, 1.35rem); font-weight: 600;
-  letter-spacing: -.015em; line-height: 1.3; color: var(--ink);
-  transition: color var(--speed) var(--ease);
+/* Card label — a "Category • Platform • Scope" line, the title and (on
+   the homepage) a one-line result, over the cover. Hidden until hover or
+   keyboard focus, then slides up; shown outright on touch screens below.
+   Homepage text comes from content/cases.csv (cardMeta / title /
+   cardOutcome) via js/cases-index.js; More Projects builds its meta from
+   category + platform in its own data.js.
+
+   White on a scrim rather than a theme token: it sits on a photograph,
+   which has no idea what the page theme is, so --ink would go invisible
+   against a light cover in dark mode. The gradient is what guarantees
+   contrast, so it has to stay even where the image is already dark. */
+.case__label,
+.mp-card__label {
+  position: absolute; inset-inline: 0; bottom: 0; z-index: 1;
+  display: flex; flex-direction: column; gap: .4rem;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.1rem, 2.4vw, 1.9rem) clamp(1.1rem, 2.4vw, 1.9rem);
+  color: #fff; pointer-events: none;
+  background: linear-gradient(to top,
+    rgba(6, 10, 24, .88) 0%, rgba(6, 10, 24, .6) 55%, rgba(6, 10, 24, 0) 100%);
+  opacity: 0; transform: translateY(10px);
+  transition: opacity .45s var(--ease), transform .45s var(--ease);
 }
-.case:hover .case__title, .case:focus-visible .case__title,
-.mp-card:hover .mp-card__title, .mp-card:focus-visible .mp-card__title { color: var(--primary); }
+.case__label-meta,
+.mp-card__label-meta { display: block; margin: 0; font-size: .82rem; line-height: 1.4; opacity: .8; }
+.mp-card__dot { margin-inline: .45em; opacity: .8; }
+.case__label-title,
+.mp-card__label-title {
+  display: block; margin: 0;
+  font-size: clamp(1.05rem, 1.7vw, 1.45rem);
+  font-weight: 600; letter-spacing: -.02em; line-height: 1.25;
+  text-wrap: balance;
+}
+.case__label-outcome { margin: .15rem 0 0; font-size: .95rem; line-height: 1.45; opacity: .9; max-width: 48ch; }
+/* :focus-visible too, so the label is reachable by keyboard and not only
+   by a pointer that a touch device does not have. */
+.case:hover .case__label,
+.case:focus-visible .case__label,
+.mp-card:hover .mp-card__label,
+.mp-card:focus-visible .mp-card__label { opacity: 1; transform: none; }
+
+/* Nothing on a touchscreen ever fires hover, so the label would never
+   appear there — and shown outright ON the image it would cover most of a
+   phone-sized cover (three lines of text on a ~290x215 frame). So on touch
+   screens it moves UNDER the image instead, as plain always-visible text.
+   The two-class selectors (.case .case__media) are deliberate: they have
+   to beat .cases--scroll-enhanced .case__media, which a wide touch tablet
+   can also get. */
+@media (hover: none) {
+  .case .case__media,
+  .mp-card .mp-card__media {
+    height: auto; aspect-ratio: auto; overflow: visible;
+    background: none; border-radius: 0;
+  }
+  .case .case__media img,
+  .mp-card .mp-card__media img {
+    display: block; width: 100%; height: auto; aspect-ratio: 4 / 3;
+    border-radius: var(--radius); background: var(--paper-2);
+  }
+  .cases--scroll-enhanced .case .case__media img {
+    aspect-ratio: auto; height: clamp(280px, calc(100vh - var(--header-h) - 340px), 480px);
+  }
+  .case__label,
+  .mp-card__label {
+    position: static; opacity: 1; transform: none;
+    padding: 1rem 0 0; background: none; color: var(--ink);
+  }
+  .case__label-meta,
+  .mp-card__label-meta { color: var(--muted); opacity: 1; }
+  .case__label-outcome { color: var(--muted); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .case__label,
+  .mp-card__label { transition: none; transform: none; }
+}
 /* the "more projects" tile — a plain [data-tone] fill (same colour set
    the case-study template's own placeholder media-blocks use) standing
    in for a cover photo, with just a centred CTA label instead. Height/
@@ -1738,7 +1791,7 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
   cursor: pointer;
 }
 .mp-card__media {
-  position: relative; display: block; height: clamp(340px, calc(100vh - var(--header-h) - 300px), 480px);
+  position: relative; display: block; height: clamp(340px, calc(100vh - var(--header-h) - 200px), 480px);
   border-radius: var(--radius); overflow: hidden; background: var(--paper-2);
 }
 .mp-card__media img {
