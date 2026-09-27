@@ -1729,6 +1729,11 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
   background: var(--paper); color: var(--ink);
   overflow: hidden;
   position: relative;   /* containing block for the pinned close button */
+}
+/* Only when open: an unconditional display here beats the browser's own
+   dialog:not([open]) { display: none }, and the closed dialog then renders
+   inline on the page, between the project list and the footer. */
+.mp-modal[open] {
   display: flex;        /* let the inner article fill the panel */
 }
 .mp-modal::backdrop { background: rgba(6, 10, 24, .62); backdrop-filter: blur(3px); }
