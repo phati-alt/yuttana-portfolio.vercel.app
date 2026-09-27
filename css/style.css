@@ -897,8 +897,15 @@ body {
 .marquee { overflow: hidden; padding-block: .35rem; }
 .marquee__track { display: flex; width: max-content; will-change: transform; }
 .marquee__group { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2.5rem); padding-right: clamp(1rem, 2.5vw, 2.5rem); }
-.marquee__item { font-size: clamp(1.6rem, .8rem + 3.4vw, 4.25rem); font-weight: 600; letter-spacing: -.03em; white-space: nowrap; }
+.marquee__item { display: inline-flex; align-items: center; gap: .3em; font-size: clamp(1.6rem, .8rem + 3.4vw, 4.25rem); font-weight: 600; letter-spacing: -.03em; white-space: nowrap; }
 .marquee--reverse .marquee__item { -webkit-text-stroke: 1px var(--ink); color: transparent; }
+/* Icons draw in the row's own voice: solid marks on the solid row, 1px
+   outlines on the outlined row. Stroke widths are screen px/em because
+   every sprite path is non-scaling-stroke (see the sprite in index.html). */
+.marquee__sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.marquee__icon { flex-shrink: 0; width: .78em; height: .78em; fill: currentColor; stroke: none; }
+.marquee__icon--line { fill: none; stroke: currentColor; stroke-width: .075em; stroke-linecap: round; stroke-linejoin: round; }
+.marquee--reverse .marquee__icon { fill: none; stroke: var(--ink); stroke-width: 1px; }
 .marquee__sep { color: var(--orange); font-size: clamp(1rem, 1.6vw, 2rem); }
 
 /* ---------- 8. Experience — vertical timeline ---------- */
