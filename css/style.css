@@ -1172,7 +1172,17 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
   .footer__cols { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 900px) {
+/* Just above the burger breakpoint the capsule still clears the actions
+   but not the name beside the avatar, so trim the link padding there. */
+@media (min-width: 1121px) and (max-width: 1280px) {
+  .header__link { padding-inline: .7rem; }
+}
+
+/* The header collapses to the burger at a wider width than the rest of the
+   layout: the centred nav capsule is ~600px wide, so between 900px and
+   ~1100px it ran over the EN/theme pills on the right and the name on the
+   left. Keep this value in sync with HEADER_BURGER_MAX in js/main.js. */
+@media (max-width: 1120px) {
   /* tighter than the desktop-measured value (118px) or the old fixed 80px —
      the header's own content here is just one row of 48px buttons, so an
      80px band left 16px of dead air above and below them, sitting the
@@ -1226,7 +1236,9 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
     transition: background-color var(--speed) var(--ease), color var(--speed) var(--ease);
   }
   .burger:hover, .burger[aria-expanded="true"] { background: var(--primary); color: var(--primary-ink); }
+}
 
+@media (max-width: 900px) {
   .banner__foot { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .banner__scroll { width: 84px; align-self: flex-end; }
 

@@ -10,6 +10,9 @@
   'use strict';
 
   const root = document.documentElement;
+  // Width at which the header switches to the burger menu; matches the
+  // header @media block in css/style.css.
+  const HEADER_BURGER_MAX = 1120;
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const HAS_GSAP = typeof window.gsap !== 'undefined';
   const MOTION = HAS_GSAP && !REDUCED;
@@ -713,7 +716,7 @@
     // plain token — writing it here would pin the mobile header to the desktop
     // height, since the height is what we would be measuring.)
     const syncNavHeight = () => {
-      if (nav && window.innerWidth > 900) {
+      if (nav && window.innerWidth > HEADER_BURGER_MAX) {
         root.style.setProperty('--nav-h', `${Math.round(nav.offsetHeight)}px`);
       }
     };

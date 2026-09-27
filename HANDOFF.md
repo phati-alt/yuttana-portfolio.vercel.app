@@ -144,7 +144,7 @@ Inter Display 56px/700, การ์ดเทา `#f7f7f7` ไม่มีเส
 |---|---|---|---|
 | 1 ⭐ | **Meta tags + outcome ใต้การ์ด case** | ตอนนี้การ์ดมีแค่ category + title. เพิ่มแถว tags (เช่น `Live Product • GovTech • UX/UI`) และประโยคผลลัพธ์ 1 บรรทัด ให้ recruiter รู้ผลโดยไม่ต้องคลิก. เพิ่ม key `tags`, `cardSummary` ใน CSV → ต้องแก้ `build-cases.ps1` ให้ส่ง key ใหม่เข้า `cases-index.js` + เพิ่ม `data-case-field` ในการ์ด + CSS. **copy ต้องมาจากผู้ใช้ / ข้อมูลจริงใน CSV** | `content/cases.csv`, `tools/build-cases.ps1`, `index.html` (#casesGrid), `css/style.css`, `js/i18n.js` ~บรรทัด 394 (ที่เติม `data-case-field` จาก `CASES_INDEX`) |
 | 2 | **CTA ที่สอง + แถบโลโก้ลูกค้าใน Hero** | ปุ่มรอง เช่น LinkedIn หรือ View work ข้าง "Get in touch" + แถวโลโก้สีเทา (กรมทรัพยากรน้ำบาดาล, JST, Ananda/Gulf/CHPP ที่ NDA อนุญาตแล้ว ฯลฯ). **ถามผู้ใช้เรื่องสิทธิ์ใช้โลโก้ + ไฟล์โลโก้** | `index.html` (.banner__foot), `css/style.css`, `js/i18n.js` |
-| 3 | **ปุ่ม "Get in touch" ถาวรใน nav** | เปลี่ยน/เพิ่ม Contact เป็นปุ่ม pill สี primary. ระวัง layout header แคบ (ดูข้อ 6) | `index.html` (header), `css/style.css` |
+| 3 | **ปุ่ม "Get in touch" ถาวรใน nav** | เปลี่ยน/เพิ่ม Contact เป็นปุ่ม pill สี primary. ระวัง header แคบ: capsule เหลือระยะห่างแค่ ~7px ที่ 1121px — ถ้า nav กว้างขึ้นต้องขยับ `HEADER_BURGER_MAX` (js/main.js) + @media 1120px ใน style.css ตาม | `index.html` (header), `css/style.css` |
 | 4 | **ไอคอนในชิป Toolbox** | marquee ตอนนี้เป็นข้อความล้วน → ชิป pill + ไอคอน/โลโก้เครื่องมือ | `index.html` (.marquee-section), `css/style.css` |
 | 5 | **Footer: availability + socials** | เพิ่ม "Available for: Freelance & Full-time" + Behance/Dribbble ถ้ามี (**ถามผู้ใช้ว่ามี account ไหน**) | `index.html` (footer), `js/i18n.js` |
 
@@ -156,7 +156,6 @@ Inter Display 56px/700, การ์ดเทา `#f7f7f7` ไม่มีเส
 
 ## 6. ข้อสังเกตที่เจอระหว่างทาง (ยังไม่แก้)
 
-- ที่ viewport กว้าง ~800px ชื่อ "Mick Yuttana" ใน header ถูก nav ทับเหลือ "Mick Y" — เห็นใน screenshot ครั้งเดียว ยังไม่ได้เช็ก breakpoint อื่น
 - คอมเมนต์ล้าสมัยในโค้ด (ไม่กระทบเว็บ): หัวไฟล์ `work/more-projects/index.html` ยังบอกว่าเป็น "simple image gallery"
   (จริงๆ เป็น list + modal แบบ editorial แล้ว) และคอมเมนต์ `$customSlugs` ใน `tools/build-cases.ps1` ชี้ไปที่
   `work/government-project/case.css` ซึ่งไม่มีแล้ว (มีแค่ `work/platform/case.css`)
