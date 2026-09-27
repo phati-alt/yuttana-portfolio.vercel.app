@@ -1,7 +1,7 @@
-# Handoff — webport-portfolio
+# Handoff — yuttana-portfolio
 
 เอกสารส่งต่องานสำหรับ Claude Code บนเครื่องอื่น อ่านไฟล์นี้ก่อนเริ่มงาน
-เขียนเมื่อ 2026-09-26 (ล่าสุดที่ commit `9689146`)
+อัปเดตล่าสุด 2026-09-27 (ล่าสุดที่ commit `5a6a164`)
 
 > ไฟล์นี้รวม "ความรู้ที่ไม่อยู่ในโค้ด" ไว้ด้วย เพราะ memory ของ Claude บนเครื่องเดิม
 > ไม่ได้ติดมากับ repo — ส่วน "กฎการทำงาน" ด้านล่างสำคัญที่สุด
@@ -13,7 +13,15 @@
 พอร์ตโฟลิโอส่วนตัวของ **Mick Yuttana Pati** — UX/UI & Product Designer (Bangkok)
 เว็บจริงที่ deploy อยู่ → **push ขึ้น `main` = ขึ้นเว็บจริงทันที**
 
-- Repo: `https://github.com/phati-alt/webport-portfolio`
+- เว็บจริง: `https://yuttana-portfolio.vercel.app`
+- Repo: `https://github.com/phati-alt/yuttana-portfolio.vercel.app`
+  (เดิมชื่อ `webport-portfolio` — เปลี่ยนชื่อ repo และโดเมน Vercel เมื่อ 2026-09-27
+  ถ้า remote ในเครื่องยังเป็น URL เก่า ให้รัน
+  `git remote set-url origin https://github.com/phati-alt/yuttana-portfolio.vercel.app.git`
+  — GitHub redirect ให้อัตโนมัติอยู่แล้วถ้ายังไม่ได้แก้ ไม่ใช่เรื่องด่วน)
+- Title/meta ทุกหน้าตัดคำว่า "Mick" ออกแล้ว (เหลือแค่ "Yuttana") ให้ตรงกับโดเมนใหม่ —
+  แก้เฉพาะ `<title>` และ `<meta name="description">` เท่านั้น โลโก้ header/footer/alt/hero copy
+  ยังเป็น "Mick Yuttana" เหมือนเดิมโดยตั้งใจ (ผู้ใช้บอกให้ตัดเฉพาะจุดที่เป็น "ลิงก์"/แสดงตอนแชร์)
 - Static site ล้วน: HTML + CSS + vanilla JS ไม่มี build tool / npm
 - Library จาก CDN: GSAP 3.13 (+ ScrollTrigger, SplitText), Lenis (smooth scroll)
 - Font: Switzer (body), Chillax 600 (hero wordmark เท่านั้น), Noto Sans Thai — จาก Fontshare / Google Fonts
@@ -81,7 +89,11 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
    - ขอ DevTools screenshot / computed styles จากผู้ใช้ **ตั้งแต่ต้น** แทนการเดาหลายรอบ
    - ตรวจ state ด้วย `window.scrollTo` + `ScrollTrigger.update()` + `getBoundingClientRect()`
    - บอกตรงๆ ว่า animation จริง "ยังไม่ได้ verify"
-3. **Modal ว่างเปล่าหลังคลิก** (More Projects) = paint lag ของ pane ไม่ใช่ bug — เช็กด้วย `get_page_text` ก่อน
+3. **Modal ว่างเปล่าหลังคลิก** (More Projects) = paint lag ของ pane ไม่ใช่ bug — ยืนยันแล้วว่า
+   `render()` ใน `js/main.js` เซ็ต `textContent` synchronous ก่อนเรียก `showModal()` เสมอ,
+   `get_page_text` อ่าน DOM ตรงตอนนั้นก็เจอข้อมูลครบแล้ว, และ `computer{screenshot}` เคย error
+   ตรงๆ ว่า "window is minimized or hidden, which can stop the page from drawing" — เช็กด้วย
+   `get_page_text` ก่อนเชื่อ screenshot ทุกครั้งที่เจอ modal/panel ว่างหลัง trigger เปิด
 4. **เนื้อหาต้องเป็นของจริง** ห้ามแต่งตัวเลข/research ขึ้นเอง
    ส่วนที่ source เขียนว่า "✨ แนะนำเพิ่ม" หรือ "estimated" = ยังไม่ยืนยัน อย่าเผยแพร่เป็นข้อเท็จจริง
 5. ถ้าไม่แน่ใจ **ถามผู้ใช้ก่อน** (ผู้ใช้ตอบเป็นภาษาไทย)
@@ -98,8 +110,18 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 - ทุก case ใช้ layout Insight Panel ร่วมกัน (`css/insight-panels.css`); platform กับ ev-charger มี `case.css` ของตัวเองเพิ่ม
 - เนื้อหาทั้ง 5 case เป็นของจริงแล้ว; ยกเว้น Reflection ของ custom-dashboard (draft ใน comment)
 - **ยังไม่ยืนยัน**: `timeline` ของ government-project, ev-charger, custom-dashboard (ยืนยันแล้วแค่ platform 2023–present และ JST < 1 เดือน)
-- More Projects: 8 รายการ ส่วนใหญ่ยังเป็น mockup (ของจริง: Facility Management Platform และ DR.in for Doctor)
+- More Projects: 8 รายการ **เหลือ 6/8 ยังเป็น mockup** (ของจริงแล้ว 2: Facility Management Platform,
+  DR.in for Doctor) — ที่ยัง mockup: `gateway-alerting`, `forest-permit`, `water-quality-aot`,
+  `vaccine-record`, `purchase-request`, `num-eiang` (ดู `audit: 'mockup'` ใน
+  `work/more-projects/data.js`) รอข้อมูลจริงจากผู้ใช้ทีละอัน (title/role/year/platform/
+  problem/process/quote/solution/stat1+label/stat2+label ทั้ง EN และ TH)
   custom-dashboard กับ project gateway/device alerting **ไม่ใช่งานซ้ำ** — ผู้ใช้ยืนยันแล้ว ไม่ต้องถามอีก
+- **Screenshot จริงของ case pages ยังไม่มี** — ทั้ง 5 case ใน `js/cases-index.js` เป็น
+  `audit: { status: "real", screens: 0 }` ทุกอัน แปลว่า gallery ในหน้า case ยังเป็นกล่องเทา
+  placeholder "Screen 1/2/3..." (caption เขียนรอไว้ครบแล้วในแต่ละ `data.js`) รอแค่ไฟล์รูปจริง
+  ใส่ที่ `work/<slug>/assets/screen-1.png` เป็นต้น แล้วอัปเดต `screens` ให้ตรงจำนวน
+- เมื่อ More Projects ครบ real ทั้ง 8 แล้ว ให้ลบระบบ audit-badge ทิ้ง (ตอนนี้ยังมีจุดสี +
+  แถบ "X of 8 still mockup" อยู่ท้ายหน้า More Projects)
 - Next-project chain: หน้า bespoke เขียน NEXT card เอง ต้องตรงกับลำดับการ์ดหน้า Home
 
 ### Build (เมื่อแก้ `content/cases.csv`)
