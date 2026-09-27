@@ -55,6 +55,7 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 | `work/README.md` | คู่มือ pipeline ของ case (**บางส่วนล้าสมัย** ดูข้อ 4) |
 | `design.md` | design system อ้างอิง (Visa) ที่ tokens ดึงสีมาใช้ |
 | `design with agent/` | concept พอร์ตอีกแบบ (แยกขาด ไม่ share อะไรกับเว็บหลัก) |
+| `.vercelignore` | ไฟล์ dev-only ที่ไม่ deploy ขึ้นเว็บจริง (HANDOFF, design.md, content/, tools/, _template ฯลฯ) — **ถ้าเพิ่มไฟล์ที่เว็บต้องโหลดจริงในโฟลเดอร์เหล่านี้ ต้องเอาออกจากลิสต์ก่อน** |
 
 ### Section บนหน้า Home (ตามลำดับ)
 

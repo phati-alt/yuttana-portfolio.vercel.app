@@ -1,0 +1,20 @@
+# Dev-only files: kept in the repo, never deployed to the live site.
+# Nothing the site loads at runtime lives in these paths — they are only
+# mentioned in code comments.
+
+# Working docs
+HANDOFF.md
+design.md
+work/README.md
+
+# Separate concept site, not linked from anywhere
+design with agent/
+
+# Case build pipeline (its output, js/cases-index.js, IS deployed)
+content/
+tools/
+work/_template/
+
+# Local dev server + Claude Code config
+serve.ps1
+.claude/
