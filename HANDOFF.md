@@ -52,7 +52,7 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 | `tools/build-cases.ps1` | สร้าง `cases-index.js` (และหน้า case ที่ไม่ใช่ bespoke) จาก CSV |
 | `work/<slug>/` | หน้า case study แต่ละตัว (index.html, data.js, assets/) |
 | `work/more-projects/` | หน้า More Projects — hand-written, มี filter + modal แบบ editorial |
-| `work/README.md` | คู่มือ pipeline ของ case (**บางส่วนล้าสมัย** ดูข้อ 4) |
+| `work/README.md` | คู่มือ case pages: bespoke ทั้ง 5, build ทำอะไรบ้าง, วิธีเพิ่ม/ลบ case, NEXT chain |
 | `design.md` | design system อ้างอิง (Visa) ที่ tokens ดึงสีมาใช้ |
 | `.vercelignore` | ไฟล์ dev-only ที่ไม่ deploy ขึ้นเว็บจริง (HANDOFF, design.md, content/, tools/, _template ฯลฯ) — **ถ้าเพิ่มไฟล์ที่เว็บต้องโหลดจริงในโฟลเดอร์เหล่านี้ ต้องเอาออกจากลิสต์ก่อน** |
 
@@ -106,7 +106,6 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 - **ทั้ง 5 หน้า case ตอนนี้เป็น bespoke** (อยู่ใน `$customSlugs` ของ `build-cases.ps1`)
   → แก้ `work/<slug>/index.html` และ `data.js` ตรงๆ ได้, build จะไม่เขียนทับ
   → แต่ build ยังสร้าง `js/cases-index.js` (label การ์ดหน้า Home) จาก CSV อยู่
-  → `work/README.md` ยังเขียนว่ามีแค่ government-project ที่เป็น bespoke — **ล้าสมัย**
 - ทุก case ใช้ layout Insight Panel ร่วมกัน (`css/insight-panels.css`); มีแค่ platform ที่มี `case.css` ของตัวเองเพิ่ม (อีก 4 case ใช้ `insight-panels.css` อย่างเดียว)
 - เนื้อหาทั้ง 5 case เป็นของจริงแล้ว; ยกเว้น Reflection ของ custom-dashboard (draft ใน comment)
 - **ยังไม่ยืนยัน**: `timeline` ของ government-project, ev-charger, custom-dashboard (ยืนยันแล้วแค่ platform 2023–present และ JST < 1 เดือน)
@@ -158,4 +157,9 @@ Inter Display 56px/700, การ์ดเทา `#f7f7f7` ไม่มีเส
 ## 6. ข้อสังเกตที่เจอระหว่างทาง (ยังไม่แก้)
 
 - ที่ viewport กว้าง ~800px ชื่อ "Mick Yuttana" ใน header ถูก nav ทับเหลือ "Mick Y" — เห็นใน screenshot ครั้งเดียว ยังไม่ได้เช็ก breakpoint อื่น
-- `work/README.md` ต้องอัปเดตเรื่อง bespoke pages (ข้อ 4)
+- คอมเมนต์ล้าสมัยในโค้ด (ไม่กระทบเว็บ): หัวไฟล์ `work/more-projects/index.html` ยังบอกว่าเป็น "simple image gallery"
+  (จริงๆ เป็น list + modal แบบ editorial แล้ว) และคอมเมนต์ `$customSlugs` ใน `tools/build-cases.ps1` ชี้ไปที่
+  `work/government-project/case.css` ซึ่งไม่มีแล้ว (มีแค่ `work/platform/case.css`)
+- ลำดับแถวใน `content/cases.csv` (…ev-charger, wordpress-website, custom-dashboard) ไม่ตรงกับลำดับการ์ดหน้า Home
+  (…ev-charger, custom-dashboard, wordpress-website) — ตอนนี้ไม่มีผลอะไร เพราะ NEXT chain เขียนมือหมดแล้ว
+  และ `cases-index.js` อ้างอิงตาม slug ไม่ใช่ลำดับ

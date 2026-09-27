@@ -6,65 +6,92 @@ adding or removing a project never means hunting through shared files.
 
 ```
 work/
-  _template/              THE page. Every case page is built from this one.
+  government-project/     BESPOKE — edit index.html / data.js directly
     index.html
     data.js
-    assets/
-  platform/
-    index.html            GENERATED from _template — do not edit
-    data.js               GENERATED from content/cases.csv — do not edit
     assets/
       cover.png           hero image, also used as the card on the homepage
-  ev-charger/
-  custom-dashboard/
-  wordpress-website/
-  government-project/     BESPOKE — see below. Edit index.html/data.js directly.
+  platform/               BESPOKE, plus its own case.css
+  ev-charger/             BESPOKE
+  custom-dashboard/       BESPOKE
+  wordpress-website/      BESPOKE (the JST Group case; slug kept from before)
+  more-projects/          hand-written list + modal, not a case study
     index.html
     data.js
-    case.css
     assets/
-  more-projects/          simple image gallery, not a case study
+  _template/              the generated-page template — used by no case
+                          right now, kept for adding a simple one later
 ```
 
-### Bespoke pages — the one exception
+URLs are the folder name: `work/platform/` → served as that folder's
+`index.html`.
 
-`government-project` still has a row in `content/cases.csv` (that's still
-where its homepage-card category/title/audit status come from, and where
-its place in the "Next project" rotation is decided), but its
-`index.html` and `data.js` are listed in `tools/build-cases.ps1`'s
-`$customSlugs` array — the build skips generating *those two files* for
-any slug in that list, leaving them alone to edit directly. It carries
-its own `case.css` too, so its one-off layout rules never end up in the
-shared `css/style.css`. Use this only when a case's story earned a
-genuinely different layout, not as a way to tweak one case's spacing —
-that costs the whole point of the shared template, which is every other
-page moving together.
+## Every case page is bespoke
 
-URLs are the folder name: `work/government-project/` → served as that
-folder's `index.html`.
+All five cases are listed in `$customSlugs` in `tools/build-cases.ps1`, so
+the build never writes their `index.html` or `data.js`. Edit both by hand.
 
-Only two files are ever written by hand: `work/_template/index.html` for
-anything every case page shares, and `content/cases.csv` for what any one
-case says. Each `work/<slug>/index.html` and `data.js` is generated from
-those two and overwritten on every build.
+They share one layout, the Insight Panel design language in
+`css/insight-panels.css` (classes prefixed `ip-`). Only `platform` needed
+rules of its own, in `work/platform/case.css`; the other four load
+`insight-panels.css` alone. Keep one-off rules in a case's own `case.css`
+rather than the shared stylesheets.
 
-That split exists because the six case pages used to be six full copies of
-the same page — 243 of 251 lines identical — so adding one `<meta>` tag
-meant patching six files by script and hoping none of them had drifted.
+Each case's `data.js` keeps the same shape the build used to generate —
+`window.CASE_DATA = { en: {...}, th: {...} }` — read by `js/i18n.js`
+through `data-i18n-case="key"`.
+
+### What the build still does
+
+`content/cases.csv` still has rows for every case, and running the build
+still regenerates **`js/cases-index.js`** from them: the category and title
+on each homepage card, plus the temporary audit badge data (see below).
+Retitle a case → edit its `category` / `title` rows in the CSV, then run:
+
+```
+powershell -ExecutionPolicy Bypass -File tools/build-cases.ps1
+```
+
+Everything else in the CSV for a bespoke case is not read by anything — the
+live copy is in that case's `data.js`. Editing the CSV's story rows changes
+nothing on the site.
+
+### The "Next project" chain is hand-written
+
+Each page's `cs-next__card` is written by hand and must follow the order of
+the cards on the homepage (`#casesGrid` in `index.html`), wrapping from the
+last back to the first:
+
+```
+government-project → platform → ev-charger → custom-dashboard → wordpress-website → (back to government-project)
+```
+
+Reorder the homepage cards → update the NEXT card (href, cover, title) on
+each affected page by hand. The CSV's row order no longer decides this.
+
+### Screenshots
+
+Each page's gallery is grey `Screen N` placeholders until real images
+exist, with captions already written in `data.js`. To add them:
+
+1. Save them as `work/<slug>/assets/screen-1.png`, `screen-2.png` …
+2. In that page's `index.html`, replace each placeholder `media-block`
+   with `<img src="assets/screen-N.png" alt="">` — the comment above each
+   gallery says where.
+3. Run the build, so the screen count on the homepage audit badge matches
+   the files now in `assets/` (it counts `screen-*.png|jpg|jpeg|webp`).
 
 ## Where copy lives
 
-Two places, and the split matters:
-
 | Where | What | Referenced by |
 |---|---|---|
-| `js/i18n.js` | Site-wide copy — nav, footer, and the generic section labels every case page shares ("The Problem", "Role", "Next project") | `data-i18n="key"` |
-| `content/cases.csv` → `work/<slug>/data.js` | This project's own copy — title, summary, role, the story, the stats. Edit the sheet; the data.js is generated. | `data-i18n-case="key"` |
+| `js/i18n.js` | Site-wide copy — nav, footer, and the section labels every case page shares ("Screens", "Next project") | `data-i18n="key"` |
+| `work/<slug>/data.js` | This project's own copy — title, story, stats, captions | `data-i18n-case="key"` |
+| `content/cases.csv` | Only the homepage card's category + title (via the build) | `data-case-field` on the homepage cards |
 
 Never put case-specific copy in `js/i18n.js`. That file is loaded by every
 page on the site, so a key that only one case uses is dead weight
-everywhere else — and it's exactly how the old numbered `work.card1.title`
-scheme grew keys nobody could trace back to a project.
+everywhere else.
 
 `data.js` is loaded *before* `js/i18n.js` in each case page, because
 i18n.js renders once on load and reads `window.CASE_DATA` at that moment.
@@ -76,110 +103,54 @@ instead of rendering blank.
 
 ## Add a case
 
-1. `mkdir -p work/<slug>/assets` — the slug becomes the URL, so keep it
-   lowercase-with-hyphens.
-2. Drop the cover image in `work/<slug>/assets/cover.png`, plus any
-   `screen-1.png`, `screen-2.png` … alongside it. The build wires both
-   the cover and the gallery from whatever is actually in that folder.
-3. Add that slug's rows to `content/cases.csv` (see "Editing content"
-   below), including a `pageTitle` row — that one becomes the `<title>`
-   and the meta description.
-4. Run the build. The page, its `<title>`, and the "Next project" chain
-   are all written for you.
-5. Add the card to `index.html` in the `#casesGrid` block — copy an
-   existing `<a class="case">`, point `href` at `work/<slug>/` and `src`
-   at that folder's `cover.png`.
+The simplest path is to copy an existing bespoke case:
 
-Where the slug sits in the CSV decides where it sits in the "Next project"
-chain: each page points at the next slug in row order, and the last one
-wraps back to the first.
+1. Copy a case folder (e.g. `work/wordpress-website/`) to `work/<slug>/` —
+   the slug becomes the URL, so keep it lowercase-with-hyphens.
+2. Rewrite its `index.html` (`<title>`, meta description, sections) and
+   `data.js`, and put its `cover.png` in `assets/`.
+3. Add `<slug>` to `$customSlugs` in `tools/build-cases.ps1`, and add its
+   `category`, `title` and `dataStatus` rows to `content/cases.csv`.
+4. Add the card to `#casesGrid` in `index.html` — copy an existing
+   `<a class="case">`, point `href` at `work/<slug>/` and `src` at its
+   `cover.png`.
+5. Fix the NEXT cards: the case before it now points here, and this one
+   points at whatever comes after it on the homepage.
+6. Run the build.
+
+A case that fits the older, simpler generated layout can instead be left
+out of `$customSlugs` — the build then writes its `index.html` and
+`data.js` from `work/_template/` and every row it has in the CSV (the
+optional-sections list in `tools/build-cases.ps1` shows which row turns
+each section on). No case uses that path today.
 
 ## Remove a case
 
 1. Delete the folder.
-2. Delete its rows from `content/cases.csv`.
+2. Delete its rows from `content/cases.csv` and its slug from
+   `$customSlugs`.
 3. Delete its `<a class="case">` from `#casesGrid` in `index.html`.
-4. Run the build — the "Next project" chain closes over the gap on its
-   own. It used to be hand-written into each page, so removing a case
-   left another page linking to a folder that wasn't there.
+4. Repoint the NEXT card of the case before it, so nothing links to the
+   deleted folder.
+5. Run the build.
 
-Those four are the whole list — nothing else on the site references a
-case folder.
+## Temporary: audit badges
 
+While content is still being replaced with the real thing, the homepage
+cards and `work/more-projects/` show small badges for "real vs mockup" and
+the screenshot count. They are driven by `$showDataStatus` in
+`tools/build-cases.ps1` (plus `audit:` fields in
+`work/more-projects/data.js`). Once every More Projects entry is real, set
+`$showDataStatus = $false`, run the build, and the badges disappear
+everywhere.
 
-## Editing content: the sheet
-
-All case copy lives in one spreadsheet, `content/cases.csv`, and gets
-compiled into the per-case `data.js` files — and into each page's
-`<title>` and meta description, via the `pageTitle` row. You should not
-hand-edit `data.js` or `index.html` any more — both say so at the top, and
-a rebuild overwrites them.
-
-**The loop is: edit the sheet -> run one command -> refresh the browser.**
-
-```
-powershell -ExecutionPolicy Bypass -File tools/build-cases.ps1
-```
-
-### The sheet
-
-`content/cases.csv` has four columns and one row per field:
-
-| slug | key | en | th |
-|---|---|---|---|
-| ev-charger | title | EV Charger - find a charge... | EV Charger - หาที่ชาร์จ... |
-| ev-charger | role | UX/UI Designer | UX/UI Designer |
-
-- **slug** must match a folder name under `work/`. A slug with no folder is
-  reported as a warning and skipped, so a typo can't create a stray case.
-- **key** is what `data-i18n-case="…"` in `index.html` looks up.
-- Open it in Excel, Google Sheets or Numbers. Commas, quotes and Thai text
-  are all handled by the CSV format — this is the whole reason the content
-  moved out of JavaScript, where one stray quote silently blanked a page.
-- Save/export as CSV (UTF-8) back to the same path.
-
-To add a field, add the row to the sheet AND add the matching
-`data-i18n-case="yourKey"` to `index.html`. Neither half does anything
-alone.
-
-### Images
-
-Drop files into the case's own `assets/` folder using these names:
-
-```
-work/ev-charger/assets/
-  cover.png       hero image, also used as the card on the homepage
-  screen-1.png    gallery, in order
-  screen-2.png
-  screen-3.png
-```
-
-Then run the build. It wires the gallery to whatever `screen-*` files are
-actually there (`.png`, `.jpg` or `.webp`), sorted numerically, and makes
-the first one full-width. `screen-10` sorts after `screen-2`, not between
-`screen-1` and `screen-2`.
-
-Remove the images and rebuild and the gallery goes back to grey
-placeholders, rather than leaving `<img>` tags pointing at files that are
-no longer there.
-
-Captions come from the sheet — `caption1` matches `screen-1`, and so on.
-
-### When you want to hand-tune a gallery
-
-Delete the `GALLERY-START` / `GALLERY-END` comments from that page's
-`index.html`. The build stops managing that gallery and leaves your markup
-alone; everything else on the page still rebuilds.
 ## Notes
 
-- The homepage cards are plain HTML on purpose, not generated from a
-  manifest: they stay in the markup for search engines and for anyone with
-  JS off, and the Cases section's horizontal-scroll animation measures the
-  real cards on load (see `initCasesScroll` in `js/main.js`).
-- `_template/` opens in a browser as a real page, so you can check a
-  change before copying it. It shows `[bracketed]` copy and grey blocks
-  where the images go. Its one dead link is the `../PLACEHOLDER/` next-
-  project href, which you replace on copy.
-- `content/cases.csv` currently holds MOCKUP copy written to exercise the
-  design, not verified fact. Read it before this goes public — some of
-  the numbers are invented outright.
+- The homepage cards are plain HTML on purpose, not generated: they stay
+  in the markup for search engines and for anyone with JS off, and the
+  Cases section's horizontal-scroll animation measures the real cards on
+  load (see `initCasesScroll` in `js/main.js`).
+- `work/more-projects/` is hand-written and not touched by the build. Its
+  entries live in its own `data.js`.
+- None of `content/`, `tools/`, `work/_template/` or this README is
+  deployed — see `.vercelignore`.
