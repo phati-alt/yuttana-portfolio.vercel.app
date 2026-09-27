@@ -639,7 +639,9 @@ body {
 }
 
 /* 4c. Sticky stacking service cards */
-.stack { display: flex; flex-direction: column; gap: clamp(1rem, 2vw, 1.5rem); }
+/* Narrower than the band's wide wrap and centred under the section title,
+   so the cards read as cards rather than full-width slabs. */
+.stack { display: flex; flex-direction: column; gap: clamp(1rem, 2vw, 1.5rem); max-width: 1120px; margin-inline: auto; }
 .stack__item { position: sticky; top: calc(var(--header-h) + 2.5vh + var(--i) * 12px); }
 /* was a flat two-column split (number+title on the left, paragraph+tags on
    the right) with no shadow at all — every card the exact same silhouette
@@ -649,38 +651,44 @@ body {
    One top-to-bottom column instead (a plainer, faster read), plus a real
    drop shadow so each card actually looks like a physical card sitting on
    top of the one behind it — a small lift on hover sells that further. */
+/* One card surface for all five, in the site's own card language (the
+   flat grey of the case pages, with the brand-blue accent on the number)
+   instead of the five pastel tones each card used to have. Own tokens
+   rather than --paper-2/--ink: inside the band those are overridden for
+   the dark background, and these cards sit on top of it. */
 .stack__card {
+  --stack-bg: #f1f2f6; --stack-ink: #1a1a1a; --stack-muted: #656565;
+  --stack-acc-bg: #e1e6fc; --stack-acc-ink: #1434cb;
   position: relative; overflow: hidden;
-  border-radius: var(--radius); padding: clamp(1.75rem, 3.4vw, 3.5rem);
-  min-height: clamp(320px, 42vh, 460px);
-  display: flex; flex-direction: column; justify-content: center; gap: clamp(1.25rem, 2.5vw, 2rem);
-  /* the shadow does most of the "distinct card" work, but a tone whose own
-     luminance sits close to --band (the section behind it) still reads as
-     flat regardless of shadow — see --purple-dark's fix in tokens.css for
-     the color half of this. This faint currentColor rim is the layout-side
-     backstop: every card gets a real edge against the band no matter how
-     close any given tone's luminance ends up being. */
-  border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
-  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .35);
+  background: var(--stack-bg); color: var(--stack-ink);
+  border-radius: var(--radius); padding: clamp(1.5rem, 2.6vw, 2.5rem);
+  min-height: clamp(220px, 30vh, 300px);
+  display: flex; flex-direction: column; justify-content: center; gap: clamp(1rem, 2vw, 1.5rem);
+  border: 1px solid color-mix(in srgb, var(--stack-ink) 8%, transparent);
+  box-shadow: 0 24px 50px -28px rgba(0, 0, 0, .45);
   transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
 }
-.stack__card:hover { transform: translateY(-6px); box-shadow: 0 40px 70px -25px rgba(0, 0, 0, .4); }
+:root[data-theme="dark"] .stack__card {
+  --stack-bg: color-mix(in srgb, #fff 8%, var(--band)); --stack-ink: #fff; --stack-muted: #a8b0c2;
+  --stack-acc-bg: rgba(179, 193, 255, .16); --stack-acc-ink: #b3c1ff;
+}
+.stack__card:hover { transform: translateY(-4px); box-shadow: 0 32px 60px -26px rgba(0, 0, 0, .5); }
 .stack__head, .stack__content { position: relative; z-index: 1; }
-.stack__head { display: flex; align-items: center; gap: 1.1rem; }
-/* a circle badge instead of plain small-caps text, matching the numbered
-   nodes already used on the Process rail and Career timeline — currentColor
-   at low opacity means the badge stays legible whether this card's ink is
-   the dark #0d1512 (pastel tones) or white (the two dark tones), without
-   needing a per-tone override. */
+.stack__head { display: flex; align-items: center; gap: 1rem; }
 .stack__num {
   display: grid; place-items: center; flex-shrink: 0;
-  width: 52px; height: 52px; border-radius: 50%;
-  background: color-mix(in srgb, currentColor 15%, transparent);
-  font-size: .95rem; font-weight: 600;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--stack-acc-bg); color: var(--stack-acc-ink);
+  font-size: .9rem; font-weight: 600;
 }
-.stack__title { font-size: clamp(1.6rem, 1rem + 2.2vw, 3rem); font-weight: 600; letter-spacing: -.03em; line-height: 1.05; }
-.stack__content p { font-size: var(--fs-lede); max-width: 56ch; opacity: .9; }
-.stack__content .tags { margin-top: 1.5rem; }
+.stack__title { font-size: clamp(1.4rem, 1rem + 1.4vw, 2.1rem); font-weight: 600; letter-spacing: -.025em; line-height: 1.1; }
+.stack__content p { font-size: 1.05rem; line-height: 1.6; max-width: 60ch; color: var(--stack-muted); }
+.stack__content .tags { margin-top: 1.1rem; }
+.stack__card .tags--ghost .tag {
+  background: color-mix(in srgb, var(--stack-ink) 5%, transparent);
+  border-color: color-mix(in srgb, var(--stack-ink) 12%, transparent); opacity: 1;
+}
+.stack__card .tags--ghost .tag__icon { color: var(--stack-acc-ink); opacity: 1; }
 
 /* 4c. About */
 /* text on the left, portrait on the right — the reference's "Wie ik ben" band */
