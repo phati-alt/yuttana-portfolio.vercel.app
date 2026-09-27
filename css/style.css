@@ -563,7 +563,13 @@ body {
 [data-tone="purple-dark"] { background: var(--purple-dark); color: var(--band-ink); }
 
 /* ---------- 4. Green band ---------- */
-.band { position: relative; }
+/* overflow: clip keeps the iris circle (200vw across, see .band__circle)
+   inside the band. Its lower curve only stays hidden while .band__content
+   is taller than the circle — roughly 195vw minus a screen height — and
+   once the Services cards were made smaller it wasn't, so the curve spilled
+   out over the Process section. clip, not hidden: hidden would turn .band
+   into a scroll container and break the sticky .stack__item cards. */
+.band { position: relative; overflow: clip; }
 /* Ported from studiomodular's c-group-circle: a real circle twice the width of
    the viewport, clipped to nothing and irised open on scroll. The margin/
    translate pair reserves layout space below while painting in place, and the
