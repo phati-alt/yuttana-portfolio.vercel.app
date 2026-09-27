@@ -413,7 +413,10 @@ body {
    does happen. */
 .cases--scroll-enhanced .cases__pin .cases__grid { margin-block: auto; }
 .cases--scroll-enhanced .cases__grid { will-change: transform; }
-/* .case__media's plain clamp(460px, 78vh, 680px) assumed the pin had the
+/* (Heights below were later cut to a 480px ceiling / 300px allowance, a
+   4:3 frame at the 640px card width, once the title moved under the
+   image — the reasoning is unchanged.)
+   .case__media's plain clamp(460px, 78vh, 680px) assumed the pin had the
    whole viewport to itself — true before the heading moved in above it.
    Now the nav (var(--header-h)) and the heading block both eat into that
    same budget before the card ever gets a share, so on an ordinary ~900px
@@ -426,7 +429,7 @@ body {
    still reaching the full 680px ceiling on any generously tall display,
    just no longer assuming vh alone tells the whole story. */
 .cases--scroll-enhanced .case__media {
-  height: clamp(460px, calc(100vh - var(--header-h) - 200px), 680px);
+  height: clamp(340px, calc(100vh - var(--header-h) - 300px), 480px);
 }
 .case {
   flex: 0 0 clamp(340px, 55vw, 640px); scroll-snap-align: start;
@@ -438,7 +441,7 @@ body {
    (initCasesScroll's scrollBudget()) instead of by shrinking the card
    itself. See that function's comment for why. */
 .case__media {
-  position: relative; height: clamp(460px, 78vh, 680px);
+  position: relative; height: clamp(340px, 52vh, 480px);
   border-radius: var(--radius); overflow: hidden; background: var(--paper-2);
 }
 .case__media img {
@@ -447,55 +450,26 @@ body {
 }
 .case:hover .case__media img { transform: scale(1.06); }
 
-/* Card label — the project's category and title, over the cover. Text is
-   filled in from js/cases-index.js (see i18n.js), so it stays tied to the
-   same CSV rows the case page itself reads.
-
-   White on a scrim rather than a theme token: it sits on a photograph,
-   which has no idea what the page theme is, so --ink would go invisible
-   against a light cover in dark mode. The gradient is what guarantees
-   contrast, so it has to stay even where the image is already dark. */
-.case__label,
-.mp-card__label {
-  position: absolute; inset-inline: 0; bottom: 0; z-index: 1;
-  padding: clamp(1.1rem, 2.4vw, 1.9rem);
-  color: #fff; pointer-events: none;
-  background: linear-gradient(to top,
-    rgba(6, 10, 24, .82) 0%, rgba(6, 10, 24, .45) 55%, rgba(6, 10, 24, 0) 100%);
-  opacity: 0; transform: translateY(10px);
-  transition: opacity .45s var(--ease), transform .45s var(--ease);
+/* Card text — a "Category • Platform • Scope" line and the title, set
+   UNDER the cover and always visible (it used to sit on a scrim over the
+   image and only slide in on hover, so a visitor skimming the row had to
+   hover each card to learn what it was). Meta comes from cardMeta in
+   content/cases.csv via js/cases-index.js; More Projects builds its line
+   from category + platform in its data.js. */
+.case__info,
+.mp-card__info { display: flex; flex-direction: column; gap: .35rem; padding-top: 1rem; }
+.case__meta,
+.mp-card__meta { margin: 0; font-size: .9rem; line-height: 1.4; color: var(--muted); }
+.mp-card__dot { margin-inline: .45em; opacity: .7; }
+.case__title,
+.mp-card__title {
+  display: block; margin: 0;
+  font-size: clamp(1.1rem, .9rem + .6vw, 1.35rem); font-weight: 600;
+  letter-spacing: -.015em; line-height: 1.3; color: var(--ink);
+  transition: color var(--speed) var(--ease);
 }
-.case__label-category,
-.mp-card__label-category {
-  display: block;
-  margin: 0 0 .35rem; font-size: .72rem; font-weight: 600;
-  letter-spacing: .12em; text-transform: uppercase; opacity: .8;
-}
-.case__label-title,
-.mp-card__label-title {
-  display: block;
-  margin: 0; font-size: clamp(1.05rem, 1.7vw, 1.45rem);
-  font-weight: 600; letter-spacing: -.02em; line-height: 1.25;
-  text-wrap: balance;
-}
-/* :focus-visible too, so the label is reachable by keyboard and not only
-   by a pointer that a touch device does not have. */
-.case:hover .case__label,
-.case:focus-visible .case__label,
-.mp-card:hover .mp-card__label,
-.mp-card:focus-visible .mp-card__label { opacity: 1; transform: none; }
-
-/* Nothing on a touchscreen ever fires hover, so the label would simply
-   never appear there. Show it outright instead — the same information,
-   just without the reveal it has no gesture for. */
-@media (hover: none) {
-  .case__label,
-  .mp-card__label { opacity: 1; transform: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .case__label,
-  .mp-card__label { transition: none; transform: none; }
-}
+.case:hover .case__title, .case:focus-visible .case__title,
+.mp-card:hover .mp-card__title, .mp-card:focus-visible .mp-card__title { color: var(--primary); }
 /* the "more projects" tile — a plain [data-tone] fill (same colour set
    the case-study template's own placeholder media-blocks use) standing
    in for a cover photo, with just a centred CTA label instead. Height/
@@ -542,12 +516,11 @@ body {
     width: auto;
   }
   .case { flex: none; }
-  /* the vh-based clamp(460px, 78vh, 680px) only made sense against a
-     single row filling the viewport — in a stacked grid the card's own
-     width now drives its proportions, so a portrait aspect-ratio reads
-     right at both 1 and 2 columns instead of whatever a vh number happens
-     to land on. */
-  .case__media { height: auto; aspect-ratio: 4 / 5; }
+  /* the vh-based height only makes sense against a single row filling
+     the viewport — in a stacked grid the card's own width drives its
+     proportions instead: 4:3, the same shape the desktop row lands on
+     (640 x 480), so the landscape covers aren't cropped to a sliver. */
+  .case__media { height: auto; aspect-ratio: 4 / 3; }
 }
 @media (min-width: 640px) and (max-width: 900px) {
   .cases__grid { grid-template-columns: 1fr 1fr; }
@@ -1722,7 +1695,7 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
 /* ---------- More Projects: cards + modal ---------- */
 /* Same treatment and the same size as the homepage case cards — rounded
    frame, slow image push-in, label sliding up on hover, a column up to
-   .case's 640px and .case__media's clamp(460px, 78vh, 680px) height,
+   .case's 640px and the homepage row's up-to-480px (4:3) cover height,
    cover anchored to the top — but laid out as a two-column grid rather
    than the homepage's scrubbed horizontal row. */
 .mp-filter {
@@ -1765,7 +1738,7 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
   cursor: pointer;
 }
 .mp-card__media {
-  position: relative; display: block; height: clamp(460px, 78vh, 680px);
+  position: relative; display: block; height: clamp(340px, calc(100vh - var(--header-h) - 300px), 480px);
   border-radius: var(--radius); overflow: hidden; background: var(--paper-2);
 }
 .mp-card__media img {
@@ -1861,6 +1834,9 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
 .mp-modal__more[hidden] { display: none; }
 @media (max-width: 900px) {
   .mp-grid { grid-template-columns: 1fr; }
+  /* same 4:3 as the homepage cards on a phone (see .case__media there);
+     declared here, after the base rule, so it actually wins */
+  .mp-card__media { height: auto; aspect-ratio: 4 / 3; }
 }
 @media (prefers-reduced-motion: reduce) {
   .mp-card__media img { transition: none; }

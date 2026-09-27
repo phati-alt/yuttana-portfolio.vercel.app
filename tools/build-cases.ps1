@@ -390,6 +390,8 @@ for ($i = 0; $i -lt $slugs.Count; $i++) {
     Slug       = $slug
     CategoryEn = (& $val 'category' 'en'); CategoryTh = (& $val 'category' 'th')
     TitleEn    = (& $val 'title' 'en');    TitleTh    = (& $val 'title' 'th')
+    # Short "Category • Platform • Scope" line under the homepage card.
+    MetaEn     = (& $val 'cardMeta' 'en'); MetaTh     = (& $val 'cardMeta' 'th')
     # Audit only; empty unless $showDataStatus is on, which is what makes
     # the badges vanish everywhere from that one switch.
     Status     = if ($showDataStatus) { & $val 'dataStatus' 'en' } else { '' }
@@ -425,12 +427,12 @@ if ($cardIndex.Count -gt 0) {
     $c = $cardIndex[$j]
     $tail = if ($j -lt $cardIndex.Count - 1) { ',' } else { '' }
     [void]$ib.AppendLine('  "' + $c.Slug + '": {')
-    [void]$ib.AppendLine('    en: { category: "' + $c.CategoryEn + '", title: "' + $c.TitleEn + '" },')
+    [void]$ib.AppendLine('    en: { category: "' + $c.CategoryEn + '", title: "' + $c.TitleEn + '", meta: "' + $c.MetaEn + '" },')
     if ($c.Status) {
-      [void]$ib.AppendLine('    th: { category: "' + $c.CategoryTh + '", title: "' + $c.TitleTh + '" },')
+      [void]$ib.AppendLine('    th: { category: "' + $c.CategoryTh + '", title: "' + $c.TitleTh + '", meta: "' + $c.MetaTh + '" },')
       [void]$ib.AppendLine('    audit: { status: "' + $c.Status + '", screens: ' + $c.Screens + ' }')
     } else {
-      [void]$ib.AppendLine('    th: { category: "' + $c.CategoryTh + '", title: "' + $c.TitleTh + '" }')
+      [void]$ib.AppendLine('    th: { category: "' + $c.CategoryTh + '", title: "' + $c.TitleTh + '", meta: "' + $c.MetaTh + '" }')
     }
     [void]$ib.AppendLine('  }' + $tail)
   }
