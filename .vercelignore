@@ -7,9 +7,6 @@ HANDOFF.md
 design.md
 work/README.md
 
-# Separate concept site, not linked from anywhere
-design with agent/
-
 # Case build pipeline (its output, js/cases-index.js, IS deployed)
 content/
 tools/
