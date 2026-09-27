@@ -467,33 +467,41 @@
       <symbol id="i-user-check" viewBox="0 0 24 24"><path vector-effect="non-scaling-stroke" d="m16 11 2 2 4-4"/><path vector-effect="non-scaling-stroke" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle vector-effect="non-scaling-stroke" cx="9" cy="7" r="4"/></symbol>
       <symbol id="i-message-square" viewBox="0 0 24 24"><path vector-effect="non-scaling-stroke" d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></symbol>
     </svg>
-    <div class="wrap marquee-section__head">
-      <p class="pretitle" data-reveal data-i18n="tools.pretitle">Toolbox</p>
+    <!-- Same head as Process / Experience: pretitle, title, description,
+         left-aligned in the wide wrap; the chip rows sit in that same wrap. -->
+    <div class="wrap wrap--wide">
+      <header class="section-head tools__head" data-reveal>
+        <p class="pretitle" data-i18n="tools.pretitle">Toolbox</p>
+        <h2 class="section-title" data-i18n="tools.title">Tools I work with</h2>
+        <p class="section-desc" data-i18n="tools.desc">The tools I use every day to design, prototype, build and work with the team.</p>
+      </header>
     </div>
-    <div class="marquee" data-marquee>
-      <div class="marquee__track" data-marquee-track>
-        <div class="marquee__group" data-marquee-group>
-          <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-figma"/></svg>Figma</span>
-          <span class="marquee__item"><svg class="marquee__icon marquee__icon--line" aria-hidden="true"><use href="#i-sticky-note"/></svg>FigJam</span>
-          <span class="marquee__item"><svg class="marquee__icon marquee__icon--line" aria-hidden="true"><use href="#i-pen-tool"/></svg>Adobe XD</span>
-          <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-react"/></svg>React</span>
-          <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-tailwindcss"/></svg>Tailwind CSS</span>
-          <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-antdesign"/></svg>Ant Design</span>
-          <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-shadcnui"/></svg>shadcn/ui</span>
-          <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-apacheecharts"/></svg>Apache ECharts</span>
+    <div class="wrap wrap--wide marquee-rows">
+      <div class="marquee" data-marquee>
+        <div class="marquee__track" data-marquee-track>
+          <div class="marquee__group" data-marquee-group>
+            <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-figma"/></svg>Figma</span>
+            <span class="marquee__item"><svg class="marquee__icon marquee__icon--line" aria-hidden="true"><use href="#i-sticky-note"/></svg>FigJam</span>
+            <span class="marquee__item"><svg class="marquee__icon marquee__icon--line" aria-hidden="true"><use href="#i-pen-tool"/></svg>Adobe XD</span>
+            <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-react"/></svg>React</span>
+            <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-tailwindcss"/></svg>Tailwind CSS</span>
+            <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-antdesign"/></svg>Ant Design</span>
+            <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-shadcnui"/></svg>shadcn/ui</span>
+            <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-apacheecharts"/></svg>Apache ECharts</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="marquee marquee--reverse" data-marquee data-reverse="true">
-      <div class="marquee__track" data-marquee-track>
-        <div class="marquee__group" data-marquee-group>
-          <span class="marquee__item"><svg class="marquee__icon marquee__icon--line" aria-hidden="true"><use href="#i-layers"/></svg>Design Systems</span>
-          <span class="marquee__item"><svg class="marquee__icon marquee__icon--line" aria-hidden="true"><use href="#i-user-check"/></svg>Usability Testing</span>
-          <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-claude"/></svg>Claude</span>
-          <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-googlegemini"/></svg>Gemini</span>
-          <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-jira"/></svg>Jira</span>
-          <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-miro"/></svg>Miro</span>
-          <span class="marquee__item"><svg class="marquee__icon marquee__icon--line" aria-hidden="true"><use href="#i-message-square"/></svg>Slack</span>
+      <div class="marquee marquee--reverse" data-marquee data-reverse="true">
+        <div class="marquee__track" data-marquee-track>
+          <div class="marquee__group" data-marquee-group>
+            <span class="marquee__item"><svg class="marquee__icon marquee__icon--line" aria-hidden="true"><use href="#i-layers"/></svg>Design Systems</span>
+            <span class="marquee__item"><svg class="marquee__icon marquee__icon--line" aria-hidden="true"><use href="#i-user-check"/></svg>Usability Testing</span>
+            <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-claude"/></svg>Claude</span>
+            <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-googlegemini"/></svg>Gemini</span>
+            <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-jira"/></svg>Jira</span>
+            <span class="marquee__item"><svg class="marquee__icon" aria-hidden="true"><use href="#i-miro"/></svg>Miro</span>
+            <span class="marquee__item"><svg class="marquee__icon marquee__icon--line" aria-hidden="true"><use href="#i-message-square"/></svg>Slack</span>
+          </div>
         </div>
       </div>
     </div>

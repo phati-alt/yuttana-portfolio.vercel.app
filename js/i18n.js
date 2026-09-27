@@ -85,6 +85,8 @@ const translations = {
     "process.loop": "Feedback after launch often sends me back to Discover — the process rarely runs in a straight line.",
 
     "tools.pretitle": "Toolbox",
+    "tools.title": "Tools I work with",
+    "tools.desc": "The tools I use every day to design, prototype, build and work with the team.",
 
     "experience.eyebrow": "Career",
     "experience.title": "Experience & Education",
@@ -259,6 +261,8 @@ const translations = {
     "process.loop": "ฟีดแบ็กหลังเปิดตัวมักพาผมย้อนกลับไปที่ Discover อีกครั้ง — กระบวนการนี้ไม่ใช่เส้นตรงเสมอไป",
 
     "tools.pretitle": "เครื่องมือที่ใช้",
+    "tools.title": "เครื่องมือที่ผมใช้ทำงาน",
+    "tools.desc": "เครื่องมือที่ผมใช้ทุกวัน ทั้งออกแบบ ทำ Prototype พัฒนา และทำงานร่วมกับทีม",
 
     "experience.eyebrow": "เส้นทางอาชีพ",
     "experience.title": "ประสบการณ์และการศึกษา",

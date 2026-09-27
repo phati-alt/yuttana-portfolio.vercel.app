@@ -73,7 +73,8 @@ body {
 /* titles that sit in a grid column, not across the page, get a smaller step —
    the full display size stacks them four lines deep in half the width */
 .about__content .section-title,
-.approach__content .section-title { font-size: clamp(1.75rem, 1rem + 2.2vw, 3rem); }
+.approach__content .section-title,
+.tools__head .section-title { font-size: clamp(1.75rem, 1rem + 2.2vw, 3rem); }
 .lede { color: var(--muted); font-size: var(--fs-lede); margin-top: 1.1rem; max-width: 54ch; }
 
 /* ---------- Buttons ---------- */
@@ -893,16 +894,16 @@ body {
 .numbers__item span { color: var(--muted); font-size: .95rem; }
 
 /* ---------- 7. Marquee ---------- */
-.marquee-section { padding-block: clamp(3rem, 6vw, 6rem); }
-/* Toolbox as a pair of icon chip rows (after a reference the user liked):
-   a narrow centred band whose ends fade out, each tool a grey pill with
-   its icon — the rows still loop and flip with scroll (initMarquee). */
-.marquee-section__head { text-align: center; }
+/* Toolbox — laid out like the other sections (same section padding, a
+   left-aligned section-head in the wide wrap), with its tools as two rows
+   of icon chips in that same wrap. The rows' ends fade out slightly and
+   they still loop and flip with scroll (initMarquee). */
+.marquee-section { padding-block: var(--section); }
+.tools__head { margin-bottom: clamp(2rem, 4vw, 3.5rem); }
 .marquee {
   overflow: hidden; padding-block: .3rem;
-  max-width: min(900px, calc(100% - 2.5rem)); margin-inline: auto;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
-          mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
 .marquee + .marquee { margin-top: .4rem; }
 .marquee__track { display: flex; width: max-content; will-change: transform; }
