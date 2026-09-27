@@ -239,26 +239,26 @@
           <div class="about__media-frame">
             <img src="assets/mick-profile.webp" alt="Mick Yuttana" data-parallax loading="lazy">
           </div>
-          <div class="about__badge"><strong>3+</strong><span data-i18n="about.badgeLabel" data-i18n-html>Years of<br>Experience</span></div>
+          <div class="about__badge"><strong>4+</strong><span data-i18n="about.badgeLabel" data-i18n-html>Years of<br>Experience</span></div>
         </div>
 
         <div class="about__content" data-reveal>
           <h2 class="section-title" data-i18n="about.title">I turn complex problems into simple, beautiful interfaces.</h2>
-          <p class="lede" data-i18n="about.text1">UX/UI & Product Designer with 3+ years specializing in enterprise IoT and government platforms.</p>
+          <p class="lede" data-i18n="about.text1">UX/UI & Product Designer with 4+ years specializing in enterprise IoT and government platforms.</p>
           <p class="lede" data-i18n="about.text2">My Computer Science background lets me collaborate with engineers in their own language.</p>
           <ul class="checks">
             <li data-i18n="about.list1">User-Centered Design Process</li>
             <li data-i18n="about.list2">Cross-Platform Design Systems</li>
             <li data-i18n="about.list3">Data-Informed Design Decisions</li>
           </ul>
-          <a href="#" class="btn btn--outline" id="resumeBtn" data-hover>
+          <a href="#" class="btn btn--outline" id="resumeBtn" data-resume-btn data-hover>
             <span class="btn__label" data-i18n="about.resumeBtn">Download Resume</span>
             <span class="btn__circle">↓︎</span>
           </a>
         </div>
 
         <div class="numbers__grid about__numbers">
-          <div class="numbers__item" data-reveal><strong>3+</strong><span data-i18n="hero.stat1">Years Experience</span></div>
+          <div class="numbers__item" data-reveal><strong>4+</strong><span data-i18n="hero.stat1">Years Experience</span></div>
           <div class="numbers__item" data-reveal><strong>40%</strong><span data-i18n="hero.stat2">Faster Design Cycles</span></div>
           <div class="numbers__item" data-reveal><strong>15+</strong><span data-i18n="hero.stat3">Projects Delivered</span></div>
           <div class="numbers__item" data-reveal><strong>+30%</strong><span data-i18n="hero.stat4">Task Completion Lift</span></div>
@@ -504,8 +504,15 @@
     <div class="wrap wrap--wide">
       <header class="section-head" data-reveal>
         <p class="pretitle" data-i18n="experience.eyebrow">Career</p>
-        <h2 class="section-title" data-i18n="experience.title">Work Experience</h2>
+        <h2 class="section-title" data-i18n="experience.title">Experience &amp; Education</h2>
         <p class="section-desc" data-i18n="experience.desc">A timeline of roles where I've shipped real products, systems, and design processes.</p>
+        <!-- Same behaviour as the About section's resume button (initResumeBtn
+             wires every [data-resume-btn]) — here too because whoever has just
+             read the career history is the likeliest to want the file. -->
+        <a href="#" class="btn btn--outline experience__resume" data-resume-btn data-hover>
+          <span class="btn__label" data-i18n="about.resumeBtn">Download Resume</span>
+          <span class="btn__circle">↓︎</span>
+        </a>
       </header>
 
       <!-- Vertical timeline: dot on the center line per entry, date badge on
@@ -519,6 +526,7 @@
         <article class="job" data-reveal>
           <div class="job__side job__side--date">
             <span class="job__date job__date--current" data-i18n="experience.job1.date">Nov 2022 – Present</span>
+            <span class="job__meta"><span data-job-duration data-start="2022-11"></span><span class="job__meta-sep" aria-hidden="true">·</span><span data-i18n="experience.type.fulltime"></span></span>
           </div>
           <span class="job__dot" aria-hidden="true"><span class="job__dot-num">01</span></span>
           <div class="job__side job__side--card">
@@ -555,6 +563,7 @@
         <article class="job" data-reveal>
           <div class="job__side job__side--date">
             <span class="job__date" data-i18n="experience.job2.date">Apr 2022 – Aug 2022</span>
+            <span class="job__meta"><span data-job-duration data-start="2022-04" data-end="2022-08"></span><span class="job__meta-sep" aria-hidden="true">·</span><span data-i18n="experience.type.fulltime"></span></span>
           </div>
           <span class="job__dot" aria-hidden="true"><span class="job__dot-num">02</span></span>
           <div class="job__side job__side--card">
@@ -572,6 +581,7 @@
         <article class="job" data-reveal>
           <div class="job__side job__side--date">
             <span class="job__date" data-i18n="experience.job3.date">Nov 2021 – Mar 2022</span>
+            <span class="job__meta"><span data-job-duration data-start="2021-11" data-end="2022-03"></span><span class="job__meta-sep" aria-hidden="true">·</span><span data-i18n="experience.type.internship"></span></span>
           </div>
           <span class="job__dot" aria-hidden="true"><span class="job__dot-num">03</span></span>
           <div class="job__side job__side--card">
@@ -580,6 +590,25 @@
               <p class="job__company" data-i18n="experience.job3.company">Online Asset Co., Ltd.</p>
               <ul>
                 <li data-i18n="experience.job3.bullet1">Designed the full mobile UI for DR.in in Adobe XD and shipped responsive pages for SUSCO.co.th.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+        <!-- Education — same row shape as a job, so it sits on the same
+             line and lights up with the rest; its meta says "Education"
+             instead of a duration + employment type. -->
+        <article class="job job--edu" data-reveal>
+          <div class="job__side job__side--date">
+            <span class="job__date" data-i18n="experience.edu.date">2017 – 2022</span>
+            <span class="job__meta"><span data-i18n="experience.type.education">Education</span></span>
+          </div>
+          <span class="job__dot" aria-hidden="true"><span class="job__dot-num">04</span></span>
+          <div class="job__side job__side--card">
+            <div class="job__card">
+              <h3 data-i18n="experience.edu.degree">Bachelor of Science, Computer Science</h3>
+              <p class="job__company" data-i18n="experience.edu.school">University of Phayao</p>
+              <ul>
+                <li data-i18n="experience.edu.bullet1">Senior Project: Developed a responsive Camera Rental Web Application end-to-end, covering UX/UI design, technical documentation (ERD &amp; flowcharts), and full-stack implementation using PHP and MySQL.</li>
               </ul>
             </div>
           </div>

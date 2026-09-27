@@ -60,7 +60,7 @@ const translations = {
 
     "about.eyebrow": "About me",
     "about.title": "I turn complex problems into simple, beautiful interfaces.",
-    "about.text1": "UX/UI & Product Designer with 3+ years specializing in enterprise IoT and government platforms. I turn complex sensor data and operational workflows into interfaces that non-technical users can actually use.",
+    "about.text1": "UX/UI & Product Designer with 4+ years specializing in enterprise IoT and government platforms. I turn complex sensor data and operational workflows into interfaces that non-technical users can actually use.",
     "about.text2": "My Computer Science background lets me collaborate with engineers in their own language — and ship design systems that hold up at scale.",
     "about.list1": "User-Centered Design Process",
     "about.list2": "Cross-Platform Design Systems",
@@ -87,7 +87,7 @@ const translations = {
     "tools.pretitle": "Toolbox",
 
     "experience.eyebrow": "Career",
-    "experience.title": "Work Experience",
+    "experience.title": "Experience & Education",
     "experience.desc": "A timeline of roles where I've shipped real products, systems, and design processes.",
     "experience.job1.role": "UX/UI Designer",
     "experience.job1.company": "Swift Dynamics Co., Ltd.",
@@ -111,6 +111,13 @@ const translations = {
     "experience.job3.role": "UI Designer (Internship)",
     "experience.job3.company": "Online Asset Co., Ltd.",
     "experience.job3.date": "Nov 2021 – Mar 2022",
+    "experience.type.fulltime": "Full time",
+    "experience.type.internship": "Internship",
+    "experience.type.education": "Education",
+    "experience.edu.date": "2017 – 2022",
+    "experience.edu.degree": "Bachelor of Science, Computer Science",
+    "experience.edu.school": "University of Phayao",
+    "experience.edu.bullet1": "Senior Project: Developed a responsive Camera Rental Web Application end-to-end, covering UX/UI design, technical documentation (ERD & flowcharts), and full-stack implementation using PHP and MySQL.",
     "experience.job3.bullet1": "Designed the full mobile UI for DR.in (medical app) in Adobe XD and shipped responsive front-end pages for SUSCO.co.th.",
 
     "contact.eyebrow": "Get in touch",
@@ -227,7 +234,7 @@ const translations = {
 
     "about.eyebrow": "เกี่ยวกับผม",
     "about.title": "ผมเปลี่ยนปัญหาที่ซับซ้อน ให้กลายเป็นอินเทอร์เฟซที่เรียบง่ายและสวยงาม",
-    "about.text1": "UX/UI & Product Designer ที่มีประสบการณ์กว่า 3 ปี เชี่ยวชาญด้าน Enterprise IoT และแพลตฟอร์มภาครัฐ ผมเปลี่ยนข้อมูลเซนเซอร์ที่ซับซ้อนและขั้นตอนการทำงานให้กลายเป็นอินเทอร์เฟซที่ผู้ใช้ทั่วไปใช้งานได้จริง",
+    "about.text1": "UX/UI & Product Designer ที่มีประสบการณ์กว่า 4 ปี เชี่ยวชาญด้าน Enterprise IoT และแพลตฟอร์มภาครัฐ ผมเปลี่ยนข้อมูลเซนเซอร์ที่ซับซ้อนและขั้นตอนการทำงานให้กลายเป็นอินเทอร์เฟซที่ผู้ใช้ทั่วไปใช้งานได้จริง",
     "about.text2": "พื้นฐานด้าน Computer Science ทำให้ผมสื่อสารกับวิศวกรได้ในภาษาเดียวกัน และส่งมอบ Design System ที่รองรับการขยายตัวได้จริง",
     "about.list1": "กระบวนการออกแบบที่ยึดผู้ใช้เป็นศูนย์กลาง",
     "about.list2": "Design System ที่ใช้ได้ทุกแพลตฟอร์ม",
@@ -254,7 +261,7 @@ const translations = {
     "tools.pretitle": "เครื่องมือที่ใช้",
 
     "experience.eyebrow": "เส้นทางอาชีพ",
-    "experience.title": "ประสบการณ์การทำงาน",
+    "experience.title": "ประสบการณ์และการศึกษา",
     "experience.desc": "ไทม์ไลน์ตำแหน่งงานที่ผมได้ลงมือสร้างจริง ทั้งโปรดักต์ ระบบ และกระบวนการออกแบบ",
     "experience.job1.role": "UX/UI Designer",
     "experience.job1.company": "Swift Dynamics Co., Ltd.",
@@ -278,6 +285,13 @@ const translations = {
     "experience.job3.role": "UI Designer (Internship)",
     "experience.job3.company": "Online Asset Co., Ltd.",
     "experience.job3.date": "พ.ย. 2021 – มี.ค. 2022",
+    "experience.type.fulltime": "งานประจำ",
+    "experience.type.internship": "ฝึกงาน",
+    "experience.type.education": "การศึกษา",
+    "experience.edu.date": "2017 – 2022",
+    "experience.edu.degree": "วิทยาศาสตรบัณฑิต สาขาวิทยาการคอมพิวเตอร์",
+    "experience.edu.school": "มหาวิทยาลัยพะเยา",
+    "experience.edu.bullet1": "Senior Project: พัฒนาเว็บแอปพลิเคชันเช่ากล้องแบบ Responsive ตั้งแต่ต้นจนจบ ครอบคลุมการออกแบบ UX/UI เอกสารทางเทคนิค (ERD และ Flowchart) และพัฒนาแบบ Full-stack ด้วย PHP และ MySQL",
     "experience.job3.bullet1": "ออกแบบ UI มือถือทั้งหมดให้แอป DR.in (แอปการแพทย์) ด้วย Adobe XD และพัฒนาหน้าเว็บ Responsive ให้ SUSCO.co.th",
 
     "contact.eyebrow": "ติดต่อผม",

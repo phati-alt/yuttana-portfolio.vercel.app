@@ -962,8 +962,13 @@ body {
   column-gap: var(--job-gap);
 }
 /* date badge hugs the center line instead of sitting at the far column edge */
-.job__side--date { display: flex; justify-content: flex-end; }
-.job__side--date:last-child { justify-content: flex-start; }
+.job__side--date { display: flex; flex-direction: column; align-items: flex-end; gap: .5rem; }
+.job__side--date:last-child { align-items: flex-start; }
+/* under the date badge: how long it lasted (computed in initJobDurations)
+   and the employment type, or "Education" on the degree row */
+.job__meta { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .35rem; font-size: .82rem; color: var(--muted); text-align: right; }
+.job__meta-sep { opacity: .6; }
+.experience__resume { margin-top: clamp(1.5rem, 3vw, 2rem); }
 .job__dot {
   grid-column: 2; justify-self: center;
   width: 52px; height: 52px; border-radius: 50%;
@@ -1263,7 +1268,8 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
   .job__side--card:first-child,
   .job__side--date:last-child,
   .job__side--card:last-child { grid-column: 2; }
-  .job__side--date { margin-bottom: .75rem; }
+  .job__side--date { margin-bottom: .75rem; flex-direction: row; flex-wrap: wrap; align-items: center; gap: .6rem; }
+  .job__meta { justify-content: flex-start; text-align: left; }
 }
 
 @media (max-width: 560px) {

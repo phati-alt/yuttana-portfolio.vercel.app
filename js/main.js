@@ -790,10 +790,38 @@
 
   /* ---------- 10. Resume button (placeholder until a real PDF exists) ---------- */
   function initResumeBtn() {
-    document.getElementById('resumeBtn')?.addEventListener('click', e => {
-      e.preventDefault();
-      alert(I18N.t('misc.resumeAlert'));
+    document.querySelectorAll('[data-resume-btn]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        alert(I18N.t('misc.resumeAlert'));
+      });
     });
+  }
+
+  /* ---------- Experience: how long each role lasted ---------- */
+  /* Computed from data-start / data-end ("YYYY-MM", both months counted,
+     the way LinkedIn counts) rather than written into i18n.js, so the
+     current role — no data-end — keeps its duration right as time
+     passes. Re-rendered on langchange for the EN/TH units. */
+  function initJobDurations() {
+    const els = [...document.querySelectorAll('[data-job-duration]')];
+    if (!els.length) return;
+    const parse = v => { const [y, m] = v.split('-').map(Number); return y * 12 + (m - 1); };
+    const now = new Date();
+    const render = () => {
+      const th = I18N.getLang() === 'th';
+      els.forEach(el => {
+        const end = el.dataset.end ? parse(el.dataset.end) : now.getFullYear() * 12 + now.getMonth();
+        const total = end - parse(el.dataset.start) + 1;
+        const y = Math.floor(total / 12), m = total % 12;
+        const parts = th
+          ? [y && `${y} ปี`, m && `${m} เดือน`]
+          : [y && `${y} yr${y > 1 ? 's' : ''}`, m && `${m} mo${m > 1 ? 's' : ''}`];
+        el.textContent = parts.filter(Boolean).join(' ');
+      });
+    };
+    render();
+    window.addEventListener('langchange', render);
   }
 
   /* ---------- 11. Case-study reading progress ---------- */
@@ -1036,6 +1064,7 @@
     initHeader();
     initTheme();
     initResumeBtn();
+    initJobDurations();
     initCaseProgress();
     initMoreProjects();
     initDataStatus();   // TEMPORARY — see the function's comment
