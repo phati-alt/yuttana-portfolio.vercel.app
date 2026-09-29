@@ -797,10 +797,9 @@
   /* ---------- Horizontal screen strips (case pages) ---------- */
   /* Two modes, chosen once per page load:
      - Scrub (wide screen + motion, and the section has the pin/scroll
-       wrappers): the pin sticks under the header while its tall wrapper
-       scrolls past, and the track's x follows the page scroll — the same
-       wrapper + position:sticky + GSAP scrub (not pin:true) technique as
-       initCasesScroll, for the same reasons given there.
+       wrappers): the track's x follows the page scroll while the row
+       passes through the viewport (GSAP scrub, no pin — a pinned row
+       left an empty band under it for the whole slide).
      - Native (phones, reduced motion): the row scrolls itself (swipe,
        trackpad, keyboard); the arrow buttons page it by about a screenful
        and disable themselves at either end. */
@@ -821,19 +820,19 @@
         // how far the track has to travel for its last screen to end at the
         // same inset from the right as the first starts from the left
         const distance = () => Math.max(0, track.scrollWidth - strip.clientWidth);
-        const setHeight = () => { scrollEl.style.height = `${pinEl.offsetHeight + distance()}px`; };
-        setHeight();
+        // No pin: the row slides sideways while it passes through the
+        // viewport, from its top entering at the bottom to its top reaching
+        // the header (so the last screen lands while the whole row is still
+        // in view) — nothing is held and no empty band opens under it; the
+        // next section follows straight on (user's call).
         gsap.fromTo(track, { x: 0 }, {
           x: () => -distance(),
           ease: 'none',
           scrollTrigger: {
-            trigger: scrollEl,
-            // sticky engages when the wrapper's top reaches the header's
-            // bottom, and releases distance() px later — scrub exactly that
-            start: () => `top ${headerH()}px`,
-            end: () => `+=${distance()}`,
-            scrub: true, invalidateOnRefresh: true,
-            onRefresh: setHeight
+            trigger: strip,
+            start: 'top bottom',
+            end: () => `top ${headerH()}px`,
+            scrub: true, invalidateOnRefresh: true
           }
         });
         // images load lazily and change the track's width; re-measure then
