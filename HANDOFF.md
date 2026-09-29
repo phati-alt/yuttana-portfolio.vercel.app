@@ -1,7 +1,7 @@
 # Handoff — yuttana-portfolio
 
 เอกสารส่งต่องานสำหรับ Claude Code บนเครื่องอื่น อ่านไฟล์นี้ก่อนเริ่มงาน
-อัปเดตล่าสุด 2026-09-29 (ล่าสุดที่ commit `0c6d370` — push ขึ้น GitHub แล้ว)
+อัปเดตล่าสุด 2026-09-29 (ล่าสุดที่ commit `25694d4` — push ขึ้น GitHub แล้ว)
 
 > ไฟล์นี้รวม "ความรู้ที่ไม่อยู่ในโค้ด" ไว้ด้วย เพราะ memory ของ Claude บนเครื่องเดิม
 > ไม่ได้ติดมากับ repo — ส่วน "กฎการทำงาน" ด้านล่างสำคัญที่สุด
@@ -137,13 +137,16 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
   - custom-dashboard กับ gateway/device alerting **ไม่ใช่งานซ้ำ** — ผู้ใช้ยืนยันแล้ว ไม่ต้องถามอีก
   - การ์ด More Projects ขนาดเท่าการ์ดหน้า Home (640 × 480) และ hover แบบเดียวกัน
 - **Screenshot จริงของ case pages ยังไม่มี** — gallery ในหน้า case ยังเป็นกล่องเทา "Screen 1/2/3..." (caption เขียนรอไว้แล้วในแต่ละ `data.js`) รอไฟล์รูปจริงที่ `work/<slug>/assets/screen-N.png` แล้วแทน `.media-block` ด้วย `<img>`
-- เมื่อ More Projects ครบ real ทั้งหมด ให้ลบระบบ audit-badge ทิ้ง (ตอนนี้ยังมีจุดสี + แถบ "X of 9 still mockup" ท้ายหน้า More Projects)
+- ระบบ audit-badge ปิดอยู่ (`$showDataStatus = $false`) — โค้ด `initDataStatus` ยังอยู่ ถ้าไม่ใช้อีกแล้วลบทิ้งได้
 
-### ⚠️ ปัญหาบนเว็บจริงตอนนี้ (ตรวจเมื่อ 2026-09-29)
-- **หน้า More Projects โชว์เครื่องหมาย audit ให้คนทั่วไปเห็น**: แถบ "6 OF 9 STILL MOCKUP" มุมล่างซ้าย + จุดสีบนการ์ด 10 จุด (`initDataStatus` ใน main.js ทำงานเพราะ `_audit: true` ใน `js/cases-index.js` ซึ่งมาจาก `$showDataStatus = $true` ใน build-cases.ps1)
-- **6 รายการ mockup เป็นเนื้อหาที่แต่งขึ้น** (ตัวเลข/บทบาท/ปีไม่จริง) และบางอันใช้ชื่อหน่วยงานจริง (กรมป่าไม้, ท่าอากาศยานไทย AOT) — แสดงบนเว็บจริงอยู่ ควรซ่อนการ์ด mockup จนกว่าจะได้ข้อมูลจริง หรือใส่ข้อมูลจริงแทน (รอผู้ใช้ตัดสินใจ)
-- ไม่มี meta สำหรับแชร์ลิงก์ (`og:title` / `og:description` / `og:image`) ทุกหน้า — แชร์ใน LinkedIn/LINE/Facebook จะไม่มีรูป preview
-- ตรวจแล้ว **ไม่มีลิงก์เสีย** ในทั้ง 6 หน้า, ไม่มีข้อความ i18n ว่าง
+### ตรวจเว็บเมื่อ 2026-09-29 — แก้แล้ว (commit `25694d4`)
+- **Mockup ใน More Projects ถูกซ่อนแล้ว**: entry ที่ `audit: 'mockup'` (6 อัน เนื้อหาแต่ง บางอันใช้ชื่อหน่วยงานจริง เช่น กรมป่าไม้, AOT) ถูก `initMoreProjects` ลบออกจากหน้า + การ์ดมี `hidden` ใน HTML → **หน้าเว็บเหลือ 3 การ์ดจริง** (Facility, DR.in, JST) และปุ่มกรองที่ไม่มีการ์ด (Dashboard) ถูกเอาออกอัตโนมัติ
+  - **จะเปิด entry ไหน**: ใส่เนื้อหาจริง → เปลี่ยนเป็น `audit: 'real'` → ลบ `hidden` จากการ์ดใน `work/more-projects/index.html`
+- **แถบ/จุด audit ปิดแล้ว**: `$showDataStatus = $false` ใน build-cases.ps1 → `cases-index.js` ไม่มี `_audit` แล้ว
+- **Share preview**: ทุกหน้ามี canonical + Open Graph + `twitter:card`; หน้า case ใช้ cover ของตัวเอง, Home/More Projects ใช้ `assets/og-image.png` (1200×630 สร้างด้วย System.Drawing — script อยู่ใน scratchpad ของ session ถ้าจะแก้รูปให้สร้างใหม่ หรือทำใน Figma)
+- **Footer**: บรรทัด "Available for: Freelance & Full-time" (TH: พร้อมรับงาน: ฟรีแลนซ์ และงานประจำ) + จุดกะพริบแบบ hero ทุกหน้า
+- คอมเมนต์ในโค้ดที่ล้าสมัยแก้แล้ว (more-projects header/data.js, การ์ด More บน Home, header comment หน้า case, work/README.md, `$titleTag` ใน build ตัด "Mick")
+- ไม่มีลิงก์เสีย ไม่มีข้อความ i18n ว่าง
 
 ### ค้างรอข้อมูลจากผู้ใช้
 1. **Resume PDF เวอร์ชันใหม่** — ไฟล์อยู่ที่ `assets/Yuttana-Pati-Resume.pdf` (ใช้งานได้แล้วบนเว็บจริง ลิงก์จาก header ทุกหน้า + Contact; เปิดแท็บใหม่) แต่เนื้อหายังเป็นชุดเก่า ผู้ใช้จะแก้แล้วส่งไฟล์ใหม่มา — **วางทับชื่อเดิมได้เลย ไม่ต้องแก้โค้ด** จุดที่แจ้งผู้ใช้ไว้:
@@ -197,10 +200,8 @@ powershell -ExecutionPolicy Bypass -File tools/build-cases.ps1
 
 - **Browser pane ของ Claude วาดหน้าจอไม่ได้บ่อยมาก** (screenshot ขาว/timeout) — ตรวจด้วย iframe same-origin ใน `javascript_tool` วัด `getBoundingClientRect` / computed style แทน และบอกผู้ใช้ตรงๆ ว่าภาพจริงยังไม่ได้เห็น; `resize_window` preset mobile จำลอง `hover: none` ได้และมักแคปหน้าจอได้
 - **ตรวจหลายขนาดจอเสมอ** โดยเฉพาะจอกว้าง 2560px — บั๊กวงกลมของแถบ navy โผล่เฉพาะจอกว้าง (1440 ไม่เห็น)
-- คอมเมนต์ล้าสมัยในโค้ด (ไม่กระทบเว็บ): หัวไฟล์ `work/more-projects/index.html` และคอมเมนต์การ์ด "More projects" ใน `index.html` ยังบอกว่าเป็น "simple image gallery" (จริงๆ เป็น grid + modal แล้ว); `work/README.md` ยังไม่พูดถึง `css/case-page.css`; หัวคอมเมนต์ของหน้า case 4 หน้ายังพูดถึง `insight-panels.css` ว่า "ย้ายออกมาจาก" (ไฟล์ถูกลบแล้ว)
 - เชลล์ Bash ในบาง session หา `git`/`grep` ไม่เจอ (PATH) — ใช้ PowerShell หรือ Grep tool แทน; git push ใน PowerShell 5 คืน exit code 255 เพราะ stderr แต่ push สำเร็จ (เช็กด้วย `git status -sb`)
 - Preview server: `.claude/launch.json` ตั้ง `autoPort: true` — ถ้า 8123 ถูกใช้อยู่ (serve.ps1 ค้าง หรือเพิ่งปิดแล้วเปิดใหม่) จะได้ port สุ่มแทน ผู้ใช้เคยถามว่าทำไม URL เปลี่ยน — บอก URL ที่ได้จริงทุกครั้ง
 - เช็กไฟล์ resume บนเว็บจริง: `Invoke-WebRequest https://yuttana-portfolio.vercel.app/assets/Yuttana-Pati-Resume.pdf -Method Head` ต้องได้ 200 `application/pdf`
 - เช็ก redirect เว็บจริง: `Invoke-WebRequest https://yuttana-portfolio.vercel.app/index.html -MaximumRedirection 0` ต้องได้ 308
 - ลำดับแถวใน `content/cases.csv` ไม่ตรงกับลำดับการ์ดหน้า Home — ไม่มีผล เพราะ NEXT chain เขียนมือหมดแล้ว และ `cases-index.js` อ้างอิงตาม slug
-- `<title>` ที่ build script สร้าง (`$titleTag` ใน build-cases.ps1) ยังใส่ "Mick Yuttana" — ไม่มีผลตอนนี้ เพราะทุกหน้าเป็น bespoke ไม่ถูก generate
