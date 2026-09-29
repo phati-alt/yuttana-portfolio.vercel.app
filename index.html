@@ -255,7 +255,9 @@
             <li data-i18n="about.list2">Cross-Platform Design Systems</li>
             <li data-i18n="about.list3">Data-Informed Design Decisions</li>
           </ul>
-          <a href="#" class="btn btn--outline" id="resumeBtn" data-resume-btn data-hover>
+          <!-- Resume PDF: the same file as the Experience section's button
+               below — change both hrefs together if it is ever renamed. -->
+          <a href="assets/Yuttana-Pati-Resume.pdf" target="_blank" rel="noopener" class="btn btn--outline" id="resumeBtn" data-hover>
             <span class="btn__label" data-i18n="about.resumeBtn">Download Resume</span>
             <span class="btn__circle">↓︎</span>
           </a>
@@ -518,10 +520,11 @@
         <p class="pretitle" data-i18n="experience.eyebrow">Career</p>
         <h2 class="section-title" data-i18n="experience.title">Experience &amp; Education</h2>
         <p class="section-desc" data-i18n="experience.desc">A timeline of roles where I've shipped real products, systems, and design processes.</p>
-        <!-- Same behaviour as the About section's resume button (initResumeBtn
-             wires every [data-resume-btn]) — here too because whoever has just
-             read the career history is the likeliest to want the file. -->
-        <a href="#" class="btn btn--outline experience__resume" data-resume-btn data-hover>
+        <!-- Same PDF as the About section's resume button — here too because
+             whoever has just read the career history is the likeliest to
+             want the file. Opens in a new tab (the browser's own viewer has
+             a download button). -->
+        <a href="assets/Yuttana-Pati-Resume.pdf" target="_blank" rel="noopener" class="btn btn--outline experience__resume" data-hover>
           <span class="btn__label" data-i18n="about.resumeBtn">Download Resume</span>
           <span class="btn__circle">↓︎</span>
         </a>

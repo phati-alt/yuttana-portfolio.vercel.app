@@ -17,6 +17,7 @@ $mime = @{
   ".woff2" = "font/woff2"
   ".ico"  = "image/x-icon"
   ".json" = "application/json"
+  ".pdf"  = "application/pdf"
 }
 
 while ($listener.IsListening) {

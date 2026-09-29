@@ -788,15 +788,6 @@
     });
   }
 
-  /* ---------- 10. Resume button (placeholder until a real PDF exists) ---------- */
-  function initResumeBtn() {
-    document.querySelectorAll('[data-resume-btn]').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.preventDefault();
-        alert(I18N.t('misc.resumeAlert'));
-      });
-    });
-  }
 
   /* ---------- Experience: how long each role lasted ---------- */
   /* Computed from data-start / data-end ("YYYY-MM", both months counted,
@@ -1061,7 +1052,6 @@
     initSmoothScroll();
     initHeader();
     initTheme();
-    initResumeBtn();
     initJobDurations();
     initCaseProgress();
     initMoreProjects();

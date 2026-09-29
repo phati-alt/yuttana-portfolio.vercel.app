@@ -133,7 +133,6 @@ const translations = {
     "footer.focusLine2": "Design systems that scale",
     "footer.rights": "All rights reserved.",
 
-    "misc.resumeAlert": "Resume placeholder — replace this link with your actual PDF resume.",
 
     "cs.meta.roleLabel": "Role",
     "cs.meta.timelineLabel": "Timeline",
@@ -309,7 +308,6 @@ const translations = {
     "footer.focusLine2": "Design System ที่ขยายตัวได้จริง",
     "footer.rights": "สงวนลิขสิทธิ์",
 
-    "misc.resumeAlert": "นี่คือลิงก์ตัวอย่าง — กรุณาเปลี่ยนเป็นลิงก์ไฟล์เรซูเม่ PDF จริงของคุณ",
 
     "cs.meta.roleLabel": "บทบาท",
     "cs.meta.timelineLabel": "ระยะเวลา",
