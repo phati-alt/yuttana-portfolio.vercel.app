@@ -136,6 +136,8 @@ const translations = {
     "contact.wave": "👋 Say hi",
 
     "footer.tagline": "UX/UI & Product Designer based in Bangkok, Thailand.",
+
+    "footer.available": "Available for: Freelance & Full-time",
     "footer.nowPlaying": "Currently focused on",
     "footer.focusLine1": "Human-centered product design",
     "footer.focusLine2": "Design systems that scale",
@@ -319,6 +321,7 @@ const translations = {
     "contact.wave": "👋 ทักทายกันครับ",
 
     "footer.tagline": "UX/UI & Product Designer ประจำกรุงเทพฯ ประเทศไทย",
+    "footer.available": "พร้อมรับงาน: ฟรีแลนซ์ และงานประจำ",
     "footer.nowPlaying": "ตอนนี้กำลังโฟกัสกับ",
     "footer.focusLine1": "การออกแบบโปรดักต์ที่ยึดผู้ใช้เป็นศูนย์กลาง",
     "footer.focusLine2": "Design System ที่ขยายตัวได้จริง",

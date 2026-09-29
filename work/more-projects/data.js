@@ -1,8 +1,11 @@
-/* ⚠ MOCKUP CONTENT — placeholder copy, not verified fact.
-   Written from what each screenshot appears to show, so the modal has
-   something real-shaped to render. Roles, years, clients, platforms and
-   EVERY NUMBER below are invented and need replacing with what actually
-   happened before this goes anywhere near a client or an employer.
+/* Each entry's `audit` says whether its copy is real:
+     'real'   — the user's own material; shown on the page.
+     'mockup' — ⚠ placeholder copy written from what the screenshot
+                appears to show; roles, years, clients, platforms and
+                EVERY NUMBER are invented. initMoreProjects() removes these
+                cards from the page, so they never reach a visitor. Replace
+                the copy with what actually happened, then flip to 'real'
+                (and drop [hidden] from the card in index.html) to publish.
 
    Unlike the case folders next to this one, this file is NOT generated —
    there is no CSV behind it. Edit it directly.

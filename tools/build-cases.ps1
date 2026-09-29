@@ -46,7 +46,7 @@ param([string]$OutDir = '')
 #  the badges disappear from every page, because the data they read stops
 #  being emitted. The dataStatus rows in the CSV can then go too.
 # ---------------------------------------------------------------------
-$showDataStatus = $true
+$showDataStatus = $false
 
 # ---------------------------------------------------------------------
 #  Bespoke case pages.
@@ -230,9 +230,9 @@ for ($i = 0; $i -lt $slugs.Count; $i++) {
   if (-not $pageTitleRow) { throw "$slug has no pageTitle row in content/cases.csv" }
   $pageTitle = EscHtml $pageTitleRow.en
 
-  $titleTag = '<title>' + $pageTitle + ' ' + $emDash + ' Case Study | Mick Yuttana</title>'
+  $titleTag = '<title>' + $pageTitle + ' ' + $emDash + ' Case Study | Yuttana</title>'
   $descTag = '<meta name="description" content="Case study: ' + $pageTitle + ' ' + $emDash +
-             ' UX/UI and product design work by Mick Yuttana.">'
+             ' UX/UI and product design work by Yuttana.">'
   $html = [System.Text.RegularExpressions.Regex]::Replace(
     $html, '<title>.*?</title>',
     [System.Text.RegularExpressions.MatchEvaluator]{ param($m) $titleTag })

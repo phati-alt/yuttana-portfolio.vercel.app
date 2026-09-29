@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yuttana — UX/UI & Product Designer</title>
 <meta name="description" content="Yuttana — UX/UI & Product Designer turning complex systems into experiences people trust.">
+<!-- Link preview (Open Graph / X card) — what LinkedIn, LINE, Facebook, Slack
+     and X show when this page is shared. Absolute URLs are required here. -->
+<link rel="canonical" href="https://yuttana-portfolio.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Yuttana Pati — Portfolio">
+<meta property="og:title" content="Yuttana — UX/UI & Product Designer">
+<meta property="og:description" content="Yuttana — UX/UI & Product Designer turning complex systems into experiences people trust.">
+<meta property="og:url" content="https://yuttana-portfolio.vercel.app/">
+<meta property="og:image" content="https://yuttana-portfolio.vercel.app/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -207,13 +219,9 @@
           </div>
         </a>
 
-        <!-- "More projects" tile — links to a simple image-gallery page
-             (work/more-projects.html) instead of a single case study.
-             No photo yet: a plain data-tone placeholder fill, same as the
-             case-study template's own media-block pattern, so it doesn't
-             sit there broken until one's added. Swap the placeholder
-             <div> below for a real <img> (matching the other 6 cards)
-             once there's a project image to use as its cover. -->
+        <!-- "More projects" tile — links to work/more-projects/ (a card grid
+             with a detail modal per project) instead of a single case
+             study. A text-only CTA tile, no cover image, by design. -->
         <a class="case case--more" href="work/more-projects/" data-reveal data-hover-case>
           <div class="case__media case__media--cta">
             <span class="case__cta-label">
@@ -695,6 +703,7 @@
     </nav>
 
     <div class="footer__col footer__info">
+      <p class="footer__status"><span class="dot" aria-hidden="true"></span><span data-i18n="footer.available">Available for: Freelance &amp; Full-time</span></p>
       <p>
         <a href="mailto:phatiyuttana@gmail.com">phatiyuttana@gmail.com</a><br>
         Bangkok, Thailand<br><br>

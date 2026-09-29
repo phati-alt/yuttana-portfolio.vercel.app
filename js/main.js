@@ -848,7 +848,24 @@
     const modal = document.querySelector('[data-mp-modal]');
     if (!grid || !modal) return;
 
+    // Entries still marked audit: 'mockup' in data.js hold invented copy,
+    // so they are taken off the page entirely, not just hidden; flipping an
+    // entry to 'real' (once its copy is the real thing) is what publishes
+    // it. Their cards also carry [hidden] in the markup so they never flash
+    // up before this runs — the real ones are un-hidden here.
+    [...grid.querySelectorAll('[data-mp-id]')].forEach(card => {
+      const item = window.MORE_PROJECTS?.[card.dataset.mpId];
+      if (!item || item.audit === 'mockup') card.remove();
+      else card.hidden = false;
+    });
     const cards = [...grid.querySelectorAll('[data-mp-id]')];
+    // …and a filter with nothing left in its group goes too, rather than
+    // offering a button that empties the grid.
+    const liveGroups = new Set(cards.map(c => window.MORE_PROJECTS[c.dataset.mpId].group));
+    document.querySelectorAll('[data-mp-filter-value]').forEach(btn => {
+      const v = btn.dataset.mpFilterValue;
+      if (v !== 'all' && !liveGroups.has(v)) btn.remove();
+    });
     const fields = [...modal.querySelectorAll('[data-mp-modal-field]')];
     const modalImg = modal.querySelector('[data-mp-modal-img]');
     const optionals = [...modal.querySelectorAll('[data-mp-optional]')];

@@ -4,7 +4,7 @@
   pipeline (see that script's $customSlugs) because this story earned
   its own layout. Content mirrors window.CASE_DATA in this folder's own
   data.js. Like platform, ev-charger and custom-dashboard, this page no
-  longer uses the "Insight Panel" layout (css/insight-panels.css): it uses the
+  longer uses the "Insight Panel" layout (css/insight-panels.css, since deleted): it uses the
   quieter layout in css/case-page.css (.gp-* classes) — one wide
   reading column, flat grey cards, one water-blue accent. The content
   and every data-i18n-case key are unchanged; only the design moved.
@@ -19,6 +19,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Department of Groundwater Resources — Case Study | Yuttana</title>
 <meta name="description" content="Case study: Department of Groundwater Resources — UX/UI and product design work by Yuttana.">
+<!-- Link preview (Open Graph / X card) — what LinkedIn, LINE, Facebook, Slack
+     and X show when this page is shared. Absolute URLs are required here. -->
+<link rel="canonical" href="https://yuttana-portfolio.vercel.app/work/government-project/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Yuttana Pati — Portfolio">
+<meta property="og:title" content="Department of Groundwater Resources — Case Study | Yuttana">
+<meta property="og:description" content="Case study: Department of Groundwater Resources — UX/UI and product design work by Yuttana.">
+<meta property="og:url" content="https://yuttana-portfolio.vercel.app/work/government-project/">
+<meta property="og:image" content="https://yuttana-portfolio.vercel.app/work/government-project/assets/cover.png">
+<meta property="og:image:width" content="1378">
+<meta property="og:image:height" content="944">
+<meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -303,6 +315,7 @@
     </nav>
 
     <div class="footer__col footer__info">
+      <p class="footer__status"><span class="dot" aria-hidden="true"></span><span data-i18n="footer.available">Available for: Freelance &amp; Full-time</span></p>
       <p>
         <a href="mailto:phatiyuttana@gmail.com">phatiyuttana@gmail.com</a><br>
         Bangkok, Thailand<br><br>

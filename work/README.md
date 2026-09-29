@@ -27,14 +27,19 @@ URLs are the folder name: `work/platform/` → served as that folder's
 
 ## Every case page is bespoke
 
-All five cases are listed in `$customSlugs` in `tools/build-cases.ps1`, so
+All four cases are listed in `$customSlugs` in `tools/build-cases.ps1`, so
 the build never writes their `index.html` or `data.js`. Edit both by hand.
+(The build still writes `js/cases-index.js`, the homepage card labels, from
+the CSV's `category` / `title` / `cardMeta` / `cardOutcome` rows.)
 
-They share one layout, the Insight Panel design language in
-`css/insight-panels.css` (classes prefixed `ip-`). Only `platform` needed
-rules of its own, in `work/platform/case.css`; the other four load
-`insight-panels.css` alone. Keep one-off rules in a case's own `case.css`
-rather than the shared stylesheets.
+They share one layout, the case-page design in `css/case-page.css` (classes
+prefixed `gp-`), which the More Projects modal uses too. The accent
+defaults to a tint of the site blue; `government-project` overrides it
+(water blue) in its own `case.css`, and `platform`'s `case.css` holds its
+three extra panel types. Keep one-off rules in a case's own `case.css`
+rather than the shared stylesheet. (The older Insight Panel layout,
+`css/insight-panels.css`, has been deleted; JST Group, the fifth case,
+now lives only in the More Projects modal.)
 
 Each case's `data.js` keeps the same shape the build used to generate —
 `window.CASE_DATA = { en: {...}, th: {...} }` — read by `js/i18n.js`

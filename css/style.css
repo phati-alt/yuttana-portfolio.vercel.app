@@ -293,7 +293,8 @@ body {
   display: inline-flex; align-items: center; gap: .55rem;
   font-size: .8rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
 }
-.banner__eyebrow .dot {
+.banner__eyebrow .dot,
+.footer__status .dot {
   width: 8px; height: 8px; border-radius: 50%; background: var(--orange);
   box-shadow: 0 0 0 0 color-mix(in srgb, var(--orange) 60%, transparent);
   animation: pulse 2.4s infinite;
@@ -1236,6 +1237,9 @@ html.no-motion .contact__avatar-img, html.no-motion .contact__avatar-blob { anim
 .footer__nav a, .footer__info a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
 .footer__nav a:hover, .footer__info a:hover { border-bottom-color: currentColor; }
 .footer__info p { color: var(--muted); }
+/* availability line at the top of the footer's info column — the same
+   pulsing dot as the hero's "Available for freelance work" eyebrow */
+.footer__info .footer__status { display: inline-flex; align-items: center; gap: .55rem; margin-bottom: 1rem; color: var(--ink); font-weight: 500; }
 .footer__social { display: flex; gap: 1rem; margin-top: 1.5rem; font-size: .9rem; }
 .footer__bottom {
   display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center;
