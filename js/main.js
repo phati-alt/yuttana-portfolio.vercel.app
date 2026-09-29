@@ -754,8 +754,8 @@
 
     document.querySelectorAll('.header__link').forEach(link => {
       const href = link.getAttribute('href');
-      // Case-study pages point nav links at "../studio/index.html#work" — not
-      // a valid selector, and section-highlighting is meaningless off-page anyway.
+      // Case-study pages point nav links at "../../#work" — not a valid
+      // selector, and section-highlighting is meaningless off-page anyway.
       if (!href.startsWith('#')) return;
       const section = document.querySelector(href);
       if (!section) return;
