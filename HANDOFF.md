@@ -1,7 +1,7 @@
 # Handoff — yuttana-portfolio
 
 เอกสารส่งต่องานสำหรับ Claude Code บนเครื่องอื่น อ่านไฟล์นี้ก่อนเริ่มงาน
-อัปเดตล่าสุด 2026-09-29 (ล่าสุดที่ commit `adca702` — push ขึ้น GitHub แล้ว)
+อัปเดตล่าสุด 2026-09-29 (ล่าสุดที่ commit `0c6d370` — push ขึ้น GitHub แล้ว)
 
 > ไฟล์นี้รวม "ความรู้ที่ไม่อยู่ในโค้ด" ไว้ด้วย เพราะ memory ของ Claude บนเครื่องเดิม
 > ไม่ได้ติดมากับ repo — ส่วน "กฎการทำงาน" ด้านล่างสำคัญที่สุด
@@ -70,7 +70,8 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
    - ข้อความ (meta / ชื่อ / บรรทัดผลลัพธ์) **อยู่บนรูป ขึ้นตอน hover** — บนจอสัมผัส (`hover: none`) ย้ายไป**ใต้รูป**แสดงตลอด
    - ข้อความมาจาก `cardMeta` / `title` / `cardOutcome` ใน CSV → build → `js/cases-index.js`
 5. **Band** (พื้น navy `#020f27`, dark mode `#1a1f72`) เปิดด้วยวงกลม iris (`.band__circle`)
-   - About: รูป, ป้าย **4+**, checklist, ตัวเลข 4 ช่อง (4+, 40%, 15+, +30%) — ไม่มีปุ่ม Resume แล้ว
+   - About: pretitle "About me" (ขนาดเล็กแบบ section อื่น — เดิมตัวใหญ่ซ้อนกับ h2), h2, **ชิป LinkedIn** (icon + text ทรงเดียวกับชิป Toolbox, `.about__social-btn`), bio 2 ย่อหน้า, checklist, ตัวเลข 4 ช่อง (4+, 40%, 15+, +30%); รูปมีป้าย pill **"Based in Bangkok, Thailand"** (TH: ประจำอยู่ที่กรุงเทพฯ) สีการ์ด Services + หมุดฟ้าอ่อน (เดิมเป็นป้ายเหลือง "4+ Years" ซึ่งซ้ำกับตัวเลข) — ไม่มีปุ่ม Resume
+     - icon LinkedIn มาจาก Lucide **0.460** (Lucide 1.x และ Simple Icons ไม่มีโลโก้ LinkedIn แล้ว)
    - Services "From strategy to handover": stack cards 5 ใบ (sticky) — **สีเดียวกันหมด** กรมท่าสว่างกว่าแถบหนึ่งระดับ ตัวขาว เลขฟ้าอ่อน กว้างสูงสุด 1120px
    - `.band` ใช้ `clip-path: inset(-400vw 0 0 0)` ตัดวงกลมเฉพาะขอบล่าง — **ห้ามเปลี่ยนเป็น `overflow: clip/hidden`** (วงกลมด้านบนวาดอยู่เหนือกรอบ .band เพราะ margin collapse → จะหายทั้งวง และ hidden ทำ sticky พัง)
 6. **Process** (`#process`) — rail 4 ขั้น Discover→Define→Design→Deliver + flow notes + ลูกศรวนกลับ
@@ -138,6 +139,12 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 - **Screenshot จริงของ case pages ยังไม่มี** — gallery ในหน้า case ยังเป็นกล่องเทา "Screen 1/2/3..." (caption เขียนรอไว้แล้วในแต่ละ `data.js`) รอไฟล์รูปจริงที่ `work/<slug>/assets/screen-N.png` แล้วแทน `.media-block` ด้วย `<img>`
 - เมื่อ More Projects ครบ real ทั้งหมด ให้ลบระบบ audit-badge ทิ้ง (ตอนนี้ยังมีจุดสี + แถบ "X of 9 still mockup" ท้ายหน้า More Projects)
 
+### ⚠️ ปัญหาบนเว็บจริงตอนนี้ (ตรวจเมื่อ 2026-09-29)
+- **หน้า More Projects โชว์เครื่องหมาย audit ให้คนทั่วไปเห็น**: แถบ "6 OF 9 STILL MOCKUP" มุมล่างซ้าย + จุดสีบนการ์ด 10 จุด (`initDataStatus` ใน main.js ทำงานเพราะ `_audit: true` ใน `js/cases-index.js` ซึ่งมาจาก `$showDataStatus = $true` ใน build-cases.ps1)
+- **6 รายการ mockup เป็นเนื้อหาที่แต่งขึ้น** (ตัวเลข/บทบาท/ปีไม่จริง) และบางอันใช้ชื่อหน่วยงานจริง (กรมป่าไม้, ท่าอากาศยานไทย AOT) — แสดงบนเว็บจริงอยู่ ควรซ่อนการ์ด mockup จนกว่าจะได้ข้อมูลจริง หรือใส่ข้อมูลจริงแทน (รอผู้ใช้ตัดสินใจ)
+- ไม่มี meta สำหรับแชร์ลิงก์ (`og:title` / `og:description` / `og:image`) ทุกหน้า — แชร์ใน LinkedIn/LINE/Facebook จะไม่มีรูป preview
+- ตรวจแล้ว **ไม่มีลิงก์เสีย** ในทั้ง 6 หน้า, ไม่มีข้อความ i18n ว่าง
+
 ### ค้างรอข้อมูลจากผู้ใช้
 1. **Resume PDF เวอร์ชันใหม่** — ไฟล์อยู่ที่ `assets/Yuttana-Pati-Resume.pdf` (ใช้งานได้แล้วบนเว็บจริง ลิงก์จาก header ทุกหน้า + Contact; เปิดแท็บใหม่) แต่เนื้อหายังเป็นชุดเก่า ผู้ใช้จะแก้แล้วส่งไฟล์ใหม่มา — **วางทับชื่อเดิมได้เลย ไม่ต้องแก้โค้ด** จุดที่แจ้งผู้ใช้ไว้:
    - มีเบอร์โทรส่วนตัว (เว็บไม่มี) — แนะนำเอาออกในเวอร์ชันที่ขึ้นเว็บ
@@ -146,7 +153,7 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
    - Portfolio ใน PDF ชี้ Figma ยังไม่มีลิงก์เว็บนี้
    - ข้อความ Experience ยังเก่า: "UI Designer" ที่ Yes Web, "DR.in (medical app)", ไม่มี MorPrompt, Education 2017–2022
    - ก่อนเผยแพร่ไฟล์ใหม่ อ่านไฟล์ทั้งหมดก่อนทุกครั้ง
-2. Screenshot จริงของแต่ละ case (รวม Screens 4 ช่องของ JST ใน modal) และข้อมูลจริงของ More Projects 6 รายการ (ดูด้านบน)
+2. Screenshot จริงของแต่ละ case — ตอนนี้เป็นกล่องเทา "Screen N" รวม **19 ช่อง**: government 3, platform 3, ev-charger 6, custom-dashboard 3, JST (ใน modal) 4 — และข้อมูลจริงของ More Projects 6 รายการ (ดูด้านบน)
 3. (ไม่ด่วน) ปีของงาน JST Group — ตอนนี้ใช้ Timeline แทนได้แล้ว
 
 ### Build (เมื่อแก้ `content/cases.csv`)
@@ -168,6 +175,7 @@ powershell -ExecutionPolicy Bypass -File tools/build-cases.ps1
 - Toolbox เป็นชิป icon + หัว section มาตรฐาน
 - การ์ดโปรเจกต์: meta + บรรทัดผลลัพธ์ — ผู้ใช้เลือกให้**อยู่บนรูปและขึ้นตอน hover** (เคยลองวางใต้รูปแบบของเขาแล้ว ผู้ใช้ไม่เอา)
 - Experience: ระยะเวลา + ประเภทงาน + Education
+- About: pretitle, ชิป LinkedIn, ป้ายสถานที่แทนป้าย "4+" (จากการเทียบ section About me ของเขา — ไม่เอา: เปลี่ยนหัวข้อเป็น "Hi, I'm…", ย่อ bio, ลดตัวเลขเหลือ 2)
 - Resume: ลิงก์ใน header ทุกหน้า + ปุ่มใน Contact (ผู้ใช้บอกว่า 3 จุดเยอะเกิน — **อย่าเพิ่มจุดอื่นอีก** เช่น About/Experience/Hero)
 
 ### ไอเดียที่ยังไม่ได้ทำ (รอผู้ใช้เลือก)
