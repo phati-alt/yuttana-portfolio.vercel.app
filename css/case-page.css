@@ -256,5 +256,11 @@
 @media (max-width: 640px) { .gp-screens--grid { grid-template-columns: 1fr; } }
 .gp-screens--grid .gp-shot { aspect-ratio: 4 / 3; }
 
+/* Row of small portrait mockups (jst-group): three across, each at
+   its own width inside the grey mount; stacked on phones. */
+.gp-screens--row { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.gp-screens--row .gp-shot-frame { padding: clamp(.75rem, 2vw, 1.25rem); }
+@media (max-width: 640px) { .gp-screens--row { grid-template-columns: 1fr; } }
+
 .gp-kpis--3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 720px) { .gp-kpis--3 { grid-template-columns: 1fr; } }
