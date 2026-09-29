@@ -66,7 +66,7 @@ const translations = {
     "about.list1": "User-Centered Design Process",
     "about.list2": "Cross-Platform Design Systems",
     "about.list3": "Data-Informed Design Decisions",
-    "about.badgeLabel": "Years of<br>Experience",
+    "about.badgeLabel": "Based in Bangkok, Thailand",
     "about.resumeBtn": "Download Resume",
 
     "process.eyebrow": "How I work",
@@ -249,7 +249,7 @@ const translations = {
     "about.list1": "กระบวนการออกแบบที่ยึดผู้ใช้เป็นศูนย์กลาง",
     "about.list2": "Design System ที่ใช้ได้ทุกแพลตฟอร์ม",
     "about.list3": "ตัดสินใจออกแบบโดยอ้างอิงข้อมูล",
-    "about.badgeLabel": "ปีของ<br>ประสบการณ์",
+    "about.badgeLabel": "ประจำอยู่ที่กรุงเทพฯ",
     "about.resumeBtn": "ดาวน์โหลดเรซูเม่",
 
     "process.eyebrow": "วิธีการทำงานของผม",

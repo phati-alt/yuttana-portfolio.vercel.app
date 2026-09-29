@@ -738,25 +738,39 @@ body {
   display: grid; grid-template-columns: 1fr .85fr; gap: clamp(2rem, 5vw, 6rem);
   align-items: center; padding-top: clamp(2rem, 4vw, 4rem);
 }
-/* section-level label sitting above the media + content row — sized to
-   match .scroll-title__1 so it reads as a section heading, not a kicker */
-.about__eyebrow {
-  grid-column: 1 / -1; order: -1; margin-bottom: clamp(1rem, 3vw, 2rem);
-  font-size: var(--fs-h2); font-weight: 600; letter-spacing: -.03em;
-  text-transform: none; color: var(--ink);
+/* section-level label above the media + content row — a plain pretitle
+   like every other section's (it used to be set at section-title size,
+   which stacked two headings on top of each other with the h2 below) */
+.about__eyebrow { grid-column: 1 / -1; order: -1; margin-bottom: 0; }
+/* profile link(s) right under the title, as round icon buttons */
+.about__social { display: flex; gap: .6rem; margin-top: 1.25rem; }
+.about__social-btn {
+  display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  background: color-mix(in srgb, #fff 8%, var(--band)); color: #fff;
+  border: 1px solid rgba(255, 255, 255, .14);
+  transition: background var(--speed) var(--ease), border-color var(--speed) var(--ease);
 }
+.about__social-btn:hover { background: var(--primary); border-color: var(--primary); }
+.about__social-btn svg { width: 20px; height: 20px; }
 /* stats block, moved in from the old standalone Numbers section */
 .about__numbers { grid-column: 1 / -1; order: 3; margin-top: clamp(2.5rem, 6vw, 5rem); }
 .about__media { order: 2; position: relative; }
 .about__media-frame { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 5; background: var(--paper-2); }
 .about__media-frame img { position: absolute; top: -18%; left: 0; width: 100%; height: 136%; object-fit: cover; }
+/* location pill on the photo — same surface as the Services cards (a step
+   lighter than the band) with the pale-blue accent on the pin; it used to
+   be a yellow "4+ years" badge, a colour off the current system and a
+   figure the stats row below already gives */
 .about__badge {
-  position: absolute; right: -1rem; bottom: -1.5rem;
-  background: var(--yellow); color: #0d1512;
-  border-radius: var(--radius-sm); padding: 1rem 1.25rem; text-align: center; line-height: 1.2;
+  position: absolute; right: -1rem; bottom: -1.25rem;
+  display: flex; align-items: center; gap: .5rem;
+  padding: .75rem 1.1rem; border-radius: 100px;
+  background: color-mix(in srgb, #fff 8%, var(--band)); color: #fff;
+  border: 1px solid rgba(255, 255, 255, .14);
+  box-shadow: 0 16px 36px -18px rgba(0, 0, 0, .6);
+  font-size: .9rem; font-weight: 500; white-space: nowrap;
 }
-.about__badge strong { display: block; font-size: 2rem; font-weight: 600; letter-spacing: -.03em; }
-.about__badge span { font-size: .78rem; opacity: .8; }
+.about__badge svg { width: 18px; height: 18px; flex: none; color: #b3c1ff; }
 .checks { margin-top: 1.75rem; display: grid; gap: .7rem; }
 .checks li { display: flex; gap: .7rem; align-items: baseline; color: var(--muted); }
 /* \FE0E forces the text-presentation glyph — without it iOS Safari can
