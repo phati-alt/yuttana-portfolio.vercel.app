@@ -1807,7 +1807,7 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
    close button pin to the panel corner and stay put while the content
    scrolls under it, rather than drifting with a sticky/float hack. */
 .mp-modal {
-  width: min(1280px, calc(100vw - 3rem));
+  width: min(1440px, calc(100vw - 3rem));
   max-height: min(94vh, 1100px);
   padding: 0; border: 0; border-radius: var(--radius);
   background: var(--paper); color: var(--ink);
@@ -1858,7 +1858,15 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
 /* Case-page layout inside the dialog: no fixed header to clear, and
    tighter section spacing than a full page. */
 .mp-modal .gp-hero { padding-top: clamp(2.75rem, 5vw, 4rem); }
-.mp-modal .gp-hero .gp-col { padding-right: max(var(--gutter), 4rem); } /* clear the close button */
+/* Wider reading column than a full case page (1160px, not 960px), and the
+   dialog's own inset instead of the page --gutter, which at desktop widths
+   ate ~140-190px a side inside an already-bounded panel. */
+.mp-modal .gp { --gp-col: 1160px; --mp-pad: clamp(1.5rem, 4vw, 4rem); }
+.mp-modal .gp-col {
+  max-width: calc(var(--gp-col) + 2 * var(--mp-pad));
+  padding-inline: var(--mp-pad);
+}
+.mp-modal .gp-hero .gp-col { padding-right: max(var(--mp-pad), 4rem); } /* clear the close button */
 .mp-gp-section { padding-top: clamp(2.5rem, 5vw, 3.5rem); }
 .mp-gp-section--last { padding-bottom: clamp(2.5rem, 5vw, 3.5rem); }
 /* Cover on a grey mount, contained rather than stretched: these files
