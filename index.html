@@ -219,17 +219,21 @@
           </div>
         </a>
 
-        <!-- "More projects" tile — links to work/more-projects/ (a card grid
-             with a detail modal per project) instead of a single case
-             study. A text-only CTA tile, no cover image, by design. -->
-        <a class="case case--more" href="work/more-projects/" data-reveal data-hover-case>
-          <div class="case__media case__media--cta">
-            <span class="case__cta-label">
-              <span data-i18n="work.moreProjects">View more projects</span>
-              <span class="case__cta-arrow" aria-hidden="true">↗︎</span>
-            </span>
+        <a class="case" href="work/jst-group/" data-reveal data-hover-case data-case-ref="jst-group">
+          <div class="case__media">
+            <img src="work/jst-group/assets/cover.png" alt="JST Group website shown on desktop, tablet and mobile" loading="lazy">
+            <div class="case__label">
+              <p class="case__label-meta" data-case-field="meta"></p>
+              <h3 class="case__label-title" data-case-field="title"></h3>
+              <p class="case__label-outcome" data-case-field="outcome"></p>
+            </div>
           </div>
         </a>
+
+        <!-- The "View more projects" tile (class case--more, linking to
+             work/more-projects/) is hidden for now at the user's request —
+             the page still exists but nothing links to it. To bring it back,
+             restore the tile from git history (commit before this one). -->
 
       </div>
       </div>

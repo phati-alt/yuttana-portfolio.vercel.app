@@ -1,13 +1,13 @@
 <!--
-  HAND-WRITTEN — bespoke case page, NOT built by tools/build-cases.ps1.
-  This is one of the cases excluded from the shared work/_template/
-  pipeline (see that script's $customSlugs) because this story earned
-  its own layout. Content mirrors window.CASE_DATA in this folder's own
-  data.js. Like platform, ev-charger and custom-dashboard, this page no
-  longer uses the "Insight Panel" layout (css/insight-panels.css, since deleted): it uses the
-  quieter layout in css/case-page.css (.gp-* classes) — one wide
-  reading column, flat grey cards, one water-blue accent. The content
-  and every data-i18n-case key are unchanged; only the design moved.
+  HAND-WRITTEN — bespoke case page, NOT built by tools/build-cases.ps1
+  (listed in that script's $customSlugs). Content mirrors window.CASE_DATA
+  in this folder's own data.js. Layout is the shared case-page design in
+  css/case-page.css (.gp-*), like the other four cases; it needs nothing
+  of its own, so it has no case.css.
+
+  JST Group's case lived at work/wordpress-website/ (deleted), then only
+  in the More Projects modal; it came back to the homepage here, with the
+  same copy. vercel.json redirects the old URL to this one.
 
   Editing this file directly is safe and expected — re-running the build
   script will not touch it.
@@ -17,17 +17,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Department of Groundwater Resources — Case Study | Yuttana</title>
-<meta name="description" content="Case study: Department of Groundwater Resources — UX/UI and product design work by Yuttana.">
+<title>JST Group — Case Study | Yuttana</title>
+<meta name="description" content="Case study: JST Group — UX/UI and product design work by Yuttana.">
 <!-- Link preview (Open Graph / X card) — what LinkedIn, LINE, Facebook, Slack
      and X show when this page is shared. Absolute URLs are required here. -->
-<link rel="canonical" href="https://yuttana-portfolio.vercel.app/work/government-project/">
+<link rel="canonical" href="https://yuttana-portfolio.vercel.app/work/jst-group/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Yuttana Pati — Portfolio">
-<meta property="og:title" content="Department of Groundwater Resources — Case Study | Yuttana">
-<meta property="og:description" content="Case study: Department of Groundwater Resources — UX/UI and product design work by Yuttana.">
-<meta property="og:url" content="https://yuttana-portfolio.vercel.app/work/government-project/">
-<meta property="og:image" content="https://yuttana-portfolio.vercel.app/work/government-project/assets/cover.png">
+<meta property="og:title" content="JST Group — Case Study | Yuttana">
+<meta property="og:description" content="Case study: JST Group — UX/UI and product design work by Yuttana.">
+<meta property="og:url" content="https://yuttana-portfolio.vercel.app/work/jst-group/">
+<meta property="og:image" content="https://yuttana-portfolio.vercel.app/work/jst-group/assets/cover.png">
 <meta property="og:image:width" content="1378">
 <meta property="og:image:height" content="944">
 <meta name="twitter:card" content="summary_large_image">
@@ -45,7 +45,6 @@
 <link rel="stylesheet" href="../../css/tokens.css">
 <link rel="stylesheet" href="../../css/style.css">
 <link rel="stylesheet" href="../../css/case-page.css">
-<link rel="stylesheet" href="case.css">
 
 <script>
   (function () {
@@ -97,15 +96,13 @@
 
 <main id="main" class="gp">
 
-  <!-- Hero — type chips, title, summary, then the cover as a wide plate
-       and the record strip under it. -->
   <section class="gp-hero">
     <div class="gp-col">
       <ul class="gp-chips" data-reveal>
-        <li class="gp-chip gp-chip--dot" data-i18n-case="category">Government Project</li>
+        <li class="gp-chip gp-chip--dot" data-i18n-case="category">Website</li>
         <li class="gp-chip" data-i18n-case="platform"></li>
       </ul>
-      <h1 class="gp-hero__title" data-i18n-case="title" data-reveal>Department of Groundwater Resources</h1>
+      <h1 class="gp-hero__title" data-i18n-case="title" data-reveal>JST Group</h1>
       <p class="gp-hero__summary" data-i18n-case="summary" data-reveal></p>
     </div>
 
@@ -127,47 +124,25 @@
     </div>
   </section>
 
-  <!-- Context — the brief as prose, then who it was for and what it
-       covered as a pair of cards. -->
   <section class="gp-section">
     <div class="gp-col">
       <h2 class="gp-h2" data-i18n="cs.ip.context" data-reveal>Context</h2>
-      <p class="gp-body" data-i18n-case="briefText" data-reveal></p>
-      <div class="gp-pair" data-reveal>
-        <div class="gp-card">
-          <h3 class="gp-h4" data-i18n="cs.ip.primaryUsers">Primary Users</h3>
-          <p class="gp-card__text" data-i18n-case="primaryUsers"></p>
-        </div>
-        <div class="gp-card">
-          <h3 class="gp-h4" data-i18n="cs.ip.scope">Scope</h3>
-          <p class="gp-card__text" data-i18n-case="scope"></p>
-        </div>
-      </div>
+      <p class="gp-body" data-i18n-case="contextText" data-reveal></p>
     </div>
   </section>
 
-  <!-- Problem — three findings side by side, each numbered in the
-       case's accent. -->
+  <!-- Problem — the brief and the constraint, then the goal they set. -->
   <section class="gp-section">
     <div class="gp-col">
       <h2 class="gp-h2" data-i18n="cs.ip.findings" data-reveal>Problem</h2>
-      <p class="gp-body" data-i18n-case="findingsIntro" data-reveal></p>
-      <div class="gp-trio">
-        <div class="gp-card" data-reveal>
-          <span class="gp-num">01</span>
-          <h3 class="gp-h4" data-i18n-case="find1Title"></h3>
-          <p class="gp-card__text" data-i18n-case="find1Text"></p>
-        </div>
-        <div class="gp-card" data-reveal>
-          <span class="gp-num">02</span>
-          <h3 class="gp-h4" data-i18n-case="find2Title"></h3>
-          <p class="gp-card__text" data-i18n-case="find2Text"></p>
-        </div>
-        <div class="gp-card" data-reveal>
-          <span class="gp-num">03</span>
-          <h3 class="gp-h4" data-i18n-case="find3Title"></h3>
-          <p class="gp-card__text" data-i18n-case="find3Text"></p>
-        </div>
+      <p class="gp-body" data-i18n-case="problem" data-reveal></p>
+      <div class="gp-pair">
+        <div class="gp-card" data-reveal><span class="gp-num">01</span><h3 class="gp-h4" data-i18n-case="prob1Title"></h3><p class="gp-card__text" data-i18n-case="prob1Text"></p></div>
+        <div class="gp-card" data-reveal><span class="gp-num">02</span><h3 class="gp-h4" data-i18n-case="prob2Title"></h3><p class="gp-card__text" data-i18n-case="prob2Text"></p></div>
+      </div>
+      <div class="gp-goal" data-reveal>
+        <h3 class="gp-h4" data-i18n-case="goalTitle">The Goal</h3>
+        <p data-i18n-case="goalText"></p>
       </div>
     </div>
   </section>
@@ -175,63 +150,41 @@
   <section class="gp-section">
     <div class="gp-col">
       <h2 class="gp-h2" data-i18n="cs.ip.process" data-reveal>Process</h2>
-      <p class="gp-body" data-i18n-case="fieldText" data-reveal></p>
+      <p class="gp-body" data-i18n-case="process" data-reveal></p>
+      <blockquote class="gp-pull" data-i18n-case="quote" data-reveal></blockquote>
     </div>
   </section>
 
-  <!-- Solution — the intro, then the four moves as a 2x2 of cards, each
-       with its icon on an accent tile. -->
+  <!-- Solution — the intro, then the five moves (as many per row as fit). -->
   <section class="gp-section">
     <div class="gp-col">
       <h2 class="gp-h2" data-i18n="cs.ip.solution" data-reveal>Solution</h2>
-      <p class="gp-body" data-i18n-case="manifestIntro" data-reveal></p>
-      <div class="gp-quad">
-        <div class="gp-card" data-reveal>
-          <span class="gp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>
-          <h3 class="gp-h4" data-i18n-case="item1Title"></h3>
-          <p class="gp-card__text" data-i18n-case="item1Text"></p>
-        </div>
-        <div class="gp-card" data-reveal>
-          <span class="gp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="8.3" r="1.3"/><path d="M8 11.3 12 12.3 16 11.3M12 12.3V16.5M9.2 20 12 16.5 14.8 20"/></svg></span>
-          <h3 class="gp-h4" data-i18n-case="item2Title"></h3>
-          <p class="gp-card__text" data-i18n-case="item2Text"></p>
-        </div>
-        <div class="gp-card" data-reveal>
-          <span class="gp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><polygon points="10 7.5 15 10 10 12.5"/></svg></span>
-          <h3 class="gp-h4" data-i18n-case="item3Title"></h3>
-          <p class="gp-card__text" data-i18n-case="item3Text"></p>
-        </div>
-        <div class="gp-card" data-reveal>
-          <span class="gp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span>
-          <h3 class="gp-h4" data-i18n-case="item4Title"></h3>
-          <p class="gp-card__text" data-i18n-case="item4Text"></p>
-        </div>
+      <p class="gp-body" data-i18n-case="solution" data-reveal></p>
+      <div class="gp-steps">
+        <div class="gp-card" data-reveal><span class="gp-num">01</span><h3 class="gp-h4" data-i18n-case="sol1Title"></h3><p class="gp-card__text" data-i18n-case="sol1Text"></p></div>
+        <div class="gp-card" data-reveal><span class="gp-num">02</span><h3 class="gp-h4" data-i18n-case="sol2Title"></h3><p class="gp-card__text" data-i18n-case="sol2Text"></p></div>
+        <div class="gp-card" data-reveal><span class="gp-num">03</span><h3 class="gp-h4" data-i18n-case="sol3Title"></h3><p class="gp-card__text" data-i18n-case="sol3Text"></p></div>
+        <div class="gp-card" data-reveal><span class="gp-num">04</span><h3 class="gp-h4" data-i18n-case="sol4Title"></h3><p class="gp-card__text" data-i18n-case="sol4Text"></p></div>
+        <div class="gp-card" data-reveal><span class="gp-num">05</span><h3 class="gp-h4" data-i18n-case="sol5Title"></h3><p class="gp-card__text" data-i18n-case="sol5Text"></p></div>
       </div>
     </div>
   </section>
 
-  <!-- Before / After — once assets/screen-*.png exist, replace each
-       .media-block with <img src="assets/screen-N.png" alt="">. -->
   <section class="gp-section">
     <div class="gp-col">
-      <h2 class="gp-h2" data-i18n="cs.ip.compare" data-reveal>Before / After</h2>
-      <div class="gp-screens">
-        <figure data-reveal>
-          <div class="media-block gp-shot"><span>Screen 1</span></div>
-          <figcaption data-i18n-case="compareBeforeCaption"></figcaption>
-        </figure>
-        <figure data-reveal>
-          <div class="media-block gp-shot"><span>Screen 2</span></div>
-          <figcaption data-i18n-case="compareAfterCaption"></figcaption>
-        </figure>
-        <figure data-reveal>
-          <div class="media-block gp-shot"><span>Screen 3</span></div>
-          <figcaption data-i18n-case="compareResultCaption"></figcaption>
-        </figure>
+      <h2 class="gp-h2" data-i18n="cs.ip.decisions" data-reveal>Decisions</h2>
+      <div class="gp-card gp-rows" data-reveal>
+        <div class="gp-row"><h3 class="gp-h4" data-i18n-case="dec1Title"></h3><p class="gp-card__text" data-i18n-case="dec1Why"></p></div>
+        <div class="gp-row"><h3 class="gp-h4" data-i18n-case="dec2Title"></h3><p class="gp-card__text" data-i18n-case="dec2Why"></p></div>
+        <div class="gp-row"><h3 class="gp-h4" data-i18n-case="dec3Title"></h3><p class="gp-card__text" data-i18n-case="dec3Why"></p></div>
+        <div class="gp-row"><h3 class="gp-h4" data-i18n-case="dec4Title"></h3><p class="gp-card__text" data-i18n-case="dec4Why"></p></div>
+        <div class="gp-row"><h3 class="gp-h4" data-i18n-case="dec5Title"></h3><p class="gp-card__text" data-i18n-case="dec5Why"></p></div>
       </div>
     </div>
   </section>
 
+  <!-- Results — delivered as design + prototype, so the figures are the
+       scope delivered, not production metrics (resultsText says so). -->
   <section class="gp-section">
     <div class="gp-col">
       <h2 class="gp-h2" data-i18n="cs.ip.results" data-reveal>Results</h2>
@@ -245,45 +198,45 @@
     </div>
   </section>
 
+  <!-- Screens — once assets/screen-*.png exist, replace each
+       .media-block with <img src="assets/screen-N.png" alt="">. -->
   <section class="gp-section">
     <div class="gp-col">
-      <h2 class="gp-h2" data-i18n="cs.ip.testimonial" data-reveal>Testimonial</h2>
-      <figure class="gp-card gp-testi" data-reveal>
-        <blockquote data-i18n-case="testimonialQuote"></blockquote>
-        <figcaption>
-          <span class="gp-testi__name" data-i18n-case="testimonialName"></span>
-          <span class="gp-testi__role" data-i18n-case="testimonialRole"></span>
-        </figcaption>
-      </figure>
+      <h2 class="gp-h2" data-i18n="cs.ip.screens" data-reveal>Screens</h2>
+      <div class="gp-screens gp-screens--grid">
+        <figure data-reveal><div class="media-block gp-shot"><span>Screen 1</span></div><figcaption data-i18n-case="showcase1Caption"></figcaption></figure>
+        <figure data-reveal><div class="media-block gp-shot"><span>Screen 2</span></div><figcaption data-i18n-case="showcase2Caption"></figcaption></figure>
+        <figure data-reveal><div class="media-block gp-shot"><span>Screen 3</span></div><figcaption data-i18n-case="showcase3Caption"></figcaption></figure>
+        <figure data-reveal><div class="media-block gp-shot"><span>Screen 4</span></div><figcaption data-i18n-case="showcase4Caption"></figcaption></figure>
+      </div>
     </div>
   </section>
 
-  <!-- Closing note — the case's own one-line takeaway, set apart at the
-       end rather than inside Process. -->
   <section class="gp-section gp-section--close">
     <div class="gp-col">
       <h2 class="gp-h2" data-i18n="cs.reflection.title" data-reveal>What I took from it</h2>
-      <p class="gp-close" data-i18n-case="quote" data-reveal></p>
+      <div class="gp-quad">
+        <div class="gp-card" data-reveal><h3 class="gp-h4" data-i18n-case="reflect1Title"></h3><p class="gp-card__text" data-i18n-case="reflect1Text"></p></div>
+        <div class="gp-card" data-reveal><h3 class="gp-h4" data-i18n-case="reflect2Title"></h3><p class="gp-card__text" data-i18n-case="reflect2Text"></p></div>
+        <div class="gp-card" data-reveal><h3 class="gp-h4" data-i18n-case="reflect3Title"></h3><p class="gp-card__text" data-i18n-case="reflect3Text"></p></div>
+        <div class="gp-card" data-reveal><h3 class="gp-h4" data-i18n-case="reflect4Title"></h3><p class="gp-card__text" data-i18n-case="reflect4Text"></p></div>
+      </div>
     </div>
   </section>
 
   <section class="cs-next">
     <div class="wrap">
-      <!-- Hand-written, unlike a generated case's NEXT region: every
-           case is now bespoke (see tools/build-cases.ps1's
-           $customSlugs), so this chain is no longer computed from
-           content/cases.csv's row order — it's set by hand to match
-           the homepage's own card order (index.html's #casesGrid):
-           government-project, platform, ev-charger, custom-dashboard,
-           jst-group, wrapping back to government-project.
-           If that homepage order ever changes, update this and the
-           four other hand-written NEXT cards to match. -->
-      <a class="cs-next__card" href="../platform/" data-hover>
-        <img src="../platform/assets/cover.png" alt="">
+      <!-- Hand-written NEXT card; the chain follows the homepage's card
+           order (index.html's #casesGrid): government-project, platform,
+           ev-charger, custom-dashboard, jst-group — this is the last, so
+           it wraps back to government-project. Update all five NEXT cards
+           together if that order changes. -->
+      <a class="cs-next__card" href="../government-project/" data-hover>
+        <img src="../government-project/assets/cover.png" alt="">
         <div class="cs-next__body">
           <div>
             <p class="pretitle" data-i18n="cs.next.label">Next project</p>
-            <h2 class="cs-next__title" data-i18n-case="nextTitle">Construction Management Platform</h2>
+            <h2 class="cs-next__title" data-i18n-case="nextTitle">Department of Groundwater Resources</h2>
           </div>
           <span class="cs-next__arrow" aria-hidden="true">↗︎</span>
         </div>

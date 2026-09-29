@@ -254,3 +254,7 @@ custom-dashboard,stat3Label,"Sensor streams per view","สตรีมเซน�
 custom-dashboard,nextTitle,"Department of Groundwater Resources","กรมทรัพยากรน้ำบาดาล"
 custom-dashboard,pageTitle,"Custom Dashboard","Custom Dashboard"
 custom-dashboard,dataStatus,"real","real"
+jst-group,category,"Website","เว็บไซต์"
+jst-group,title,"JST Group","JST Group"
+jst-group,cardMeta,"Website • Corporate • Desktop, tablet, mobile","เว็บไซต์ • องค์กร • เดสก์ท็อป แท็บเล็ต มือถือ"
+jst-group,cardOutcome,"Designed solo in under a month: 4 pages across 3 breakpoints, plus an interactive prototype.","ออกแบบคนเดียวภายในไม่ถึงเดือน: 4 หน้า 3 ขนาดหน้าจอ พร้อม Interactive Prototype"

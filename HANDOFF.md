@@ -65,7 +65,7 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
    - ลิงก์กลับหน้าหลักจากหน้าอื่นเขียนเป็น `../../#section` — **ห้ามใช้ `../../index.html#...`** (ทำให้ URL มี `/index.html`)
 2. **Banner (hero)** — wordmark ใหญ่ "Mick UX/UI Designer", eyebrow "Available for freelance work", CTA "Get in touch" ปุ่มเดียว, วง scroll-down
 3. **Intro** — manifesto, reveal ทีละบรรทัดตาม scroll
-4. **Cases** (`#work`) — การ์ด **4 ใบ** + การ์ด "View more projects" เลื่อนแนวนอนแบบ sticky + scrub (`initCasesScroll`)
+4. **Cases** (`#work`) — การ์ด **5 ใบ** (ไม่มีการ์ด "View more projects" แล้ว — ซ่อน More Projects ไว้) เลื่อนแนวนอนแบบ sticky + scrub (`initCasesScroll`)
    - รูป cover **4:3 (640 × 480)**
    - ข้อความ (meta / ชื่อ / บรรทัดผลลัพธ์) **อยู่บนรูป ขึ้นตอน hover** — บนจอสัมผัส (`hover: none`) ย้ายไป**ใต้รูป**แสดงตลอด
    - ข้อความมาจาก `cardMeta` / `title` / `cardOutcome` ใน CSV → build → `js/cases-index.js`
@@ -119,18 +119,19 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 
 ## 4. สถานะปัจจุบัน
 
-- **Case บนหน้า Home 4 ตัว** (ลำดับ): `government-project`, `platform`, `ev-charger`, `custom-dashboard`
-- **JST Group อยู่ใน modal ของ More Projects อย่างเดียว** (entry `jst-group`, group `website`) เป็น **case study เต็มทุก section**
-  - หน้าเต็มเดิม `work/wordpress-website/` **ถูกลบแล้ว** ตามที่ผู้ใช้เลือก (URL เดิมเป็น 404) พร้อมแถวใน CSV, slug ใน build และปุ่ม "View case study"/`caseUrl`
-  - ข้อความทั้งหมดคัดมาตรงๆ จาก data.js ของหน้าเดิม ไม่ได้เขียนใหม่ อยู่ใน `work/more-projects/data.js`
-  - **modal รองรับ section เสริม**: element ที่มี `data-mp-optional="key"` จะแสดงเฉพาะเมื่อ entry มี key นั้น (context, client, timeline, tools, problem cards, goal, sol1–5, decisions, resultsText, stat3–4, screens, reflection) — entry อื่นจึงยังเป็นแบบย่อ ถ้าอยากให้โปรเจกต์อื่นมี case เต็มก็แค่เพิ่ม key เหล่านั้นใน data.js
-  - JST **ไม่มี `year`** → ช่อง Year ซ่อน และแสดง Timeline "Under 1 month" แทน (ถ้าได้ปีมาก็เพิ่ม `year` ได้เลย)
-- **ทั้ง 4 หน้า case เป็น bespoke** (อยู่ใน `$customSlugs` ของ `build-cases.ps1`) → แก้ `work/<slug>/index.html` และ `data.js` ตรงๆ ได้ แต่ build ยังสร้าง `js/cases-index.js` จาก CSV
+- **Case บนหน้า Home 5 ตัว** (ลำดับ): `government-project`, `platform`, `ev-charger`, `custom-dashboard`, **`jst-group`**
+- **JST Group กลับมาเป็น case บนหน้า Home** (2026-09-29) ที่ **`/work/jst-group/`** ดีไซน์ `.gp-*` เหมือนอีก 4 case
+  - ประวัติ: เดิมอยู่ที่ `work/wordpress-website/` → ถูกลบแล้วย้ายเข้า modal More Projects → ผู้ใช้ขอเอากลับมาหน้าหลัก ข้อความทุกคำเหมือนเดิม (data.js สร้างจาก entry `jst-group` ใน `work/more-projects/data.js` ซึ่งยังอยู่)
+  - `vercel.json` redirect `/work/wordpress-website/*` → `/work/jst-group/`
+  - บรรทัดผลลัพธ์บนการ์ด (`cardOutcome` ใน CSV) **ผม (Claude) ร่างจากข้อมูลเดิม ผู้ใช้ยังไม่ได้ยืนยันคำ**: "Designed solo in under a month: 4 pages across 3 breakpoints, plus an interactive prototype."
+- **More Projects ถูกซ่อน** (ผู้ใช้ขอ 2026-09-29): การ์ด "View more projects" ออกจากหน้า Home (ดู comment ใน #casesGrid วิธีเอากลับ), หน้า `/work/more-projects/` ยังอยู่แต่ไม่มีลิงก์ไปถึง + `<meta name="robots" content="noindex">` → **Facility Management และ DR.in for Doctor ไม่ปรากฏบนเว็บตอนนี้**
+  - modal ยังรองรับ `data-mp-optional` (section เสริมเฉพาะ entry ที่มี key) — ใช้กับ jst-group ใน MP
+- **ทั้ง 5 หน้า case เป็น bespoke** (อยู่ใน `$customSlugs` ของ `build-cases.ps1`) → แก้ `work/<slug>/index.html` และ `data.js` ตรงๆ ได้ แต่ build ยังสร้าง `js/cases-index.js` จาก CSV
 - modal More Projects กว้างสูงสุด 1440px คอลัมน์เนื้อหา 1160px (`.mp-modal .gp` ใน style.css)
-- **ดีไซน์หน้า case**: 4 หน้าบน Home ใช้ `css/case-page.css` (`.gp-*`) — คอลัมน์ 960px, การ์ดเทาแบน, สีเน้นเดียว
+- **ดีไซน์หน้า case**: 5 หน้าบน Home ใช้ `css/case-page.css` (`.gp-*`) — คอลัมน์ 960px, การ์ดเทาแบน, สีเน้นเดียว
   - สีเน้น default = น้ำเงินอ่อนของเว็บ; government-project override เป็นฟ้าน้ำใน `case.css` ของตัวเอง
   - platform มี `case.css` สำหรับ user types / framework / business impact
-- NEXT chain (เขียนมือ ต้องตรงกับลำดับการ์ดหน้า Home): government-project → platform → ev-charger → custom-dashboard → government-project
+- NEXT chain (เขียนมือ ต้องตรงกับลำดับการ์ดหน้า Home): government-project → platform → ev-charger → custom-dashboard → jst-group → government-project
 - เนื้อหาทั้ง 4 case เป็นของจริง; ยกเว้น Reflection ของ custom-dashboard (draft ใน comment)
 - **ยังไม่ยืนยัน**: `timeline` ของ government-project, ev-charger, custom-dashboard (ยืนยันแล้วแค่ platform 2023–present และ JST < 1 เดือน)
 - **More Projects: 9 รายการ จริง 3** (Facility Management Platform, DR.in for Doctor, JST Group) — **ยัง mockup 6**: `gateway-alerting`, `forest-permit`, `water-quality-aot`, `vaccine-record`, `purchase-request`, `num-eiang` (ดู `audit: 'mockup'` ใน `work/more-projects/data.js`) รอข้อมูลจริงจากผู้ใช้ทีละอัน (title/role/year/platform/problem/process/quote/solution/stat1+label/stat2+label ทั้ง EN และ TH)
