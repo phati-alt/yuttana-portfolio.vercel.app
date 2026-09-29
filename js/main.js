@@ -796,10 +796,11 @@
      passes. Re-rendered on langchange for the EN/TH units. */
   /* ---------- Horizontal screen strips (case pages) ---------- */
   /* Two modes, chosen once per page load:
-     - Scrub (wide screen + motion, and the section has the pin/scroll
-       wrappers): the track's x follows the page scroll while the row
-       passes through the viewport (GSAP scrub, no pin — a pinned row
-       left an empty band under it for the whole slide).
+     - Scrub (wide screen + motion, and the strip sits inside the
+       pin/scroll wrappers): the pin sticks with the section heading just
+       under the header while its tall wrapper scrolls past, and the
+       track's x follows the page scroll. The pin also holds the section
+       after the strip, so the screen below the row is never empty.
      - Native (phones, reduced motion): the row scrolls itself (swipe,
        trackpad, keyboard); the arrow buttons page it by about a screenful
        and disable themselves at either end. */
@@ -808,31 +809,38 @@
 
     document.querySelectorAll('[data-strip]').forEach(strip => {
       const section = strip.closest('[data-strip-section]');
-      const scrollEl = section?.querySelector('[data-strip-scroll]');
-      const pinEl = section?.querySelector('[data-strip-pin]');
+      const scrollEl = strip.closest('[data-strip-scroll]');
+      const pinEl = strip.closest('[data-strip-pin]');
       const track = strip.querySelector('.gp-strip__track');
-      const scrub = MOTION && scrollEl && pinEl && track && window.innerWidth >= 900;
+      const scrub = MOTION && section && scrollEl && pinEl && track && window.innerWidth >= 900;
 
       if (scrub) {
         section.classList.add('is-scrub');
+        scrollEl.classList.add('is-scrub');
         // the page's own scroll drives this now, so Lenis must see the wheel
         strip.removeAttribute('data-lenis-prevent');
         // how far the track has to travel for its last screen to end at the
         // same inset from the right as the first starts from the left
         const distance = () => Math.max(0, track.scrollWidth - strip.clientWidth);
-        // No pin: the row slides sideways while it passes through the
-        // viewport, from its top entering at the bottom to its top reaching
-        // the header (so the last screen lands while the whole row is still
-        // in view) — nothing is held and no empty band opens under it; the
-        // next section follows straight on (user's call).
+        // stick where the section's top padding has scrolled away, leaving
+        // the heading a small gap under the header
+        const stickTop = () => headerH() + 24 - (parseFloat(getComputedStyle(section).paddingTop) || 0);
+        const setup = () => {
+          pinEl.style.top = `${stickTop()}px`;
+          scrollEl.style.height = `${pinEl.offsetHeight + distance()}px`;
+        };
+        setup();
         gsap.fromTo(track, { x: 0 }, {
           x: () => -distance(),
           ease: 'none',
           scrollTrigger: {
-            trigger: strip,
-            start: 'top bottom',
-            end: () => `top ${headerH()}px`,
-            scrub: true, invalidateOnRefresh: true
+            trigger: scrollEl,
+            // sticky engages when the wrapper's top reaches stickTop, and
+            // releases distance() px later — scrub exactly that
+            start: () => `top ${stickTop()}px`,
+            end: () => `+=${distance()}`,
+            scrub: true, invalidateOnRefresh: true,
+            onRefresh: setup
           }
         });
         // images load lazily and change the track's width; re-measure then

@@ -231,9 +231,12 @@
        fade out as they pass the column's left edge. Wired by initStrips()
        in js/main.js. Images in assets/screens/ (from
        _screens-inbox/ev-charger/); captions 7-13 drafted from the screens. -->
+  <!-- The pin holds Screens together with the reflection section under
+       it, so while the row slides the page below it is still there —
+       no empty band — and the row only starts once Screens is reached. -->
+  <div class="gp-strip-scroll" data-strip-scroll>
+  <div class="gp-strip-pin" data-strip-pin>
   <section class="gp-section gp-strip-section" data-strip-section>
-    <div class="gp-strip-scroll" data-strip-scroll>
-    <div class="gp-strip-pin" data-strip-pin>
     <div class="gp-col gp-strip__head">
       <h2 class="gp-h2" data-i18n="cs.ip.screens" data-reveal>Screens</h2>
       <div class="gp-strip__nav" data-strip-nav>
@@ -323,8 +326,6 @@
         </li>
       </ol>
     </div>
-    </div><!-- /.gp-strip-pin -->
-    </div><!-- /.gp-strip-scroll -->
   </section>
 
   <section class="gp-section gp-section--close">
@@ -338,6 +339,8 @@
       </div>
     </div>
   </section>
+  </div><!-- /.gp-strip-pin -->
+  </div><!-- /.gp-strip-scroll -->
 
   <section class="cs-next">
     <div class="wrap">
