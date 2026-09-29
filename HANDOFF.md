@@ -150,6 +150,7 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 - ไม่มีลิงก์เสีย ไม่มีข้อความ i18n ว่าง
 
 ### รอบต่อมา (2026-09-29)
+- **รับรูป screenshot**: ผู้ใช้วางไฟล์ export ใน `_screens-inbox/<slug>/` (อยู่ใน `.gitignore` — มีเฉพาะเครื่องที่สร้าง, ไม่ขึ้น GitHub/เว็บ; แต่ละโฟลเดอร์มี README.txt บอกลำดับ+คำบรรยาย) → แปลงเป็น WebP (sharp) ไปไว้ที่ `work/<slug>/assets/screens/screen-N.webp` → แทน `.media-block` ด้วย `<img>` → ลบ `hidden` ของ section — รูปน้อยกว่าช่องให้ตัดช่องที่เหลือ, มากกว่าต้องได้คำบรรยายเพิ่ม
 - **section Screens ซ่อนทุกหน้า case** (`<section class="gp-section" hidden>` + comment) จนกว่าจะมี screenshot จริง — ใส่รูปแล้วลบ `hidden`
 - **สถานะรับงาน**: Hero และ Footer ใช้ข้อความเดียวกัน "Available for: Freelance & Full-time" (TH: พร้อมรับงาน: ฟรีแลนซ์ และงานประจำ) **สีเขียว** — Hero ใช้ `--stamp-ok` (ตาม theme), Footer ใช้ `#58cc8f` เสมอ (อยู่บนพื้น navy); จุดกะพริบสีเขียวตาม `--avail`
 - **บรรทัดผลลัพธ์การ์ด JST** = ประโยคจาก detail ตรงๆ (prob2Text): "Four pages, three breakpoints and a prototype, designed alone in under a month."
