@@ -1,7 +1,7 @@
 # Handoff — yuttana-portfolio
 
 เอกสารส่งต่องานสำหรับ Claude Code บนเครื่องอื่น อ่านไฟล์นี้ก่อนเริ่มงาน
-อัปเดตล่าสุด 2026-09-29 (ล่าสุดที่ commit `33db04f` — push ขึ้น GitHub แล้ว)
+อัปเดตล่าสุด 2026-09-29 (ล่าสุดที่ commit `adca702` — push ขึ้น GitHub แล้ว)
 
 > ไฟล์นี้รวม "ความรู้ที่ไม่อยู่ในโค้ด" ไว้ด้วย เพราะ memory ของ Claude บนเครื่องเดิม
 > ไม่ได้ติดมากับ repo — ส่วน "กฎการทำงาน" ด้านล่างสำคัญที่สุด
@@ -59,7 +59,9 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 
 ### Section บนหน้า Home (ตามลำดับ)
 
-1. **Header** — โลโก้ avatar + nav capsule (Work/About/Services/Process/Experience/Contact) + ปุ่มภาษา + theme toggle; ต่ำกว่า 1120px เป็นเมนู burger (`HEADER_BURGER_MAX` ใน main.js)
+1. **Header** — โลโก้ avatar + nav capsule (Work/About/Services/Process/Experience/Contact/**Resume ↗**) + ปุ่มภาษา + theme toggle
+   - ต่ำกว่า **1260px** เป็นเมนู burger (`HEADER_BURGER_MAX` ใน main.js + `@media (max-width: 1260px)` ใน style.css — ต้องแก้คู่กัน); ช่วง 1261–1560px ลด padding ลิงก์เหลือ `.7rem`
+   - header แน่นมาก: ที่ 1265px เมนูห่างชื่อแค่ ~6px — **ถ้าเพิ่ม/ขยายลิงก์ในเมนู ต้องวัดใหม่ทั้ง EN และ TH** (วัดช่องว่างระหว่าง `.header__nav` กับ `.header__logo` / `.header__actions` ใน iframe หลายความกว้าง)
    - ลิงก์กลับหน้าหลักจากหน้าอื่นเขียนเป็น `../../#section` — **ห้ามใช้ `../../index.html#...`** (ทำให้ URL มี `/index.html`)
 2. **Banner (hero)** — wordmark ใหญ่ "Mick UX/UI Designer", eyebrow "Available for freelance work", CTA "Get in touch" ปุ่มเดียว, วง scroll-down
 3. **Intro** — manifesto, reveal ทีละบรรทัดตาม scroll
@@ -68,14 +70,19 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
    - ข้อความ (meta / ชื่อ / บรรทัดผลลัพธ์) **อยู่บนรูป ขึ้นตอน hover** — บนจอสัมผัส (`hover: none`) ย้ายไป**ใต้รูป**แสดงตลอด
    - ข้อความมาจาก `cardMeta` / `title` / `cardOutcome` ใน CSV → build → `js/cases-index.js`
 5. **Band** (พื้น navy `#020f27`, dark mode `#1a1f72`) เปิดด้วยวงกลม iris (`.band__circle`)
-   - About: รูป, ป้าย **4+**, checklist, Download Resume, ตัวเลข 4 ช่อง (4+, 40%, 15+, +30%)
+   - About: รูป, ป้าย **4+**, checklist, ตัวเลข 4 ช่อง (4+, 40%, 15+, +30%) — ไม่มีปุ่ม Resume แล้ว
    - Services "From strategy to handover": stack cards 5 ใบ (sticky) — **สีเดียวกันหมด** กรมท่าสว่างกว่าแถบหนึ่งระดับ ตัวขาว เลขฟ้าอ่อน กว้างสูงสุด 1120px
    - `.band` ใช้ `clip-path: inset(-400vw 0 0 0)` ตัดวงกลมเฉพาะขอบล่าง — **ห้ามเปลี่ยนเป็น `overflow: clip/hidden`** (วงกลมด้านบนวาดอยู่เหนือกรอบ .band เพราะ margin collapse → จะหายทั้งวง และ hidden ทำ sticky พัง)
 6. **Process** (`#process`) — rail 4 ขั้น Discover→Define→Design→Deliver + flow notes + ลูกศรวนกลับ
 7. **Toolbox** — หัว section แบบเดียวกับ Process (pretitle / "Tools I work with" / คำอธิบาย) + **ชิป icon 2 แถว** วิ่งสวนกัน 40px/s กลับทิศตาม scroll
    - icon: SVG sprite ใน index.html (Simple Icons CC0 + Lucide สำหรับ FigJam, Adobe XD, Slack, Design Systems, Usability Testing)
-8. **Experience & Education** — timeline 4 จุด: 3 งาน (ระยะเวลาคำนวณอัตโนมัติด้วย `initJobDurations` จาก `data-start`/`data-end` + ประเภทงาน) + ป.ตรี Computer Science ม.พะเยา 2017–2022; มีปุ่ม Download Resume ในหัว section
-9. **Contact** — อีเมล, ที่อยู่, LinkedIn
+8. **Experience & Education** — timeline 4 จุด (ไม่มีปุ่ม Resume):
+   - 01 UX/UI Designer, Swift Dynamics (Nov 2022–Present, Full time) — หัวข้อย่อย 3 กลุ่ม
+   - 02 **UX/UI Designer**, Yes Web Design Studio (Apr–Aug 2022, Full time) — 3 bullets
+   - 03 UI Designer (Internship), Online Asset (Nov 2021–Mar 2022) — 3 bullets: **DR.in for Doctor** (ใช้ชื่อนี้ทุกที่), SUSCO.co.th, UX case study **MorPrompt / หมอพร้อม**
+   - 04 Bachelor of Science, Computer Science, University of Phayao — ป้ายวันที่ **Jun 2020 – Oct 2021** (ช่วง Senior Project ตามที่ผู้ใช้เลือก ไม่ใช่ 2017–2022) + หัวข้อย่อย "Senior Project — Rental Camera Service Website" + 4 bullets
+   - ระยะเวลาคำนวณอัตโนมัติ (`initJobDurations` จาก `data-start`/`data-end`); หัวข้อย่อย (`.job__group h4`) เป็นตัวพิมพ์ใหญ่ **สี ink** (ไม่ใช่ muted)
+9. **Contact** — อีเมล, ที่อยู่, LinkedIn + ปุ่ม **Download Resume**
 10. **Footer** — Currently focused on, nav, อีเมล, LinkedIn
 
 ### Design tokens หลัก
@@ -132,7 +139,13 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 - เมื่อ More Projects ครบ real ทั้งหมด ให้ลบระบบ audit-badge ทิ้ง (ตอนนี้ยังมีจุดสี + แถบ "X of 9 still mockup" ท้ายหน้า More Projects)
 
 ### ค้างรอข้อมูลจากผู้ใช้
-1. **ไฟล์ PDF resume** — ปุ่ม Download Resume ทั้ง 2 ปุ่ม (`[data-resume-btn]`) ตอนนี้แค่ `alert(misc.resumeAlert)` ซึ่งขึ้นบนเว็บจริงด้วย ได้ไฟล์แล้วให้ใส่ใน `assets/` แล้วเปลี่ยน `initResumeBtn` ใน main.js เป็นลิงก์ดาวน์โหลด
+1. **Resume PDF เวอร์ชันใหม่** — ไฟล์อยู่ที่ `assets/Yuttana-Pati-Resume.pdf` (ใช้งานได้แล้วบนเว็บจริง ลิงก์จาก header ทุกหน้า + Contact; เปิดแท็บใหม่) แต่เนื้อหายังเป็นชุดเก่า ผู้ใช้จะแก้แล้วส่งไฟล์ใหม่มา — **วางทับชื่อเดิมได้เลย ไม่ต้องแก้โค้ด** จุดที่แจ้งผู้ใช้ไว้:
+   - มีเบอร์โทรส่วนตัว (เว็บไม่มี) — แนะนำเอาออกในเวอร์ชันที่ขึ้นเว็บ
+   - Summary ยังเขียน "3+ years" (เว็บเป็น 4+)
+   - LinkedIn ใน PDF เป็น `linkedin.com/in/yuttana-phati` แต่เว็บใช้ `…/yuttana-phati-5566042b5`
+   - Portfolio ใน PDF ชี้ Figma ยังไม่มีลิงก์เว็บนี้
+   - ข้อความ Experience ยังเก่า: "UI Designer" ที่ Yes Web, "DR.in (medical app)", ไม่มี MorPrompt, Education 2017–2022
+   - ก่อนเผยแพร่ไฟล์ใหม่ อ่านไฟล์ทั้งหมดก่อนทุกครั้ง
 2. Screenshot จริงของแต่ละ case (รวม Screens 4 ช่องของ JST ใน modal) และข้อมูลจริงของ More Projects 6 รายการ (ดูด้านบน)
 3. (ไม่ด่วน) ปีของงาน JST Group — ตอนนี้ใช้ Timeline แทนได้แล้ว
 
@@ -154,13 +167,14 @@ powershell -ExecutionPolicy Bypass -File tools/build-cases.ps1
 - modal More Projects ใช้ดีไซน์เดียวกับหน้า case (JST เป็น case เต็มใน modal)
 - Toolbox เป็นชิป icon + หัว section มาตรฐาน
 - การ์ดโปรเจกต์: meta + บรรทัดผลลัพธ์ — ผู้ใช้เลือกให้**อยู่บนรูปและขึ้นตอน hover** (เคยลองวางใต้รูปแบบของเขาแล้ว ผู้ใช้ไม่เอา)
-- Experience: ระยะเวลา + ประเภทงาน + Education + ปุ่ม Resume
+- Experience: ระยะเวลา + ประเภทงาน + Education
+- Resume: ลิงก์ใน header ทุกหน้า + ปุ่มใน Contact (ผู้ใช้บอกว่า 3 จุดเยอะเกิน — **อย่าเพิ่มจุดอื่นอีก** เช่น About/Experience/Hero)
 
 ### ไอเดียที่ยังไม่ได้ทำ (รอผู้ใช้เลือก)
 | # | งาน | หมายเหตุ |
 |---|---|---|
 | 1 | **CTA ที่สอง + แถบโลโก้ลูกค้าใน Hero** | ปุ่มรอง (LinkedIn / View work) + โลโก้สีเทา (กรมทรัพยากรน้ำบาดาล, JST, Ananda/Gulf/CHPP ที่ NDA อนุญาตแล้ว) — **ต้องถามเรื่องสิทธิ์ใช้โลโก้ + ไฟล์โลโก้** |
-| 2 | **ปุ่ม "Get in touch" ถาวรใน nav** | ระวัง header แคบ: capsule เหลือระยะแค่ ~7px ที่ 1121px — ถ้า nav กว้างขึ้นต้องขยับ `HEADER_BURGER_MAX` (main.js) + @media 1120px ใน style.css ตาม |
+| 2 | **ปุ่ม "Get in touch" ถาวรใน nav** | header เต็มแล้ว (มี Resume เพิ่ม, เหลือ ~6px ที่ 1265px) — ถ้าจะเพิ่มต้องขยับ `HEADER_BURGER_MAX` + @media 1260px ขึ้นอีก หรือเอาลิงก์อื่นออก |
 | 3 | **Footer: availability + socials** | เพิ่ม "Available for: Freelance & Full-time" + Behance/Dribbble (**ถามว่ามี account ไหน**) |
 | 4 | **การ์ด bento แบบภาพบน-ข้อความล่าง** (จากหน้า About ของเขา) | ถ้าอยากย่อ Services/Toolbox ให้กระชับ — ยังไม่จำเป็น |
 | 5 | **บรรทัดผลลัพธ์บนการ์ด More Projects** | ตอนนี้มีแค่ meta + ชื่อ ต้องร่างจากข้อมูลจริงให้ผู้ใช้ตรวจก่อน |
@@ -177,6 +191,8 @@ powershell -ExecutionPolicy Bypass -File tools/build-cases.ps1
 - **ตรวจหลายขนาดจอเสมอ** โดยเฉพาะจอกว้าง 2560px — บั๊กวงกลมของแถบ navy โผล่เฉพาะจอกว้าง (1440 ไม่เห็น)
 - คอมเมนต์ล้าสมัยในโค้ด (ไม่กระทบเว็บ): หัวไฟล์ `work/more-projects/index.html` และคอมเมนต์การ์ด "More projects" ใน `index.html` ยังบอกว่าเป็น "simple image gallery" (จริงๆ เป็น grid + modal แล้ว); `work/README.md` ยังไม่พูดถึง `css/case-page.css`; หัวคอมเมนต์ของหน้า case 4 หน้ายังพูดถึง `insight-panels.css` ว่า "ย้ายออกมาจาก" (ไฟล์ถูกลบแล้ว)
 - เชลล์ Bash ในบาง session หา `git`/`grep` ไม่เจอ (PATH) — ใช้ PowerShell หรือ Grep tool แทน; git push ใน PowerShell 5 คืน exit code 255 เพราะ stderr แต่ push สำเร็จ (เช็กด้วย `git status -sb`)
+- Preview server: `.claude/launch.json` ตั้ง `autoPort: true` — ถ้า 8123 ถูกใช้อยู่ (serve.ps1 ค้าง หรือเพิ่งปิดแล้วเปิดใหม่) จะได้ port สุ่มแทน ผู้ใช้เคยถามว่าทำไม URL เปลี่ยน — บอก URL ที่ได้จริงทุกครั้ง
+- เช็กไฟล์ resume บนเว็บจริง: `Invoke-WebRequest https://yuttana-portfolio.vercel.app/assets/Yuttana-Pati-Resume.pdf -Method Head` ต้องได้ 200 `application/pdf`
 - เช็ก redirect เว็บจริง: `Invoke-WebRequest https://yuttana-portfolio.vercel.app/index.html -MaximumRedirection 0` ต้องได้ 308
 - ลำดับแถวใน `content/cases.csv` ไม่ตรงกับลำดับการ์ดหน้า Home — ไม่มีผล เพราะ NEXT chain เขียนมือหมดแล้ว และ `cases-index.js` อ้างอิงตาม slug
 - `<title>` ที่ build script สร้าง (`$titleTag` ใน build-cases.ps1) ยังใส่ "Mick Yuttana" — ไม่มีผลตอนนี้ เพราะทุกหน้าเป็น bespoke ไม่ถูก generate
