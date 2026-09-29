@@ -742,16 +742,20 @@ body {
    like every other section's (it used to be set at section-title size,
    which stacked two headings on top of each other with the h2 below) */
 .about__eyebrow { grid-column: 1 / -1; order: -1; margin-bottom: 0; }
-/* profile link(s) right under the title, as round icon buttons */
-.about__social { display: flex; gap: .6rem; margin-top: 1.25rem; }
+/* profile link(s) right under the title, as icon + name chips — the same
+   shape as the Toolbox chips (48px pill, 22px icon, 16px label), on the
+   band's card surface */
+.about__social { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.25rem; }
 .about__social-btn {
-  display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  display: inline-flex; align-items: center; gap: .75rem;
+  height: 48px; padding: 0 1.1rem 0 1rem; border-radius: 100px;
   background: color-mix(in srgb, #fff 8%, var(--band)); color: #fff;
   border: 1px solid rgba(255, 255, 255, .14);
+  font-size: 1rem; font-weight: 400; text-decoration: none; white-space: nowrap;
   transition: background var(--speed) var(--ease), border-color var(--speed) var(--ease);
 }
 .about__social-btn:hover { background: var(--primary); border-color: var(--primary); }
-.about__social-btn svg { width: 20px; height: 20px; }
+.about__social-btn svg { width: 22px; height: 22px; flex: none; }
 /* stats block, moved in from the old standalone Numbers section */
 .about__numbers { grid-column: 1 / -1; order: 3; margin-top: clamp(2.5rem, 6vw, 5rem); }
 .about__media { order: 2; position: relative; }
