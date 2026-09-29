@@ -187,18 +187,20 @@
     </div>
   </section>
 
-  <!-- Screens — once assets/screen-*.png exist, replace each
-       .media-block with <img src="assets/screen-N.png" alt="">.
-       Hidden (the [hidden] below) until those screenshots exist — grey
-       "Screen N" boxes read as unfinished on the live site. Remove
-       [hidden] once the real images are in. -->
-  <section class="gp-section" hidden>
+  <!-- Screens — real screenshots in assets/screens/ (converted from
+       _screens-inbox/custom-dashboard/). One so far, the overview with the
+       location and sensor-list views; its caption is screensOverviewCaption.
+       showcase1-3Caption in data.js describe specific ideas (expected-band
+       plots, exception-first layout, drill-down) for screenshots that show
+       them. -->
+  <section class="gp-section">
     <div class="gp-col">
       <h2 class="gp-h2" data-i18n="cs.ip.screens" data-reveal>Screens</h2>
       <div class="gp-screens">
-        <figure data-reveal><div class="media-block gp-shot"><span>Screen 1</span></div><figcaption data-i18n-case="showcase1Caption"></figcaption></figure>
-        <figure data-reveal><div class="media-block gp-shot"><span>Screen 2</span></div><figcaption data-i18n-case="showcase2Caption"></figcaption></figure>
-        <figure data-reveal><div class="media-block gp-shot"><span>Screen 3</span></div><figcaption data-i18n-case="showcase3Caption"></figcaption></figure>
+        <figure data-reveal>
+          <div class="gp-shot-frame"><img src="assets/screens/screen-1.webp" width="1452" height="472" loading="lazy" alt="IoT dashboard overview with gateway, sensor and alert counts and an alert list, beside a location carbon-emission view and a sensor list"></div>
+          <figcaption data-i18n-case="screensOverviewCaption"></figcaption>
+        </figure>
       </div>
     </div>
   </section>

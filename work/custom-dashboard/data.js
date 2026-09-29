@@ -61,6 +61,11 @@ window.CASE_DATA = {
     showcase1Caption: "Sensors plotted against their expected band, not a raw axis",
     showcase2Caption: "Layout ranks by exception, so a quiet shift looks quiet",
     showcase3Caption: "Drill-down keeps the same visual grammar as the overview",
+    // Caption for the one real screenshot so far (overview + location +
+    // sensor list), drafted from what it shows, awaiting the user's review.
+    // showcase1-3 above describe ideas this image doesn't show; they stay
+    // for screenshots that do.
+    screensOverviewCaption: "Overview first: gateway, sensor and alert counts, then the alert list, with the location and sensor-list views beside it",
 
     resultsText: "Measured during pilot testing with the operations team, comparing time-to-notice against their previous end-of-shift review process.",
     stat1: "~40%", stat1Label: "Faster anomaly identification",
@@ -115,6 +120,7 @@ window.CASE_DATA = {
     showcase1Caption: "เซนเซอร์วาดเทียบช่วงค่าที่ควรเป็น ไม่ใช่แกนดิบ",
     showcase2Caption: "จัดลำดับตามความผิดปกติ กะที่เงียบจึงดูเงียบ",
     showcase3Caption: "หน้าเจาะลึกใช้ภาษาภาพชุดเดียวกับหน้าภาพรวม",
+    screensOverviewCaption: "หน้าภาพรวม: จำนวน Gateway เซนเซอร์ และการแจ้งเตือนอยู่บนสุด ตามด้วยรายการแจ้งเตือน ข้างกันคือหน้า Location และรายการเซนเซอร์",
 
     resultsText: "วัดผลระหว่างการทดสอบนำร่องกับทีมปฏิบัติการ โดยเทียบเวลาที่ใช้กว่าจะสังเกตเห็น กับกระบวนการรีวิวท้ายกะแบบเดิม",
     stat1: "~40%", stat1Label: "ตรวจพบความผิดปกติเร็วขึ้น",
