@@ -16,6 +16,7 @@ const translations = {
     "nav.process": "Process",
     "nav.experience": "Experience",
     "nav.contact": "Contact",
+    "nav.resume": "Resume",
 
     "hero.eyebrow": "Available for freelance work",
     "hero.desc": "Hi, I'm Mick Yuttana — a UX/UI & Product Designer focused on simplifying complex systems into intuitive, trustworthy digital experiences.",
@@ -198,6 +199,7 @@ const translations = {
     "nav.process": "กระบวนการ",
     "nav.experience": "ประสบการณ์",
     "nav.contact": "ติดต่อ",
+    "nav.resume": "เรซูเม่",
 
     "hero.eyebrow": "พร้อมรับงานฟรีแลนซ์",
     "hero.desc": "สวัสดีครับ ผมมิค ยุทธนา — UX/UI & Product Designer ที่เน้นแปลงระบบซับซ้อนให้กลายเป็นประสบการณ์ดิจิทัลที่ใช้งานง่ายและน่าเชื่อถือ",

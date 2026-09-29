@@ -1103,6 +1103,7 @@ html.no-motion .job__date--current::after { animation: none; opacity: 0; }
   gap: 6rem;
 }
 .contact__text { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.contact__resume { margin-top: clamp(1.25rem, 2.5vw, 1.75rem); }
 @media (max-width: 640px) {
   /* the 6rem row gap is deliberately wide for side-by-side breathing room —
      stacked vertically that same 8rem reads as a gap, not spacing, so it's
@@ -1238,16 +1239,19 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
 }
 
 /* Just above the burger breakpoint the capsule still clears the actions
-   but not the name beside the avatar, so trim the link padding there. */
-@media (min-width: 1121px) and (max-width: 1280px) {
+   but not the name beside the avatar, so trim the link padding there.
+   The range runs up to 1560px since the nav gained a seventh link
+   (Resume): at full padding the capsule overlapped the name until ~1550px. */
+@media (min-width: 1261px) and (max-width: 1560px) {
   .header__link { padding-inline: .7rem; }
 }
 
 /* The header collapses to the burger at a wider width than the rest of the
    layout: the centred nav capsule is ~600px wide, so between 900px and
    ~1100px it ran over the EN/theme pills on the right and the name on the
-   left. Keep this value in sync with HEADER_BURGER_MAX in js/main.js. */
-@media (max-width: 1120px) {
+   left. Keep this value in sync with HEADER_BURGER_MAX in js/main.js.
+   (Was 1120px; raised to 1260px when the nav gained its Resume link.) */
+@media (max-width: 1260px) {
   /* tighter than the desktop-measured value (118px) or the old fixed 80px —
      the header's own content here is just one row of 48px buttons, so an
      80px band left 16px of dead air above and below them, sitting the

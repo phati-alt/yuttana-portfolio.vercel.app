@@ -12,7 +12,7 @@
   const root = document.documentElement;
   // Width at which the header switches to the burger menu; matches the
   // header @media block in css/style.css.
-  const HEADER_BURGER_MAX = 1120;
+  const HEADER_BURGER_MAX = 1260;
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const HAS_GSAP = typeof window.gsap !== 'undefined';
   const MOTION = HAS_GSAP && !REDUCED;
