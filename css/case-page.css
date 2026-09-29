@@ -114,6 +114,9 @@
 .gp-screens figure { margin: 0; }
 .gp-shot { aspect-ratio: 16 / 10; border-radius: var(--gp-radius); background: var(--gp-card); color: var(--muted); }
 .gp-screens img { display: block; width: 100%; border-radius: var(--gp-radius); background: var(--gp-card); }
+/* device-mockup screenshots (transparent PNG/WebP) sit on the grey card
+   with some breathing room, like the cover */
+.gp-screens .gp-shot-img { box-sizing: border-box; height: auto; padding: clamp(1rem, 3vw, 2.5rem); }
 .gp-screens figcaption { margin-top: .75rem; color: var(--muted); font-size: .9rem; }
 
 /* ---------- Results ---------- */

@@ -291,26 +291,17 @@
     </div>
   </section>
 
-  <!-- Screens — once assets/screen-*.png exist, replace each
-       .media-block with <img src="assets/screen-N.png" alt="">.
-       Hidden (the [hidden] below) until those screenshots exist — grey
-       "Screen N" boxes read as unfinished on the live site. Remove
-       [hidden] once the real images are in. -->
-  <section class="gp-section" hidden>
+  <!-- Screens — real screenshots in assets/screens/screen-N.webp (converted
+       from the exports in _screens-inbox/platform/). One so far; data.js
+       also has showcase2Caption / showcase3Caption (design tokens, dynamic
+       theming) ready for a second and third figure when those exist. -->
+  <section class="gp-section">
     <div class="gp-col">
       <h2 class="gp-h2" data-i18n="cs.ip.screens" data-reveal>Screens</h2>
       <div class="gp-screens">
         <figure data-reveal>
-          <div class="media-block gp-shot"><span>Screen 1</span></div>
+          <img class="gp-shot-img" src="assets/screens/screen-1.webp" width="1118" height="330" loading="lazy" alt="Custom dashboard with chart widgets and the add, edit, duplicate and delete widget controls">
           <figcaption data-i18n-case="showcase1Caption"></figcaption>
-        </figure>
-        <figure data-reveal>
-          <div class="media-block gp-shot"><span>Screen 2</span></div>
-          <figcaption data-i18n-case="showcase2Caption"></figcaption>
-        </figure>
-        <figure data-reveal>
-          <div class="media-block gp-shot"><span>Screen 3</span></div>
-          <figcaption data-i18n-case="showcase3Caption"></figcaption>
         </figure>
       </div>
     </div>
