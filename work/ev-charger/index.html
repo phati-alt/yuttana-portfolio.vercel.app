@@ -221,22 +221,103 @@
     </div>
   </section>
 
-  <!-- Screens — once assets/screen-*.png exist, replace each
-       .media-block with <img src="assets/screen-N.png" alt="">.
-       Hidden (the [hidden] below) until those screenshots exist — grey
-       "Screen N" boxes read as unfinished on the live site. Remove
-       [hidden] once the real images are in. -->
-  <section class="gp-section" hidden>
-    <div class="gp-col">
+  <!-- Screens — all 13 app screens in flow order, as a full-width row that
+       scrolls sideways (swipe / trackpad, or the arrow buttons; snaps one
+       screen at a time). Native horizontal scrolling rather than the
+       homepage Cases row's pinned scroll-scrub, which is much more fragile.
+       Images in assets/screens/, converted from _screens-inbox/ev-charger/;
+       captions 7-13 in data.js were drafted from the screens themselves.
+       Wired by initStrips() in js/main.js; data-lenis-prevent keeps Lenis
+       from swallowing horizontal trackpad scrolls inside it. -->
+  <section class="gp-section">
+    <div class="gp-col gp-strip__head">
       <h2 class="gp-h2" data-i18n="cs.ip.screens" data-reveal>Screens</h2>
-      <div class="gp-screens gp-screens--grid">
-        <figure data-reveal><div class="media-block gp-shot"><span>Screen 1</span></div><figcaption data-i18n-case="showcase1Caption"></figcaption></figure>
-        <figure data-reveal><div class="media-block gp-shot"><span>Screen 2</span></div><figcaption data-i18n-case="showcase2Caption"></figcaption></figure>
-        <figure data-reveal><div class="media-block gp-shot"><span>Screen 3</span></div><figcaption data-i18n-case="showcase3Caption"></figcaption></figure>
-        <figure data-reveal><div class="media-block gp-shot"><span>Screen 4</span></div><figcaption data-i18n-case="showcase4Caption"></figcaption></figure>
-        <figure data-reveal><div class="media-block gp-shot"><span>Screen 5</span></div><figcaption data-i18n-case="showcase5Caption"></figcaption></figure>
-        <figure data-reveal><div class="media-block gp-shot"><span>Screen 6</span></div><figcaption data-i18n-case="showcase6Caption"></figcaption></figure>
+      <div class="gp-strip__nav" data-strip-nav>
+        <button type="button" class="gp-strip__btn" data-strip-prev aria-label="Previous screens" data-i18n-aria-label="cs.strip.prev">←︎</button>
+        <button type="button" class="gp-strip__btn" data-strip-next aria-label="Next screens" data-i18n-aria-label="cs.strip.next">→︎</button>
       </div>
+    </div>
+    <div class="gp-strip" data-strip data-lenis-prevent>
+      <ol class="gp-strip__track">
+        <li class="gp-strip__item">
+          <figure>
+            <div class="gp-shot-frame"><img src="assets/screens/screen-1.webp" width="234" height="472" loading="lazy" alt="EV Charger app: Onboarding screen"></div>
+            <figcaption data-i18n-case="showcase1Caption"></figcaption>
+          </figure>
+        </li>
+        <li class="gp-strip__item">
+          <figure>
+            <div class="gp-shot-frame"><img src="assets/screens/screen-2.webp" width="234" height="472" loading="lazy" alt="EV Charger app: Sign-in screen"></div>
+            <figcaption data-i18n-case="showcase2Caption"></figcaption>
+          </figure>
+        </li>
+        <li class="gp-strip__item">
+          <figure>
+            <div class="gp-shot-frame"><img src="assets/screens/screen-3.webp" width="234" height="472" loading="lazy" alt="EV Charger app: Home screen with services"></div>
+            <figcaption data-i18n-case="showcase3Caption"></figcaption>
+          </figure>
+        </li>
+        <li class="gp-strip__item">
+          <figure>
+            <div class="gp-shot-frame"><img src="assets/screens/screen-4.webp" width="234" height="472" loading="lazy" alt="EV Charger app: Map with station pins"></div>
+            <figcaption data-i18n-case="showcase4Caption"></figcaption>
+          </figure>
+        </li>
+        <li class="gp-strip__item">
+          <figure>
+            <div class="gp-shot-frame"><img src="assets/screens/screen-5.webp" width="234" height="472" loading="lazy" alt="EV Charger app: Map with a route to a station"></div>
+            <figcaption data-i18n-case="showcase5Caption"></figcaption>
+          </figure>
+        </li>
+        <li class="gp-strip__item">
+          <figure>
+            <div class="gp-shot-frame"><img src="assets/screens/screen-6.webp" width="234" height="472" loading="lazy" alt="EV Charger app: Station list"></div>
+            <figcaption data-i18n-case="showcase6Caption"></figcaption>
+          </figure>
+        </li>
+        <li class="gp-strip__item">
+          <figure>
+            <div class="gp-shot-frame"><img src="assets/screens/screen-7.webp" width="234" height="472" loading="lazy" alt="EV Charger app: Charging history"></div>
+            <figcaption data-i18n-case="showcase7Caption"></figcaption>
+          </figure>
+        </li>
+        <li class="gp-strip__item">
+          <figure>
+            <div class="gp-shot-frame"><img src="assets/screens/screen-8.webp" width="234" height="472" loading="lazy" alt="EV Charger app: Add EV car form"></div>
+            <figcaption data-i18n-case="showcase8Caption"></figcaption>
+          </figure>
+        </li>
+        <li class="gp-strip__item">
+          <figure>
+            <div class="gp-shot-frame"><img src="assets/screens/screen-9.webp" width="234" height="472" loading="lazy" alt="EV Charger app: Start charging screen"></div>
+            <figcaption data-i18n-case="showcase9Caption"></figcaption>
+          </figure>
+        </li>
+        <li class="gp-strip__item">
+          <figure>
+            <div class="gp-shot-frame"><img src="assets/screens/screen-10.webp" width="234" height="472" loading="lazy" alt="EV Charger app: Add card form"></div>
+            <figcaption data-i18n-case="showcase10Caption"></figcaption>
+          </figure>
+        </li>
+        <li class="gp-strip__item">
+          <figure>
+            <div class="gp-shot-frame"><img src="assets/screens/screen-11.webp" width="234" height="472" loading="lazy" alt="EV Charger app: Payment method screen"></div>
+            <figcaption data-i18n-case="showcase11Caption"></figcaption>
+          </figure>
+        </li>
+        <li class="gp-strip__item">
+          <figure>
+            <div class="gp-shot-frame"><img src="assets/screens/screen-12.webp" width="234" height="472" loading="lazy" alt="EV Charger app: Payment successful screen"></div>
+            <figcaption data-i18n-case="showcase12Caption"></figcaption>
+          </figure>
+        </li>
+        <li class="gp-strip__item">
+          <figure>
+            <div class="gp-shot-frame"><img src="assets/screens/screen-13.webp" width="234" height="472" loading="lazy" alt="EV Charger app: Live charging screen"></div>
+            <figcaption data-i18n-case="showcase13Caption"></figcaption>
+          </figure>
+        </li>
+      </ol>
     </div>
   </section>
 

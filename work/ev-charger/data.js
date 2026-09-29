@@ -68,6 +68,15 @@ window.CASE_DATA = {
     showcase4Caption: "Map — station pins carrying connector type and power",
     showcase5Caption: "Booking — distance and travel time before you commit",
     showcase6Caption: "Station list — nearby operators, each with type and kW",
+    // 7-13: added with the full screen set; drafted from what each screen
+    // shows, awaiting the user's review.
+    showcase7Caption: "Charging history — past sessions grouped by date",
+    showcase8Caption: "Add EV car — model, connector type and where you charge",
+    showcase9Caption: "Start charging — the station and your car confirmed first",
+    showcase10Caption: "Add card — save a credit or debit card for payment",
+    showcase11Caption: "Payment — a saved card or credit points, in three steps",
+    showcase12Caption: "Payment successful — the summary, then scan to start charging",
+    showcase13Caption: "Charging — live power, duration and battery, with a stop button",
 
     reflect1Title: "Map-based interaction", reflect1Text: "Pins, bottom sheets, clustering and search radius behave differently from ordinary screens, and have to be designed as their own thing.",
     reflect2Title: "Reading the market first", reflect2Text: "Working through what already exists is how you find the gap worth designing into, rather than guessing at one.",
@@ -132,6 +141,13 @@ window.CASE_DATA = {
     showcase4Caption: "แผนที่ — หมุดสถานีที่บอกประเภทหัวชาร์จและกำลังไฟ",
     showcase5Caption: "การจอง — ระยะทางและเวลาเดินทาง ก่อนตัดสินใจ",
     showcase6Caption: "รายการสถานี — ผู้ให้บริการใกล้เคียง พร้อมประเภทและ kW",
+    showcase7Caption: "ประวัติการชาร์จ — รายการที่ผ่านมา จัดกลุ่มตามวันที่",
+    showcase8Caption: "เพิ่มรถ EV — รุ่นรถ ประเภทหัวชาร์จ และที่ที่ชาร์จเป็นประจำ",
+    showcase9Caption: "เริ่มชาร์จ — ยืนยันสถานีและรถก่อนเริ่ม",
+    showcase10Caption: "เพิ่มบัตร — บันทึกบัตรเครดิตหรือเดบิตไว้ชำระเงิน",
+    showcase11Caption: "ชำระเงิน — เลือกบัตรที่บันทึกไว้หรือแต้มสะสม ในสามขั้นตอน",
+    showcase12Caption: "ชำระเงินสำเร็จ — สรุปรายการ แล้วสแกนเพื่อเริ่มชาร์จ",
+    showcase13Caption: "กำลังชาร์จ — กำลังไฟ ระยะเวลา และแบตเตอรี่แบบเรียลไทม์ พร้อมปุ่มหยุด",
 
     reflect1Title: "ออกแบบ Interaction บนแผนที่", reflect1Text: "หมุด Bottom Sheet การรวมกลุ่มหมุด และรัศมีการค้นหา ทำงานไม่เหมือนหน้าจอทั่วไป ต้องออกแบบเป็นเรื่องของตัวเอง",
     reflect2Title: "อ่านตลาดก่อนลงมือ", reflect2Text: "การไล่ดูของที่มีอยู่แล้ว คือวิธีหาช่องว่างที่ควรออกแบบเข้าไปจริง ๆ แทนที่จะเดาเอา",

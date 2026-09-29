@@ -794,6 +794,35 @@
      the way LinkedIn counts) rather than written into i18n.js, so the
      current role — no data-end — keeps its duration right as time
      passes. Re-rendered on langchange for the EN/TH units. */
+  /* ---------- Horizontal screen strips (case pages) ---------- */
+  /* A [data-strip] row scrolls natively (swipe, trackpad, keyboard); the
+     arrow buttons in the section's [data-strip-nav] page it by roughly a
+     screenful of cards, and disable themselves at either end. */
+  function initStrips() {
+    document.querySelectorAll('[data-strip]').forEach(strip => {
+      const nav = strip.closest('section')?.querySelector('[data-strip-nav]');
+      const prev = nav?.querySelector('[data-strip-prev]');
+      const next = nav?.querySelector('[data-strip-next]');
+      if (!prev || !next) return;
+      const step = () => {
+        const item = strip.querySelector('.gp-strip__item');
+        const gap = parseFloat(getComputedStyle(item.parentElement).columnGap) || 0;
+        const per = item.getBoundingClientRect().width + gap;
+        return Math.max(per, Math.floor(strip.clientWidth * .8 / per) * per);
+      };
+      const update = () => {
+        const max = strip.scrollWidth - strip.clientWidth - 2;
+        prev.disabled = strip.scrollLeft <= 2;
+        next.disabled = strip.scrollLeft >= max;
+      };
+      prev.addEventListener('click', () => strip.scrollBy({ left: -step(), behavior: REDUCED ? 'auto' : 'smooth' }));
+      next.addEventListener('click', () => strip.scrollBy({ left: step(), behavior: REDUCED ? 'auto' : 'smooth' }));
+      strip.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    });
+  }
+
   function initJobDurations() {
     const els = [...document.querySelectorAll('[data-job-duration]')];
     if (!els.length) return;
@@ -1070,6 +1099,7 @@
     initHeader();
     initTheme();
     initJobDurations();
+    initStrips();
     initCaseProgress();
     initMoreProjects();
     initDataStatus();   // TEMPORARY — see the function's comment
