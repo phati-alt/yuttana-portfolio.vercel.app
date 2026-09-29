@@ -168,11 +168,18 @@
 }
 
 /* Scrub mode (added by initStrips on wide, motion-enabled screens): the
-   track's x follows the page scroll while the row passes through the
-   viewport, instead of the row scrolling itself — no native scroll,
-   snap or arrow buttons then. Nothing is pinned, so no empty band opens
-   under the row while it slides. Images shrink on short windows so the
-   whole row fits on screen at once. */
+   pin sticks under the header for as long as its tall wrapper scrolls
+   past, and the track's x follows the page scroll instead of the row
+   scrolling itself — no native scroll, snap or arrow buttons then.
+   Images shrink on short windows so the pinned block always fits. */
+/* content-fit (max-height, not a full-screen height with the content
+   centred) so the gaps above and below the section match every other
+   section's; initStrips sizes the wrapper from this real height */
+.gp-strip-section.is-scrub .gp-strip-pin {
+  position: sticky; top: var(--header-h);
+  max-height: calc(100vh - var(--header-h));
+  overflow: hidden;
+}
 .gp-strip-section.is-scrub .gp-strip { overflow: hidden; scroll-snap-type: none; padding-bottom: 0; }
 /* no section gap after the strip: once the row has finished scrolling,
    the next section follows straight on (user's call) */
