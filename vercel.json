@@ -6,6 +6,11 @@
       "permanent": true
     },
     {
+      "source": "/work/wordpress-website/",
+      "destination": "/work/jst-group/",
+      "permanent": true
+    },
+    {
       "source": "/work/wordpress-website/:path*",
       "destination": "/work/jst-group/",
       "permanent": true
