@@ -29,6 +29,7 @@ window.CASE_DATA = {
     briefText: "The people using this every day are mid-career officials who have run the old system for years — so the brief was never only to modernise it. A legacy revamp carrying a great deal of data and pulling from several databases at once, for users whose existing habits were the real constraint.",
     primaryUsers: "Mid-career officials — daily system users",
     scope: "Legacy system revamp · Multi-database integration",
+    goalText: "Modernise a legacy system that carries a great deal of data across several databases — in a way officials who have run the old one for years can pick up rather than resist.",
 
     findingsIntro: "Three things stood between the officials and the data they were responsible for.",
     find1Title: "A crowded, complicated interface",
@@ -87,6 +88,7 @@ window.CASE_DATA = {
     briefText: "ผู้ใช้งานจริงคือเจ้าหน้าที่วัยกลางคนที่ใช้ระบบเดิมมานาน โจทย์จึงไม่ใช่แค่ทำให้ทันสมัยขึ้น เป็นการปรับปรุงระบบเดิมที่มีข้อมูลปริมาณมากและต้องเชื่อมหลายฐานข้อมูลเข้าด้วยกัน โดยมีความเคยชินของผู้ใช้เป็นข้อจำกัดที่แท้จริง",
     primaryUsers: "เจ้าหน้าที่วัยกลางคน ใช้งานระบบทุกวัน",
     scope: "ปรับปรุงระบบเดิม · เชื่อมหลายฐานข้อมูล",
+    goalText: "ปรับระบบเดิมที่มีข้อมูลปริมาณมากและเชื่อมหลายฐานข้อมูลให้ทันสมัย ในแบบที่เจ้าหน้าที่ซึ่งใช้ระบบเดิมมานานรับไปใช้ได้ แทนที่จะต่อต้าน",
 
     findingsIntro: "มีสามอย่างที่ขวางอยู่ระหว่างเจ้าหน้าที่กับข้อมูลที่พวกเขาต้องรับผิดชอบ",
     find1Title: "UI ที่ซับซ้อนและแออัด",

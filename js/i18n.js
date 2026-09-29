@@ -179,6 +179,8 @@ const translations = {
        its sections through cs.overview.title etc. above, shared by
        the template instead. */
     "cs.ip.context": "Context",
+    "cs.ip.overview": "Project Overview",
+    "cs.ip.goal": "Project Goal",
     "cs.ip.findings": "Problem",
     "cs.ip.problem": "Discovery & Problem",
     "cs.ip.process": "Process",
@@ -364,6 +366,8 @@ const translations = {
     "cs.next.cta": "ดู Case Study",
 
     "cs.ip.context": "บริบท",
+    "cs.ip.overview": "ภาพรวมโปรเจกต์",
+    "cs.ip.goal": "เป้าหมายของโปรเจกต์",
     "cs.ip.findings": "ปัญหา",
     "cs.ip.problem": "การค้นพบและปัญหา",
     "cs.ip.process": "กระบวนการ",

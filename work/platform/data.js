@@ -27,6 +27,7 @@ window.CASE_DATA = {
     client: "Ananda · Gulf Energy · CHPP",
 
     contextText: "Sitearound CM is a cloud SaaS platform for running construction projects, connecting project owners, engineers, architects and contractors in one system. It covers document control (RFI and submittals), scheduling, quality inspection and work orders, and a project-wide dashboard. I worked alongside the PO, consultants and the dev team, gathering requirements from enterprise clients to extend the business model.",
+    goalText: "Give every role — not only executives — the data their own work needs, arranged their way, on a design system flexible enough to carry it.",
 
     problemIntro: "The platform served the people furthest from the site, and almost no one else.",
     prob1Title: "A dashboard built for one audience",
@@ -111,6 +112,7 @@ window.CASE_DATA = {
     client: "Ananda · Gulf Energy · CHPP",
 
     contextText: "Sitearound CM คือแพลตฟอร์มบริหารจัดการงานก่อสร้างแบบ SaaS บนคลาวด์ เชื่อมโยงเจ้าของโครงการ วิศวกร สถาปนิก และผู้รับเหมาไว้ในระบบเดียว ครอบคลุมการจัดการเอกสาร (RFI/Submittal) การบริหารเวลา (Schedule) การตรวจสอบคุณภาพ (Inspection & Work Order) และ Dashboard ภาพรวมโครงการ ทำงานร่วมกับ PO, Consultant และ Dev Team พร้อมเก็บ Requirements จากลูกค้า Enterprise เพื่อขยาย Business Model อย่างลึกซึ้ง",
+    goalText: "ให้ทุกบทบาท ไม่ใช่แค่ผู้บริหาร เห็นข้อมูลที่งานของตัวเองต้องใช้ จัดวางได้ตามแบบของตัวเอง บน Design System ที่ยืดหยุ่นพอจะรองรับได้",
 
     problemIntro: "แพลตฟอร์มตอบโจทย์คนที่อยู่ไกลหน้างานที่สุด และแทบไม่ตอบโจทย์ใครอีกเลย",
     prob1Title: "Dashboard ไม่ตอบโจทย์ผู้ใช้งานหน้างาน",

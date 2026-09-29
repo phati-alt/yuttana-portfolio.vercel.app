@@ -35,6 +35,8 @@ window.CASE_DATA = {
     platform: "Responsive web",
     tools: "Figma, Apache ECharts, React",
     domain: "Industrial IoT / Operations Monitoring",
+    contextText: "Custom monitoring dashboards for industrial operations teams, built for responsive web. The data comes from 40+ sensors, each sending a reading every few seconds. I worked on it as the UX/UI designer from 2023, alongside the operations team who use it on the floor.",
+    goalText: "Turn the dashboard from a display of all the data into a triage tool — so the operations team can tell normal from not-normal at a glance, without training.",
 
     problemIntro: "Industrial sensors produce a reading every few seconds, and the default way to show that is a line chart per sensor. Put forty of them on a screen and you have a wall of charts that operations teams stop reading by week two.",
     find1Title: "Data Layer", find1Text: "40+ sensors, each reading every few seconds — more volume than anyone can read raw and in time.",
@@ -94,6 +96,8 @@ window.CASE_DATA = {
     platform: "เว็บ Responsive",
     tools: "Figma, Apache ECharts, React",
     domain: "Industrial IoT / Operations Monitoring",
+    contextText: "Dashboard สำหรับติดตามงานของทีมปฏิบัติการในโรงงาน ทำงานบน Responsive Web ข้อมูลมาจากเซนเซอร์กว่า 40 ตัว แต่ละตัวส่งค่าทุกไม่กี่วินาที ผมรับผิดชอบในตำแหน่ง UX/UI Designer ตั้งแต่ปี 2023 ทำงานร่วมกับทีมปฏิบัติการที่ใช้งานจริงหน้างาน",
+    goalText: "เปลี่ยน Dashboard จากที่แสดงข้อมูลทั้งหมด ให้เป็นเครื่องมือคัดแยกปัญหา ทีมปฏิบัติการแยกได้ทันทีว่าอะไรปกติอะไรไม่ปกติ โดยไม่ต้องผ่านการอบรม",
 
     problemIntro: "เซนเซอร์ในโรงงานส่งค่าทุกไม่กี่วินาที และวิธีแสดงผลแบบมาตรฐานคือกราฟเส้นหนึ่งอันต่อหนึ่งเซนเซอร์ พอเอาสี่สิบอันมาวางบนหน้าจอเดียว มันกลายเป็นกำแพงกราฟที่ทีมปฏิบัติการเลิกอ่านตั้งแต่สัปดาห์ที่สอง",
     find1Title: "Data Layer", find1Text: "เซนเซอร์ 40+ ตัว ส่งค่าทุกไม่กี่วินาที — ปริมาณมากเกินกว่าจะอ่านค่าดิบได้ทันเวลา",
