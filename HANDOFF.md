@@ -1,7 +1,7 @@
 # Handoff — yuttana-portfolio
 
 เอกสารส่งต่องานสำหรับ Claude Code บนเครื่องอื่น อ่านไฟล์นี้ก่อนเริ่มงาน
-อัปเดตล่าสุด 2026-09-29 (ล่าสุดที่ commit `25694d4` — push ขึ้น GitHub แล้ว)
+อัปเดตล่าสุด 2026-09-29 (ล่าสุดที่ commit `f96401e` — push ขึ้น GitHub แล้ว)
 
 > ไฟล์นี้รวม "ความรู้ที่ไม่อยู่ในโค้ด" ไว้ด้วย เพราะ memory ของ Claude บนเครื่องเดิม
 > ไม่ได้ติดมากับ repo — ส่วน "กฎการทำงาน" ด้านล่างสำคัญที่สุด
@@ -44,7 +44,7 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 | `index.html` | หน้า Home ทั้งหมด (section ด้านล่าง) |
 | `css/tokens.css` | **ทุก** สี/ฟอนต์/spacing/motion — ห้าม hardcode ค่าใน `style.css` |
 | `css/style.css` | layout + components ของทั้งเว็บ (~2000 บรรทัด) — **line ending เป็น CRLF** ถ้าแก้ด้วย script ต้อง normalize ก่อน replace |
-| `css/case-page.css` | **ดีไซน์หน้า case** (prefix `gp-`) ใช้โดย government-project, platform, ev-charger, custom-dashboard และ modal ของ More Projects (`css/insight-panels.css` ดีไซน์เก่า ถูกลบแล้ว) |
+| `css/case-page.css` | **ดีไซน์หน้า case** (prefix `gp-`) ใช้โดย government-project, platform, ev-charger, custom-dashboard, jst-group และ modal ของ More Projects (`css/insight-panels.css` ดีไซน์เก่า ถูกลบแล้ว) |
 | `js/main.js` | animation + interaction ทั้งหมด (`init*` functions, เรียกใน `boot()`) |
 | `js/i18n.js` | copy ทั้งเว็บ EN/TH (`data-i18n="key"`) — ห้ามใส่ copy เฉพาะ case ที่นี่ |
 | `js/cases-index.js` | **GENERATED** — label ของการ์ด case บนหน้า Home |
@@ -63,7 +63,7 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
    - ต่ำกว่า **1260px** เป็นเมนู burger (`HEADER_BURGER_MAX` ใน main.js + `@media (max-width: 1260px)` ใน style.css — ต้องแก้คู่กัน); ช่วง 1261–1560px ลด padding ลิงก์เหลือ `.7rem`
    - header แน่นมาก: ที่ 1265px เมนูห่างชื่อแค่ ~6px — **ถ้าเพิ่ม/ขยายลิงก์ในเมนู ต้องวัดใหม่ทั้ง EN และ TH** (วัดช่องว่างระหว่าง `.header__nav` กับ `.header__logo` / `.header__actions` ใน iframe หลายความกว้าง)
    - ลิงก์กลับหน้าหลักจากหน้าอื่นเขียนเป็น `../../#section` — **ห้ามใช้ `../../index.html#...`** (ทำให้ URL มี `/index.html`)
-2. **Banner (hero)** — wordmark ใหญ่ "Mick UX/UI Designer", eyebrow "Available for freelance work", CTA "Get in touch" ปุ่มเดียว, วง scroll-down
+2. **Banner (hero)** — wordmark ใหญ่ "Mick UX/UI Designer", eyebrow "Available for: Freelance & Full-time" (สีเขียว), CTA "Get in touch" ปุ่มเดียว, วง scroll-down
 3. **Intro** — manifesto, reveal ทีละบรรทัดตาม scroll
 4. **Cases** (`#work`) — การ์ด **5 ใบ** (ไม่มีการ์ด "View more projects" แล้ว — ซ่อน More Projects ไว้) เลื่อนแนวนอนแบบ sticky + scrub (`initCasesScroll`)
    - รูป cover **4:3 (640 × 480)**
@@ -137,7 +137,7 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 - **More Projects: 9 รายการ จริง 3** (Facility Management Platform, DR.in for Doctor, JST Group) — **ยัง mockup 6**: `gateway-alerting`, `forest-permit`, `water-quality-aot`, `vaccine-record`, `purchase-request`, `num-eiang` (ดู `audit: 'mockup'` ใน `work/more-projects/data.js`) รอข้อมูลจริงจากผู้ใช้ทีละอัน (title/role/year/platform/problem/process/quote/solution/stat1+label/stat2+label ทั้ง EN และ TH)
   - custom-dashboard กับ gateway/device alerting **ไม่ใช่งานซ้ำ** — ผู้ใช้ยืนยันแล้ว ไม่ต้องถามอีก
   - การ์ด More Projects ขนาดเท่าการ์ดหน้า Home (640 × 480) และ hover แบบเดียวกัน
-- **Screenshot จริงของ case pages ยังไม่มี** — gallery ในหน้า case ยังเป็นกล่องเทา "Screen 1/2/3..." (caption เขียนรอไว้แล้วในแต่ละ `data.js`) รอไฟล์รูปจริงที่ `work/<slug>/assets/screen-N.png` แล้วแทน `.media-block` ด้วย `<img>`
+- **Screenshot จริงครบทั้ง 5 case แล้ว** (ดู "Screenshot + Project Overview" ด้านล่าง) — ไม่มีกล่องเทา "Screen N" เหลือบนหน้า case
 - ระบบ audit-badge ปิดอยู่ (`$showDataStatus = $false`) — โค้ด `initDataStatus` ยังอยู่ ถ้าไม่ใช้อีกแล้วลบทิ้งได้
 
 ### ตรวจเว็บเมื่อ 2026-09-29 — แก้แล้ว (commit `25694d4`)
@@ -151,12 +151,31 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 
 ### รอบต่อมา (2026-09-29)
 - **รับรูป screenshot**: ผู้ใช้วางไฟล์ export ใน `_screens-inbox/<slug>/` (อยู่ใน `.gitignore` — มีเฉพาะเครื่องที่สร้าง, ไม่ขึ้น GitHub/เว็บ; แต่ละโฟลเดอร์มี README.txt บอกลำดับ+คำบรรยาย) → แปลงเป็น WebP (sharp) ไปไว้ที่ `work/<slug>/assets/screens/screen-N.webp` → แทน `.media-block` ด้วย `<img>` → ลบ `hidden` ของ section — รูปน้อยกว่าช่องให้ตัดช่องที่เหลือ, มากกว่าต้องได้คำบรรยายเพิ่ม
-- **section Screens ซ่อนทุกหน้า case** (`<section class="gp-section" hidden>` + comment) จนกว่าจะมี screenshot จริง — ใส่รูปแล้วลบ `hidden`
+- ~~section Screens ซ่อนทุกหน้า case~~ → ใส่รูปครบแล้ว ไม่มี section ไหนซ่อนอยู่ (ดูด้านล่าง)
 - **สถานะรับงาน**: Hero และ Footer ใช้ข้อความเดียวกัน "Available for: Freelance & Full-time" (TH: พร้อมรับงาน: ฟรีแลนซ์ และงานประจำ) **สีเขียว** — Hero ใช้ `--stamp-ok` (ตาม theme), Footer ใช้ `#58cc8f` เสมอ (อยู่บนพื้น navy); จุดกะพริบสีเขียวตาม `--avail`
 - **บรรทัดผลลัพธ์การ์ด JST** = ประโยคจาก detail ตรงๆ (prob2Text): "Four pages, three breakpoints and a prototype, designed alone in under a month."
 - **รูป cover เป็น WebP** (`work/<slug>/assets/cover.webp`, คุณภาพ 82 มีพื้นโปร่งใส) ใช้ในการ์ดหน้า Home, หน้า case, การ์ด Next — รวม 2.6 MB → 459 KB; **`cover.png` ยังเก็บไว้** เพราะ `og:image` ใช้ PNG (บางแพลตฟอร์มไม่รองรับ WebP) — ถ้าเปลี่ยน cover ต้องทำทั้งสองไฟล์ (แปลงด้วย `sharp` ใน node: `sharp(src).webp({quality:82, alphaQuality:90, effort:6})`) ติดตั้งนอก repo
 - **`robots.txt` + `sitemap.xml`** ที่ root (sitemap มี 6 URL ไม่รวม More Projects ที่ noindex) — เพิ่ม/ซ่อนหน้าเมื่อไหร่ต้องแก้ sitemap ด้วย
 - **`404.html`** ที่ root: Vercel ใช้อัตโนมัติกับ URL ที่ไม่มีจริง; ลิงก์/asset ทั้งหมดเป็น absolute (`/…`) เพราะแสดงได้ทุกความลึกของ path; `serve.ps1` ในเครื่องก็ส่งหน้านี้ (status 404) แล้ว — **ทดสอบ**: เปิด URL มั่วๆ เช่น `/this-does-not-exist`
+
+### Screenshot + Project Overview (2026-09-29, push แล้วที่ `f96401e`)
+- **รูปทุก case** อยู่ที่ `work/<slug>/assets/screens/*.webp` (ต้นฉบับอยู่ใน `_screens-inbox/<slug>/` เฉพาะเครื่องเดิม) — แปลงด้วย sharp `{quality:85, alphaQuality:90, effort:6}` (รูปเล็กใช้ 90)
+  - วางบน `.gp-shot-frame` (การ์ดเทา รูปอยู่กลาง **ไม่ขยายเกินขนาดจริง** — รูปเล็กจึงไม่เบลอ)
+  - **government-project**: คู่ Before/After — ป้าย `.gp-compare--before` (แดง) / `--after` (เขียว)
+  - **platform**: รูปตัวอย่างหน้า design
+  - **ev-charger**: 13 หน้าจอเรียงแถวแนวนอน `.gp-strip` (ดูข้อถัดไป); คำบรรยายรูป 7–13 **Claude ร่างจากภาพ รอผู้ใช้ตรวจ**
+  - **custom-dashboard**: รูป overview 1 รูป คำบรรยาย `screensOverviewCaption` **Claude ร่าง รอตรวจ** (caption 3 อันเดิมไม่ตรงกับรูป)
+  - **jst-group**: 3 รูป mockup ทั้งหน้า แนวตั้ง เรียง 3 คอลัมน์ `.gp-screens--row` (มือถือเรียงลง) — รูป 1 = Homepage, 2 = HR Solutions, 3 = Recruitment (caption จับตามเนื้อหารูป: รูป 2 ใช้ `showcase3Caption`, รูป 3 ใช้ `showcase2Caption`); caption รูป 1 **แก้ให้ตรงภาพ รอตรวจ**; รูปต้นฉบับกว้างแค่ ~280px ตัวหนังสืออ่านไม่ออก — ถ้าผู้ใช้ส่งไฟล์ละเอียดกว่ามา ให้แทนที่
+- **แถบรูป EV (`initStrips` ใน main.js)** — ผ่านการปรับกับผู้ใช้หลายรอบ ข้อสรุปสุดท้าย:
+  - จอ ≥900px + มี motion: scroll มาจนหัวข้อ Screens อยู่ใต้ header แล้ว**ค้าง** (sticky) จากนั้นรูปเลื่อนซ้ายตาม scroll จนรูปสุดท้าย แล้วค่อยไปต่อ; ขอบซ้ายจางหาย (mask ด้วย `--strip-inset`)
+  - **pin (`[data-strip-pin]`) ห่อทั้ง section Screens และ section "What I took from it"** ไว้ด้วยกัน — เพื่อให้ใต้แถวรูปไม่เป็นพื้นที่ว่างระหว่างค้าง (ผู้ใช้ไม่เอาพื้นที่ว่าง และไม่เอาแบบไม่ค้างที่รูปวิ่งเร็ว)
+  - `top` ของ sticky ตั้งใน JS = header + 24px − padding-top ของ section; ความสูง wrapper = ความสูง pin + ระยะเลื่อน
+  - ระยะห่าง Screens → "What I took from it" = ปกติเท่า section อื่น (104px ที่ 1440) — **ไม่มี** override `padding-top: 0` แล้ว
+  - มือถือ / reduced motion: แถวเลื่อนเองด้วยการปัด + ปุ่มลูกศร
+- **Project Overview** แทน section "Context" เดิมทุกหน้า case (i18n `cs.ip.overview` / `cs.ip.goal` = "Project Overview" / "ภาพรวมโปรเจกต์", "Project Goal" / "เป้าหมายของโปรเจกต์") — ย่อหน้าภาพรวม + การ์ด `.gp-goal` สีเน้น (แบบหน้า ooca ของ chonladda)
+  - EV / JST: ย้าย Goal เดิมขึ้นมาจาก section Problem (Problem ไม่มี Goal ซ้ำแล้ว; `goalTitle` ใน data.js ไม่ได้ใช้แล้ว)
+  - government: ย่อหน้าเดิม + การ์ด Primary Users / Scope แล้วค่อย Goal
+  - **รอผู้ใช้ตรวจคำ (Claude ร่างจากเนื้อหาเดิมในเคส ไม่เพิ่มข้อเท็จจริง)**: `goalText` ของ government, platform, custom-dashboard และ `contextText` ของ custom-dashboard (หน้านี้ไม่เคยมี Context)
 
 ### ค้างรอข้อมูลจากผู้ใช้
 1. **Resume PDF เวอร์ชันใหม่** — ไฟล์อยู่ที่ `assets/Yuttana-Pati-Resume.pdf` (ใช้งานได้แล้วบนเว็บจริง ลิงก์จาก header ทุกหน้า + Contact; เปิดแท็บใหม่) แต่เนื้อหายังเป็นชุดเก่า ผู้ใช้จะแก้แล้วส่งไฟล์ใหม่มา — **วางทับชื่อเดิมได้เลย ไม่ต้องแก้โค้ด** จุดที่แจ้งผู้ใช้ไว้:
@@ -166,7 +185,7 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
    - Portfolio ใน PDF ชี้ Figma ยังไม่มีลิงก์เว็บนี้
    - ข้อความ Experience ยังเก่า: "UI Designer" ที่ Yes Web, "DR.in (medical app)", ไม่มี MorPrompt, Education 2017–2022
    - ก่อนเผยแพร่ไฟล์ใหม่ อ่านไฟล์ทั้งหมดก่อนทุกครั้ง
-2. Screenshot จริงของแต่ละ case — ตอนนี้เป็นกล่องเทา "Screen N" รวม **19 ช่อง**: government 3, platform 3, ev-charger 6, custom-dashboard 3, JST (ใน modal) 4 — และข้อมูลจริงของ More Projects 6 รายการ (ดูด้านบน)
+2. ตรวจข้อความที่ Claude ร่างและขึ้นเว็บแล้ว (ดู "Screenshot + Project Overview"): Goal ของ government/platform/custom-dashboard, Overview ของ custom-dashboard, caption EV 7–13, caption custom-dashboard, caption รูป 1 ของ JST — และรูป JST ความละเอียดสูงกว่านี้ (ถ้ามี) — และข้อมูลจริงของ More Projects 6 รายการ (ดูด้านบน)
 3. (ไม่ด่วน) ปีของงาน JST Group — ตอนนี้ใช้ Timeline แทนได้แล้ว
 
 ### Build (เมื่อแก้ `content/cases.csv`)
@@ -183,7 +202,7 @@ powershell -ExecutionPolicy Bypass -File tools/build-cases.ps1
 **ใช้เป็นแรงบันดาลใจเชิงโครงสร้างเท่านั้น ห้ามลอกข้อความ/เลย์เอาต์ของเขา**
 
 ### ทำเสร็จแล้ว (push แล้ว)
-- หน้า case ทั้ง 4 ใช้โครงแบบหน้า ooca case ของเขา (`css/case-page.css`)
+- หน้า case ทั้ง 5 ใช้โครงแบบหน้า ooca case ของเขา (`css/case-page.css`) รวม section **Project Overview** + การ์ด Goal
 - modal More Projects ใช้ดีไซน์เดียวกับหน้า case (JST เป็น case เต็มใน modal)
 - Toolbox เป็นชิป icon + หัว section มาตรฐาน
 - การ์ดโปรเจกต์: meta + บรรทัดผลลัพธ์ — ผู้ใช้เลือกให้**อยู่บนรูปและขึ้นตอน hover** (เคยลองวางใต้รูปแบบของเขาแล้ว ผู้ใช้ไม่เอา)
