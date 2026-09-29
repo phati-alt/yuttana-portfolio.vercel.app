@@ -114,9 +114,25 @@
 .gp-screens figure { margin: 0; }
 .gp-shot { aspect-ratio: 16 / 10; border-radius: var(--gp-radius); background: var(--gp-card); color: var(--muted); }
 .gp-screens img { display: block; width: 100%; border-radius: var(--gp-radius); background: var(--gp-card); }
-/* device-mockup screenshots (transparent PNG/WebP) sit on the grey card
-   with some breathing room, like the cover */
-.gp-screens .gp-shot-img { box-sizing: border-box; height: auto; padding: clamp(1rem, 3vw, 2.5rem); }
+/* Real screenshots: the grey card is a full-width mount and the image
+   sits centred on it at no more than its own pixel width (never
+   upscaled into blur), with breathing room like the cover. */
+.gp-shot-frame {
+  display: grid; place-items: center;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  background: var(--gp-card); border-radius: var(--gp-radius);
+}
+.gp-screens .gp-shot-frame img { width: auto; max-width: 100%; height: auto; background: none; border-radius: 0; }
+
+/* Before / After pair: a tag above each mount, red for the old system,
+   green for the redesign (the site's --stamp-no / --stamp-ok) */
+.gp-compare__tag {
+  display: inline-flex; align-items: center; margin-bottom: .75rem;
+  padding: .3rem .8rem; border-radius: 100px;
+  font-size: .8rem; font-weight: 600; letter-spacing: .02em;
+}
+.gp-compare--before .gp-compare__tag { background: color-mix(in srgb, var(--stamp-no) 14%, transparent); color: var(--stamp-no); }
+.gp-compare--after .gp-compare__tag { background: color-mix(in srgb, var(--stamp-ok) 14%, transparent); color: var(--stamp-ok); }
 .gp-screens figcaption { margin-top: .75rem; color: var(--muted); font-size: .9rem; }
 
 /* ---------- Results ---------- */

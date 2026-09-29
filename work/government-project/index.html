@@ -210,26 +210,25 @@
     </div>
   </section>
 
-  <!-- Before / After — once assets/screen-*.png exist, replace each
-       .media-block with <img src="assets/screen-N.png" alt="">.
-       Hidden (the [hidden] below) until those screenshots exist — grey
-       "Screen N" boxes read as unfinished on the live site. Remove
-       [hidden] once the real images are in. -->
-  <section class="gp-section" hidden>
+  <!-- Before / After — the old system and the redesign, each tagged, on
+       a grey mount at no more than its own size (the old screenshot is
+       only 492px wide, so it is centred rather than stretched). Images in
+       assets/screens/, converted from _screens-inbox/government-project/.
+       data.js's compareResultCaption (map + charts dashboard) is unused
+       until a third screenshot exists. -->
+  <section class="gp-section">
     <div class="gp-col">
       <h2 class="gp-h2" data-i18n="cs.ip.compare" data-reveal>Before / After</h2>
       <div class="gp-screens">
-        <figure data-reveal>
-          <div class="media-block gp-shot"><span>Screen 1</span></div>
+        <figure class="gp-compare gp-compare--before" data-reveal>
+          <span class="gp-compare__tag" data-i18n-case="compareBeforeLabel">Before</span>
+          <div class="gp-shot-frame"><img src="assets/screens/screen-1.webp" width="492" height="340" loading="lazy" alt="The original groundwater system: a single dense form of grey input fields"></div>
           <figcaption data-i18n-case="compareBeforeCaption"></figcaption>
         </figure>
-        <figure data-reveal>
-          <div class="media-block gp-shot"><span>Screen 2</span></div>
+        <figure class="gp-compare gp-compare--after" data-reveal>
+          <span class="gp-compare__tag" data-i18n-case="compareAfterLabel">After</span>
+          <div class="gp-shot-frame"><img src="assets/screens/screen-2.webp" width="1118" height="330" loading="lazy" alt="The redesigned system: a well record with a location map, sidebar navigation, charts and a water-quality table"></div>
           <figcaption data-i18n-case="compareAfterCaption"></figcaption>
-        </figure>
-        <figure data-reveal>
-          <div class="media-block gp-shot"><span>Screen 3</span></div>
-          <figcaption data-i18n-case="compareResultCaption"></figcaption>
         </figure>
       </div>
     </div>
