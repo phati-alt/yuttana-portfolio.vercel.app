@@ -221,15 +221,17 @@
     </div>
   </section>
 
-  <!-- Screens — all 13 app screens in flow order, as a full-width row that
-       scrolls sideways (swipe / trackpad, or the arrow buttons; snaps one
-       screen at a time). Native horizontal scrolling rather than the
-       homepage Cases row's pinned scroll-scrub, which is much more fragile.
-       Images in assets/screens/, converted from _screens-inbox/ev-charger/;
-       captions 7-13 in data.js were drafted from the screens themselves.
-       Wired by initStrips() in js/main.js; data-lenis-prevent keeps Lenis
-       from swallowing horizontal trackpad scrolls inside it. -->
-  <section class="gp-section">
+  <!-- Screens — all 13 app screens in flow order, as a full-width row.
+       Desktop with motion: the section pins (sticky) and the row moves
+       left as the page scrolls — the same wrapper + sticky + GSAP scrub
+       technique as the homepage Cases row. Otherwise (phones, reduced
+       motion): a native sideways-scrolling row with arrow buttons. Screens
+       fade out as they pass the column's left edge. Wired by initStrips()
+       in js/main.js. Images in assets/screens/ (from
+       _screens-inbox/ev-charger/); captions 7-13 drafted from the screens. -->
+  <section class="gp-section gp-strip-section" data-strip-section>
+    <div class="gp-strip-scroll" data-strip-scroll>
+    <div class="gp-strip-pin" data-strip-pin>
     <div class="gp-col gp-strip__head">
       <h2 class="gp-h2" data-i18n="cs.ip.screens" data-reveal>Screens</h2>
       <div class="gp-strip__nav" data-strip-nav>
@@ -319,6 +321,8 @@
         </li>
       </ol>
     </div>
+    </div><!-- /.gp-strip-pin -->
+    </div><!-- /.gp-strip-scroll -->
   </section>
 
   <section class="gp-section gp-section--close">

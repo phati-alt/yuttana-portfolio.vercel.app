@@ -159,6 +159,30 @@
   .gp-strip { --strip-inset: 1.25rem; }
   .gp-strip__item { width: 220px; }
 }
+/* Screens fade out as they pass the reading column's left edge: fully
+   transparent at the viewport edge, fully opaque from the inset on, so
+   the first screen starts crisp and only what has scrolled past fades. */
+.gp-strip {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 var(--strip-inset));
+          mask-image: linear-gradient(to right, transparent 0, #000 var(--strip-inset));
+}
+
+/* Scrub mode (added by initStrips on wide, motion-enabled screens): the
+   pin sticks under the header for as long as its tall wrapper scrolls
+   past, and the track's x follows the page scroll instead of the row
+   scrolling itself — no native scroll, snap or arrow buttons then.
+   Images shrink on short windows so the pinned block always fits. */
+.gp-strip-section.is-scrub .gp-strip-pin {
+  position: sticky; top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+  display: flex; flex-direction: column; justify-content: center;
+  overflow: hidden;
+}
+.gp-strip-section.is-scrub .gp-strip { overflow: hidden; scroll-snap-type: none; padding-bottom: 0; }
+.gp-strip-section.is-scrub .gp-strip__nav { display: none; }
+.gp-strip-section.is-scrub .gp-strip__track { will-change: transform; }
+.gp-strip-section.is-scrub .gp-strip .gp-shot-frame img { max-height: calc(100vh - var(--header-h) - 260px); width: auto; }
+.gp-strip-section.is-scrub .gp-strip__item { width: auto; max-width: 274px; }
 
 /* Before / After pair: a tag above each mount, red for the old system,
    green for the redesign (the site's --stamp-no / --stamp-ok) */

@@ -795,12 +795,62 @@
      current role — no data-end — keeps its duration right as time
      passes. Re-rendered on langchange for the EN/TH units. */
   /* ---------- Horizontal screen strips (case pages) ---------- */
-  /* A [data-strip] row scrolls natively (swipe, trackpad, keyboard); the
-     arrow buttons in the section's [data-strip-nav] page it by roughly a
-     screenful of cards, and disable themselves at either end. */
+  /* Two modes, chosen once per page load:
+     - Scrub (wide screen + motion, and the section has the pin/scroll
+       wrappers): the pin sticks under the header while its tall wrapper
+       scrolls past, and the track's x follows the page scroll — the same
+       wrapper + position:sticky + GSAP scrub (not pin:true) technique as
+       initCasesScroll, for the same reasons given there.
+     - Native (phones, reduced motion): the row scrolls itself (swipe,
+       trackpad, keyboard); the arrow buttons page it by about a screenful
+       and disable themselves at either end. */
   function initStrips() {
+    const headerH = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 0;
+
     document.querySelectorAll('[data-strip]').forEach(strip => {
-      const nav = strip.closest('section')?.querySelector('[data-strip-nav]');
+      const section = strip.closest('[data-strip-section]');
+      const scrollEl = section?.querySelector('[data-strip-scroll]');
+      const pinEl = section?.querySelector('[data-strip-pin]');
+      const track = strip.querySelector('.gp-strip__track');
+      const scrub = MOTION && scrollEl && pinEl && track && window.innerWidth >= 900;
+
+      if (scrub) {
+        section.classList.add('is-scrub');
+        // the page's own scroll drives this now, so Lenis must see the wheel
+        strip.removeAttribute('data-lenis-prevent');
+        // how far the track has to travel for its last screen to end at the
+        // same inset from the right as the first starts from the left
+        const distance = () => Math.max(0, track.scrollWidth - strip.clientWidth);
+        const setHeight = () => { scrollEl.style.height = `${pinEl.offsetHeight + distance()}px`; };
+        setHeight();
+        gsap.fromTo(track, { x: 0 }, {
+          x: () => -distance(),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: scrollEl,
+            // sticky engages when the wrapper's top reaches the header's
+            // bottom, and releases distance() px later — scrub exactly that
+            start: () => `top ${headerH()}px`,
+            end: () => `+=${distance()}`,
+            scrub: true, invalidateOnRefresh: true,
+            onRefresh: setHeight
+          }
+        });
+        // images load lazily and change the track's width; re-measure then
+        track.querySelectorAll('img').forEach(img => {
+          img.loading = 'eager';
+          if (!img.complete) img.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+        });
+        requestAnimationFrame(() => ScrollTrigger.refresh());
+        let resizeT;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeT);
+          resizeT = setTimeout(() => ScrollTrigger.refresh(), 150);
+        });
+        return;
+      }
+
+      const nav = section?.querySelector('[data-strip-nav]') || strip.closest('section')?.querySelector('[data-strip-nav]');
       const prev = nav?.querySelector('[data-strip-prev]');
       const next = nav?.querySelector('[data-strip-next]');
       if (!prev || !next) return;
