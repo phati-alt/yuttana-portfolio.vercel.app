@@ -174,9 +174,6 @@
    under the row while it slides. Images shrink on short windows so the
    whole row fits on screen at once. */
 .gp-strip-section.is-scrub .gp-strip { overflow: hidden; scroll-snap-type: none; padding-bottom: 0; }
-/* no section gap after the strip: once the row has finished scrolling,
-   the next section follows straight on (user's call) */
-.gp-strip-section + .gp-section { padding-top: 0; }
 .gp-strip-section.is-scrub .gp-strip__nav { display: none; }
 .gp-strip-section.is-scrub .gp-strip__track { will-change: transform; }
 .gp-strip-section.is-scrub .gp-strip .gp-shot-frame img { max-height: calc(100vh - var(--header-h) - 260px); width: auto; }
