@@ -1021,7 +1021,6 @@ body {
    and the employment type, or "Education" on the degree row */
 .job__meta { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .35rem; font-size: .82rem; color: var(--muted); text-align: right; }
 .job__meta-sep { opacity: .6; }
-.experience__resume { margin-top: clamp(1.5rem, 3vw, 2rem); }
 .job__dot {
   grid-column: 2; justify-self: center;
   width: 52px; height: 52px; border-radius: 50%;
