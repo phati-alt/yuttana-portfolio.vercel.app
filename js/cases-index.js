@@ -20,7 +20,7 @@ window.CASES_INDEX = {
     th: { category: "แดชบอร์ดข้อมูล", title: "แดชบอร์ด IoT สั่งทำสำหรับงานอุตสาหกรรม", meta: "แดชบอร์ดข้อมูล • Industrial IoT • เว็บ Responsive", outcome: "ทีมปฏิบัติการตรวจพบความผิดปกติได้เร็วขึ้นราว 40% ในการทดสอบนำร่อง" }
   },
   "jst-group": {
-    en: { category: "Website", title: "JST Group", meta: "Website • Corporate • Desktop, tablet, mobile", outcome: "Designed solo in under a month: 4 pages across 3 breakpoints, plus an interactive prototype." },
-    th: { category: "เว็บไซต์", title: "JST Group", meta: "เว็บไซต์ • องค์กร • เดสก์ท็อป แท็บเล็ต มือถือ", outcome: "ออกแบบคนเดียวภายในไม่ถึงเดือน: 4 หน้า 3 ขนาดหน้าจอ พร้อม Interactive Prototype" }
+    en: { category: "Website", title: "JST Group", meta: "Website • Corporate • Desktop, tablet, mobile", outcome: "Four pages, three breakpoints and a prototype, designed alone in under a month." },
+    th: { category: "เว็บไซต์", title: "JST Group", meta: "เว็บไซต์ • องค์กร • เดสก์ท็อป แท็บเล็ต มือถือ", outcome: "4 หน้า 3 ขนาดหน้าจอ และ Prototype ออกแบบคนเดียวภายในไม่ถึงหนึ่งเดือน" }
   }
 };

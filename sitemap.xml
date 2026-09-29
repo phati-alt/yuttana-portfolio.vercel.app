@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Listed pages only; work/more-projects/ is noindex while it is hidden. Add a
+     <url> here when a page is added or unhidden. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://yuttana-portfolio.vercel.app/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://yuttana-portfolio.vercel.app/work/government-project/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://yuttana-portfolio.vercel.app/work/platform/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://yuttana-portfolio.vercel.app/work/ev-charger/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://yuttana-portfolio.vercel.app/work/custom-dashboard/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://yuttana-portfolio.vercel.app/work/jst-group/</loc><lastmod>2026-09-29</lastmod></url>
+</urlset>

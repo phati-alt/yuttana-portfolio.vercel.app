@@ -18,6 +18,8 @@ $mime = @{
   ".ico"  = "image/x-icon"
   ".json" = "application/json"
   ".pdf"  = "application/pdf"
+  ".txt"  = "text/plain; charset=utf-8"
+  ".xml"  = "application/xml"
 }
 
 while ($listener.IsListening) {
@@ -60,8 +62,17 @@ while ($listener.IsListening) {
     $res.ContentLength64 = $bytes.Length
     $res.OutputStream.Write($bytes, 0, $bytes.Length)
   } else {
+    # Same as Vercel: a missing URL gets the site's own 404.html (status
+    # still 404), so the not-found page can be tested locally.
     $res.StatusCode = 404
-    $notFound = [System.Text.Encoding]::UTF8.GetBytes("404 Not Found")
+    $page404 = Join-Path $root "404.html"
+    if (Test-Path $page404 -PathType Leaf) {
+      $notFound = [System.IO.File]::ReadAllBytes($page404)
+      $res.ContentType = "text/html; charset=utf-8"
+    } else {
+      $notFound = [System.Text.Encoding]::UTF8.GetBytes("404 Not Found")
+    }
+    $res.Headers.Add("Cache-Control", "no-store, must-revalidate")
     $res.OutputStream.Write($notFound, 0, $notFound.Length)
   }
   $res.OutputStream.Close()

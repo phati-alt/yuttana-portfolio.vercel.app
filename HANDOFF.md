@@ -149,6 +149,14 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 - คอมเมนต์ในโค้ดที่ล้าสมัยแก้แล้ว (more-projects header/data.js, การ์ด More บน Home, header comment หน้า case, work/README.md, `$titleTag` ใน build ตัด "Mick")
 - ไม่มีลิงก์เสีย ไม่มีข้อความ i18n ว่าง
 
+### รอบต่อมา (2026-09-29)
+- **section Screens ซ่อนทุกหน้า case** (`<section class="gp-section" hidden>` + comment) จนกว่าจะมี screenshot จริง — ใส่รูปแล้วลบ `hidden`
+- **สถานะรับงาน**: Hero และ Footer ใช้ข้อความเดียวกัน "Available for: Freelance & Full-time" (TH: พร้อมรับงาน: ฟรีแลนซ์ และงานประจำ) **สีเขียว** — Hero ใช้ `--stamp-ok` (ตาม theme), Footer ใช้ `#58cc8f` เสมอ (อยู่บนพื้น navy); จุดกะพริบสีเขียวตาม `--avail`
+- **บรรทัดผลลัพธ์การ์ด JST** = ประโยคจาก detail ตรงๆ (prob2Text): "Four pages, three breakpoints and a prototype, designed alone in under a month."
+- **รูป cover เป็น WebP** (`work/<slug>/assets/cover.webp`, คุณภาพ 82 มีพื้นโปร่งใส) ใช้ในการ์ดหน้า Home, หน้า case, การ์ด Next — รวม 2.6 MB → 459 KB; **`cover.png` ยังเก็บไว้** เพราะ `og:image` ใช้ PNG (บางแพลตฟอร์มไม่รองรับ WebP) — ถ้าเปลี่ยน cover ต้องทำทั้งสองไฟล์ (แปลงด้วย `sharp` ใน node: `sharp(src).webp({quality:82, alphaQuality:90, effort:6})`) ติดตั้งนอก repo
+- **`robots.txt` + `sitemap.xml`** ที่ root (sitemap มี 6 URL ไม่รวม More Projects ที่ noindex) — เพิ่ม/ซ่อนหน้าเมื่อไหร่ต้องแก้ sitemap ด้วย
+- **`404.html`** ที่ root: Vercel ใช้อัตโนมัติกับ URL ที่ไม่มีจริง; ลิงก์/asset ทั้งหมดเป็น absolute (`/…`) เพราะแสดงได้ทุกความลึกของ path; `serve.ps1` ในเครื่องก็ส่งหน้านี้ (status 404) แล้ว — **ทดสอบ**: เปิด URL มั่วๆ เช่น `/this-does-not-exist`
+
 ### ค้างรอข้อมูลจากผู้ใช้
 1. **Resume PDF เวอร์ชันใหม่** — ไฟล์อยู่ที่ `assets/Yuttana-Pati-Resume.pdf` (ใช้งานได้แล้วบนเว็บจริง ลิงก์จาก header ทุกหน้า + Contact; เปิดแท็บใหม่) แต่เนื้อหายังเป็นชุดเก่า ผู้ใช้จะแก้แล้วส่งไฟล์ใหม่มา — **วางทับชื่อเดิมได้เลย ไม่ต้องแก้โค้ด** จุดที่แจ้งผู้ใช้ไว้:
    - มีเบอร์โทรส่วนตัว (เว็บไม่มี) — แนะนำเอาออกในเวอร์ชันที่ขึ้นเว็บ

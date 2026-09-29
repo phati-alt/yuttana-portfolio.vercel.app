@@ -18,7 +18,7 @@ const translations = {
     "nav.contact": "Contact",
     "nav.resume": "Resume",
 
-    "hero.eyebrow": "Available for freelance work",
+    "hero.eyebrow": "Available for: Freelance & Full-time",
     "hero.desc": "Hi, I'm Mick Yuttana — a UX/UI & Product Designer focused on simplifying complex systems into intuitive, trustworthy digital experiences.",
     "hero.ctaTalk": "Get in touch",
     "hero.scroll": "Scroll down",
@@ -138,6 +138,10 @@ const translations = {
     "footer.tagline": "UX/UI & Product Designer based in Bangkok, Thailand.",
 
     "footer.available": "Available for: Freelance & Full-time",
+    "notfound.title": "This page doesn't exist",
+    "notfound.desc": "The link may be old or mistyped. Everything is still on the home page.",
+    "notfound.home": "Back to home",
+    "notfound.work": "See my work",
     "footer.nowPlaying": "Currently focused on",
     "footer.focusLine1": "Human-centered product design",
     "footer.focusLine2": "Design systems that scale",
@@ -203,7 +207,7 @@ const translations = {
     "nav.contact": "ติดต่อ",
     "nav.resume": "เรซูเม่",
 
-    "hero.eyebrow": "พร้อมรับงานฟรีแลนซ์",
+    "hero.eyebrow": "พร้อมรับงาน: ฟรีแลนซ์ และงานประจำ",
     "hero.desc": "สวัสดีครับ ผมมิค ยุทธนา — UX/UI & Product Designer ที่เน้นแปลงระบบซับซ้อนให้กลายเป็นประสบการณ์ดิจิทัลที่ใช้งานง่ายและน่าเชื่อถือ",
     "hero.ctaTalk": "ติดต่อผม",
     "hero.scroll": "เลื่อนลง",
@@ -322,6 +326,10 @@ const translations = {
 
     "footer.tagline": "UX/UI & Product Designer ประจำกรุงเทพฯ ประเทศไทย",
     "footer.available": "พร้อมรับงาน: ฟรีแลนซ์ และงานประจำ",
+    "notfound.title": "ไม่พบหน้านี้",
+    "notfound.desc": "ลิงก์อาจเก่าหรือพิมพ์ผิด ผลงานทั้งหมดยังอยู่ที่หน้าหลัก",
+    "notfound.home": "กลับหน้าหลัก",
+    "notfound.work": "ดูผลงาน",
     "footer.nowPlaying": "ตอนนี้กำลังโฟกัสกับ",
     "footer.focusLine1": "การออกแบบโปรดักต์ที่ยึดผู้ใช้เป็นศูนย์กลาง",
     "footer.focusLine2": "Design System ที่ขยายตัวได้จริง",
