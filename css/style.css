@@ -1059,6 +1059,9 @@ html.no-motion .job__date--current::after { animation: none; opacity: 0; }
 .job__company { color: var(--muted); margin-top: .3rem; }
 .job__group { margin-top: 1.5rem; }
 .job__group h4 { font-size: .85rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .75rem; }
+/* a named project (the senior project) keeps its own capitalisation,
+   read as a title rather than a category label */
+.job__group--project h4 { font-size: 1rem; letter-spacing: normal; text-transform: none; color: var(--ink); }
 .job__card > ul { display: grid; gap: .6rem; margin-top: 1.25rem; }
 .job__group ul { display: grid; gap: .6rem; margin-top: 0; }
 .job__card li { display: flex; gap: .75rem; color: var(--muted); }
