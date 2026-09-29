@@ -14,7 +14,6 @@ work/
   platform/               BESPOKE, plus its own case.css
   ev-charger/             BESPOKE
   custom-dashboard/       BESPOKE
-  wordpress-website/      BESPOKE (the JST Group case; slug kept from before)
   more-projects/          hand-written list + modal, not a case study
     index.html
     data.js
@@ -63,7 +62,7 @@ the cards on the homepage (`#casesGrid` in `index.html`), wrapping from the
 last back to the first:
 
 ```
-government-project → platform → ev-charger → custom-dashboard → wordpress-website → (back to government-project)
+government-project → platform → ev-charger → custom-dashboard → (back to government-project)
 ```
 
 Reorder the homepage cards → update the NEXT card (href, cover, title) on
@@ -105,7 +104,7 @@ instead of rendering blank.
 
 The simplest path is to copy an existing bespoke case:
 
-1. Copy a case folder (e.g. `work/wordpress-website/`) to `work/<slug>/` —
+1. Copy a case folder (e.g. `work/ev-charger/`) to `work/<slug>/` —
    the slug becomes the URL, so keep it lowercase-with-hyphens.
 2. Rewrite its `index.html` (`<title>`, meta description, sections) and
    `data.js`, and put its `cover.png` in `assets/`.

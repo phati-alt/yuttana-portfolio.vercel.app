@@ -1868,7 +1868,13 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
 }
 .mp-modal .gp-hero .gp-col { padding-right: max(var(--mp-pad), 4rem); } /* clear the close button */
 .mp-gp-section { padding-top: clamp(2.5rem, 5vw, 3.5rem); }
-.mp-gp-section--last { padding-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+.mp-gp-end { height: clamp(2.5rem, 5vw, 3.5rem); }
+/* data-mp-optional parts are toggled with [hidden] (initMoreProjects);
+   several of them set their own display (grid/flex), which would beat the
+   browser's plain [hidden] rule, so enforce it here. */
+.mp-modal [hidden] { display: none !important; }
+/* a full case's solution list: as many cards per row as fit */
+.mp-gp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-top: 1.75rem; }
 /* Cover on a grey mount, contained rather than stretched: these files
    are only ~689px wide, and filling the column would upscale and soften
    the small UI text in them. */
@@ -1883,13 +1889,13 @@ html.js.no-motion [data-reveal] { opacity: 1; transform: none; }
 }
 /* .mp-modal prefix: case-page.css loads after this file and would
    otherwise win with its 4-up .gp-meta / .gp-kpis */
-.mp-modal .mp-gp-meta { grid-template-columns: repeat(3, 1fr); }
-.mp-modal .mp-gp-kpis { grid-template-columns: repeat(2, 1fr); }
+/* auto-fit: the record strip has 3-5 cells and the figures 2-4,
+   depending on which optional ones a project has */
+.mp-modal .mp-gp-meta { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.mp-modal .mp-gp-kpis { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 @media (max-width: 560px) {
   .mp-modal .mp-gp-meta, .mp-modal .mp-gp-kpis { grid-template-columns: 1fr; }
 }
-.mp-modal__more { margin-top: clamp(1.75rem, 3vw, 2.25rem); }
-.mp-modal__more[hidden] { display: none; }
 @media (max-width: 900px) {
   .mp-grid { grid-template-columns: 1fr; }
   /* same 4:3 as the homepage cards on a phone (see .case__media there);

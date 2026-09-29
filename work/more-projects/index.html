@@ -209,12 +209,14 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
   </button>
 
-  <!-- Same design as the full case pages (css/case-page.css, .gp-*),
-       condensed into the dialog: chips, title and summary, the cover on
-       a grey mount, a three-cell record strip, then Problem / Process /
-       Solution with the quote between, and the two figures as KPI cells.
-       All text comes from data.js via data-mp-modal-field;
-       initMoreProjects() fills it on open. -->
+  <!-- Same design as the full case pages (css/case-page.css, .gp-*), in
+       the dialog. Every project gets the core: chips, title, summary,
+       cover, record strip, Problem / Process (+ quote) / Solution and its
+       figures. Everything marked data-mp-optional is shown only when that
+       project's data.js entry has the named key — that is how one entry
+       (jst-group) carries a full case study here while the rest stay
+       short. All text comes from data.js via data-mp-modal-field;
+       initMoreProjects() fills it and toggles the optional parts on open. -->
   <article class="mp-modal__inner gp">
     <header class="gp-hero mp-gp-hero">
       <div class="gp-col">
@@ -234,15 +236,36 @@
 
       <dl class="gp-meta mp-gp-meta">
         <div class="gp-meta__cell"><dt data-i18n="cs.meta.roleLabel">Role</dt><dd data-mp-modal-field="role"></dd></div>
-        <div class="gp-meta__cell"><dt data-i18n="more.modal.yearLabel">Year</dt><dd data-mp-modal-field="year"></dd></div>
+        <div class="gp-meta__cell" data-mp-optional="year"><dt data-i18n="more.modal.yearLabel">Year</dt><dd data-mp-modal-field="year"></dd></div>
+        <div class="gp-meta__cell" data-mp-optional="timeline"><dt data-i18n="cs.meta.timelineLabel">Timeline</dt><dd data-mp-modal-field="timeline"></dd></div>
         <div class="gp-meta__cell"><dt data-i18n="cs.meta.platformLabel">Platform</dt><dd data-mp-modal-field="platform"></dd></div>
+        <div class="gp-meta__cell" data-mp-optional="tools"><dt data-i18n="cs.meta.toolsLabel">Tools</dt><dd data-mp-modal-field="tools"></dd></div>
       </dl>
+      <p class="gp-meta__line" data-mp-optional="client">
+        <span class="gp-meta__line-label" data-i18n="cs.meta.clientLabel">Client</span>
+        <span data-mp-modal-field="client"></span>
+      </p>
     </div>
+
+    <section class="gp-section mp-gp-section" data-mp-optional="contextText">
+      <div class="gp-col">
+        <h3 class="gp-h2" data-i18n="cs.ip.context">Context</h3>
+        <p class="gp-body" data-mp-modal-field="contextText"></p>
+      </div>
+    </section>
 
     <section class="gp-section mp-gp-section">
       <div class="gp-col">
         <h3 class="gp-h2" data-i18n="cs.ip.findings">Problem</h3>
         <p class="gp-body" data-mp-modal-field="problem"></p>
+        <div class="gp-pair" data-mp-optional="prob1Title">
+          <div class="gp-card" data-mp-optional="prob1Title"><span class="gp-num">01</span><h4 class="gp-h4" data-mp-modal-field="prob1Title"></h4><p class="gp-card__text" data-mp-modal-field="prob1Text"></p></div>
+          <div class="gp-card" data-mp-optional="prob2Title"><span class="gp-num">02</span><h4 class="gp-h4" data-mp-modal-field="prob2Title"></h4><p class="gp-card__text" data-mp-modal-field="prob2Text"></p></div>
+        </div>
+        <div class="gp-goal" data-mp-optional="goalTitle">
+          <h4 class="gp-h4" data-mp-modal-field="goalTitle"></h4>
+          <p data-mp-modal-field="goalText"></p>
+        </div>
       </div>
     </section>
 
@@ -258,27 +281,67 @@
       <div class="gp-col">
         <h3 class="gp-h2" data-i18n="cs.ip.solution">Solution</h3>
         <p class="gp-body" data-mp-modal-field="solution"></p>
+        <div class="mp-gp-grid" data-mp-optional="sol1Title">
+          <div class="gp-card" data-mp-optional="sol1Title"><span class="gp-num">01</span><h4 class="gp-h4" data-mp-modal-field="sol1Title"></h4><p class="gp-card__text" data-mp-modal-field="sol1Text"></p></div>
+          <div class="gp-card" data-mp-optional="sol2Title"><span class="gp-num">02</span><h4 class="gp-h4" data-mp-modal-field="sol2Title"></h4><p class="gp-card__text" data-mp-modal-field="sol2Text"></p></div>
+          <div class="gp-card" data-mp-optional="sol3Title"><span class="gp-num">03</span><h4 class="gp-h4" data-mp-modal-field="sol3Title"></h4><p class="gp-card__text" data-mp-modal-field="sol3Text"></p></div>
+          <div class="gp-card" data-mp-optional="sol4Title"><span class="gp-num">04</span><h4 class="gp-h4" data-mp-modal-field="sol4Title"></h4><p class="gp-card__text" data-mp-modal-field="sol4Text"></p></div>
+          <div class="gp-card" data-mp-optional="sol5Title"><span class="gp-num">05</span><h4 class="gp-h4" data-mp-modal-field="sol5Title"></h4><p class="gp-card__text" data-mp-modal-field="sol5Text"></p></div>
+        </div>
       </div>
     </section>
 
-    <section class="gp-section mp-gp-section mp-gp-section--last">
+    <section class="gp-section mp-gp-section" data-mp-optional="dec1Title">
+      <div class="gp-col">
+        <h3 class="gp-h2" data-i18n="cs.ip.decisions">Decisions</h3>
+        <div class="gp-card gp-rows">
+          <div class="gp-row" data-mp-optional="dec1Title"><h4 class="gp-h4" data-mp-modal-field="dec1Title"></h4><p class="gp-card__text" data-mp-modal-field="dec1Why"></p></div>
+          <div class="gp-row" data-mp-optional="dec2Title"><h4 class="gp-h4" data-mp-modal-field="dec2Title"></h4><p class="gp-card__text" data-mp-modal-field="dec2Why"></p></div>
+          <div class="gp-row" data-mp-optional="dec3Title"><h4 class="gp-h4" data-mp-modal-field="dec3Title"></h4><p class="gp-card__text" data-mp-modal-field="dec3Why"></p></div>
+          <div class="gp-row" data-mp-optional="dec4Title"><h4 class="gp-h4" data-mp-modal-field="dec4Title"></h4><p class="gp-card__text" data-mp-modal-field="dec4Why"></p></div>
+          <div class="gp-row" data-mp-optional="dec5Title"><h4 class="gp-h4" data-mp-modal-field="dec5Title"></h4><p class="gp-card__text" data-mp-modal-field="dec5Why"></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gp-section mp-gp-section">
       <div class="gp-col">
         <h3 class="gp-h2" data-i18n="cs.ip.results">Results</h3>
+        <p class="gp-body" data-mp-optional="resultsText" data-mp-modal-field="resultsText"></p>
         <div class="gp-kpis mp-gp-kpis">
           <div class="gp-kpi"><strong data-mp-modal-field="stat1"></strong><span data-mp-modal-field="stat1Label"></span></div>
           <div class="gp-kpi"><strong data-mp-modal-field="stat2"></strong><span data-mp-modal-field="stat2Label"></span></div>
-        </div>
-
-        <!-- Only for a project that also has a full case page (data.js
-             `caseUrl`); initMoreProjects() fills the href and unhides it. -->
-        <div class="mp-modal__more" data-mp-modal-more hidden>
-          <a class="btn btn--primary" href="#" data-mp-modal-link data-hover>
-            <span class="btn__label" data-i18n="cs.next.cta">View case study</span>
-            <span class="btn__circle">↗︎</span>
-          </a>
+          <div class="gp-kpi" data-mp-optional="stat3"><strong data-mp-modal-field="stat3"></strong><span data-mp-modal-field="stat3Label"></span></div>
+          <div class="gp-kpi" data-mp-optional="stat4"><strong data-mp-modal-field="stat4"></strong><span data-mp-modal-field="stat4Label"></span></div>
         </div>
       </div>
     </section>
+
+    <!-- Screens: grey placeholders until real screenshots exist -->
+    <section class="gp-section mp-gp-section" data-mp-optional="showcase1Caption">
+      <div class="gp-col">
+        <h3 class="gp-h2" data-i18n="cs.ip.screens">Screens</h3>
+        <div class="gp-screens gp-screens--grid">
+          <figure data-mp-optional="showcase1Caption"><div class="media-block gp-shot"><span>Screen 1</span></div><figcaption data-mp-modal-field="showcase1Caption"></figcaption></figure>
+          <figure data-mp-optional="showcase2Caption"><div class="media-block gp-shot"><span>Screen 2</span></div><figcaption data-mp-modal-field="showcase2Caption"></figcaption></figure>
+          <figure data-mp-optional="showcase3Caption"><div class="media-block gp-shot"><span>Screen 3</span></div><figcaption data-mp-modal-field="showcase3Caption"></figcaption></figure>
+          <figure data-mp-optional="showcase4Caption"><div class="media-block gp-shot"><span>Screen 4</span></div><figcaption data-mp-modal-field="showcase4Caption"></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="gp-section mp-gp-section" data-mp-optional="reflect1Title">
+      <div class="gp-col">
+        <h3 class="gp-h2" data-i18n="cs.reflection.title">What I took from it</h3>
+        <div class="gp-quad">
+          <div class="gp-card" data-mp-optional="reflect1Title"><h4 class="gp-h4" data-mp-modal-field="reflect1Title"></h4><p class="gp-card__text" data-mp-modal-field="reflect1Text"></p></div>
+          <div class="gp-card" data-mp-optional="reflect2Title"><h4 class="gp-h4" data-mp-modal-field="reflect2Title"></h4><p class="gp-card__text" data-mp-modal-field="reflect2Text"></p></div>
+          <div class="gp-card" data-mp-optional="reflect3Title"><h4 class="gp-h4" data-mp-modal-field="reflect3Title"></h4><p class="gp-card__text" data-mp-modal-field="reflect3Text"></p></div>
+          <div class="gp-card" data-mp-optional="reflect4Title"><h4 class="gp-h4" data-mp-modal-field="reflect4Title"></h4><p class="gp-card__text" data-mp-modal-field="reflect4Text"></p></div>
+        </div>
+      </div>
+    </section>
+    <div class="mp-gp-end" aria-hidden="true"></div>
   </article>
 </dialog>
 
