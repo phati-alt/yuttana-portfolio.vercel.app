@@ -815,12 +815,12 @@ body {
 }
 
 /* Process rail — a connected, non-linear sequence rather than boxed cards.
-   Desktop: 6 steps in a row on one horizontal line that draws in with
+   Desktop: 5 steps in a row on one horizontal line that draws in with
    scroll (clip-path, same technique as the Experience timeline's vertical
    fill — see initTimelineFill in main.js and initRail below it). */
 .rail__track {
   position: relative;
-  display: grid; grid-template-columns: repeat(6, 1fr);
+  display: grid; grid-template-columns: repeat(5, 1fr);
   gap: clamp(1.5rem, 3vw, 3rem);
   margin-top: clamp(3rem, 6vw, 6rem);
 }
@@ -861,7 +861,7 @@ body {
   color: var(--muted); font-size: .95rem; font-style: italic;
 }
 .rail__flow-arrow { width: clamp(32px, 4vw, 48px); flex-shrink: 0; }
-/* five notes don't fit on one line as running text, and wrapping left an
+/* four notes don't fit on one line as running text, and wrapping left an
    arrow dangling at a line's end — so in the row layout each note gets an
    equal column (wrapping inside itself) with the arrows between them */
 @media (min-width: 75.01em) {
@@ -921,7 +921,7 @@ body {
 .rail__loop.is-drawn .rail__loop-arrow { opacity: 1; transition: opacity .3s var(--ease) .1s; }
 .rail__loop-text { color: var(--muted); font-size: .95rem; font-style: italic; max-width: 46ch; }
 
-/* 75em (1200px), not the site's usual 56.25em: six steps in a row need
+/* 75em (1200px), not the site's usual 56.25em: five steps in a row need
    about 1200px before each column is wide enough for its description
    (initRail's isRailRow matchMedia has to match this) */
 @media (max-width: 75em) {
