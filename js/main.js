@@ -286,13 +286,13 @@
       scrollTrigger: { trigger: track, start: 'top 85%' }
     });
 
-    // The line itself switches orientation at the same sub-56.25em
+    // The line itself switches orientation at the same sub-75em
     // breakpoint that stacks steps into a column (see .rail__line in
     // style.css) — row layout draws left-to-right, column layout draws
     // top-to-bottom, same as .timeline__line-fill below it. The clip-path
     // direction has to match whichever orientation is active, or the fill
     // just sits fully open/closed and never visibly scrubs.
-    const isRailRow = window.matchMedia('(min-width: 56.26em)').matches;
+    const isRailRow = window.matchMedia('(min-width: 75.01em)').matches;
     const line = document.querySelector('.rail__line');
     const nodes = gsap.utils.toArray('.rail__node', track);
     const updateLighting = lightNodesAlongLine(line, nodes, steps, isRailRow);

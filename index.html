@@ -409,7 +409,7 @@
          short "why this leads to the next step" notes under the rail, and
          a looping arrow back to Discover at the end — real feedback loops
          (a user test reopening the problem, a build constraint sending a
-         screen back to Define), not just four boxes in a row. -->
+         screen back to Define), not just six boxes in a row. -->
     <div class="wrap wrap--wide">
       <div class="rail">
         <div class="rail__track" data-rail-track>
@@ -432,8 +432,18 @@
           </div>
           <div class="rail__step" data-rail-step>
             <span class="rail__node"><span class="rail__num">04</span></span>
-            <h3 class="rail__title" data-i18n="process.step4.title">Deliver</h3>
-            <p class="rail__desc" data-i18n="process.step4.desc">Test with real users, iterate, and hand off polished, developer-ready designs.</p>
+            <h3 class="rail__title" data-i18n="process.step4.title">Test</h3>
+            <p class="rail__desc" data-i18n="process.step4.desc">Put the prototype in front of real users, see where they hesitate or get lost, and fix it before a line of code is written.</p>
+          </div>
+          <div class="rail__step" data-rail-step>
+            <span class="rail__node"><span class="rail__num">05</span></span>
+            <h3 class="rail__title" data-i18n="process.step5.title">Audit</h3>
+            <p class="rail__desc" data-i18n="process.step5.desc">Review every screen against usability heuristics, accessibility and the design system, so nothing inconsistent reaches development.</p>
+          </div>
+          <div class="rail__step" data-rail-step>
+            <span class="rail__node"><span class="rail__num">06</span></span>
+            <h3 class="rail__title" data-i18n="process.step6.title">Deliver</h3>
+            <p class="rail__desc" data-i18n="process.step6.desc">Hand off polished, developer-ready designs, and stay close to the team through build.</p>
           </div>
         </div>
 
@@ -453,6 +463,20 @@
             </svg>
           </li>
           <li data-i18n="process.flow3">Prototypes get tested before anything ships</li>
+          <li class="rail__flow-arrow" aria-hidden="true">
+            <svg viewBox="0 0 60 20" preserveAspectRatio="none">
+              <path class="rail__flow-arrow-path" data-rail-flow-arrow pathLength="100" d="M 4 14 C 20 6, 38 6, 48 10" />
+              <path class="rail__flow-arrow-head" data-rail-flow-arrow-head d="M 41 4 L 51 10 L 42 16" />
+            </svg>
+          </li>
+          <li data-i18n="process.flow4">What testing uncovers gets fixed, then checked against the standards</li>
+          <li class="rail__flow-arrow" aria-hidden="true">
+            <svg viewBox="0 0 60 20" preserveAspectRatio="none">
+              <path class="rail__flow-arrow-path" data-rail-flow-arrow pathLength="100" d="M 4 10 C 20 14, 38 14, 48 10" />
+              <path class="rail__flow-arrow-head" data-rail-flow-arrow-head d="M 41 4 L 51 10 L 42 16" />
+            </svg>
+          </li>
+          <li data-i18n="process.flow5">Only audited designs go to the developers</li>
         </ul>
 
         <div class="rail__loop" data-rail-loop>
