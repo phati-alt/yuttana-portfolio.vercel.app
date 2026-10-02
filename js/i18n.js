@@ -31,7 +31,7 @@ const translations = {
     "intro.pretitle": "Approach",
     "intro.text": "I design systems that people can actually trust. Strategy, interface, design systems, research, handover: five disciplines, one point of view. What we build together ends up in someone's working day — let's make that day better.",
 
-    "work.eyebrow": "Cases",
+    "work.eyebrow": "Featured Projects",
     "work.title": "Results for products that hold up",
     "work.moreProjects": "View more projects",
 
@@ -227,7 +227,7 @@ const translations = {
     "intro.pretitle": "แนวทาง",
     "intro.text": "ผมออกแบบระบบที่ผู้ใช้ไว้วางใจได้จริง ทั้งกลยุทธ์ อินเทอร์เฟซ ดีไซน์ซิสเต็ม งานวิจัย และการส่งมอบ — ห้าด้าน แต่มุมมองเดียว สิ่งที่เราสร้างร่วมกันจะไปอยู่ในวันทำงานของใครสักคน มาทำให้วันนั้นดีขึ้นกันครับ",
 
-    "work.eyebrow": "ผลงาน",
+    "work.eyebrow": "ผลงานเด่น",
     "work.title": "ผลลัพธ์สำหรับโปรดักต์ที่ใช้งานได้จริง",
     "work.moreProjects": "ดูโปรเจกต์อื่นๆ",
 
