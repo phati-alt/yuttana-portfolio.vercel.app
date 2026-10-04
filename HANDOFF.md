@@ -1,7 +1,7 @@
 # Handoff — yuttana-portfolio
 
 เอกสารส่งต่องานสำหรับ Claude Code บนเครื่องอื่น อ่านไฟล์นี้ก่อนเริ่มงาน
-อัปเดตล่าสุด 2026-09-29 (ล่าสุดที่ commit `f96401e` — push ขึ้น GitHub แล้ว)
+อัปเดตล่าสุด 2026-10-04 (ล่าสุดที่ commit `dca30e7` — push ขึ้น GitHub แล้ว)
 
 > ไฟล์นี้รวม "ความรู้ที่ไม่อยู่ในโค้ด" ไว้ด้วย เพราะ memory ของ Claude บนเครื่องเดิม
 > ไม่ได้ติดมากับ repo — ส่วน "กฎการทำงาน" ด้านล่างสำคัญที่สุด
@@ -10,7 +10,7 @@
 
 ## 1. โปรเจกต์นี้คืออะไร
 
-พอร์ตโฟลิโอส่วนตัวของ **Mick Yuttana Pati** — UX/UI & Product Designer (Bangkok)
+พอร์ตโฟลิโอส่วนตัวของ **Mick Yuttana Pati** — UX/UI Designer & Design System Lead (Bangkok)
 เว็บจริงที่ deploy อยู่ → **push ขึ้น `main` = ขึ้นเว็บจริงทันที**
 
 - เว็บจริง: `https://yuttana-portfolio.vercel.app`
@@ -22,6 +22,8 @@
 - Title/meta ทุกหน้าตัดคำว่า "Mick" ออกแล้ว (เหลือแค่ "Yuttana") ให้ตรงกับโดเมนใหม่ —
   แก้เฉพาะ `<title>` และ `<meta name="description">` เท่านั้น โลโก้ header/footer/alt/hero copy
   ยังเป็น "Mick Yuttana" เหมือนเดิมโดยตั้งใจ (ผู้ใช้บอกให้ตัดเฉพาะจุดที่เป็น "ลิงก์"/แสดงตอนแชร์)
+- **ชื่อ tab หน้าหลัก = `Yuttana - Portfolio`** และ `og:title` หน้าหลักใช้ค่าเดียวกัน (ผู้ใช้ขอให้ตรงกัน); หน้า case ยังเป็น "ชื่อเคส — Case Study | Yuttana"
+- **ตำแหน่งที่ใช้ทั้งเว็บ = "UX/UI Designer & Design System Lead"** (ตาม Resume — Hero, About, Footer ทุกหน้า, meta description, manifest) — ห้ามกลับไปใช้ "UX/UI & Product Designer"
 - Static site ล้วน: HTML + CSS + vanilla JS ไม่มี build tool / npm
 - Library จาก CDN: GSAP 3.13 (+ ScrollTrigger, SplitText), Lenis (smooth scroll)
 - Font: Switzer (body), Chillax 600 (hero wordmark เท่านั้น), Noto Sans Thai — จาก Fontshare / Google Fonts
@@ -65,26 +67,31 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
    - ลิงก์กลับหน้าหลักจากหน้าอื่นเขียนเป็น `../../#section` — **ห้ามใช้ `../../index.html#...`** (ทำให้ URL มี `/index.html`)
 2. **Banner (hero)** — wordmark ใหญ่ "Mick UX/UI Designer", eyebrow "Available for: Freelance & Full-time" (สีเขียว), CTA "Get in touch" ปุ่มเดียว, วง scroll-down
 3. **Intro** — manifesto, reveal ทีละบรรทัดตาม scroll
-4. **Cases** (`#work`) — การ์ด **5 ใบ** (ไม่มีการ์ด "View more projects" แล้ว — ซ่อน More Projects ไว้) เลื่อนแนวนอนแบบ sticky + scrub (`initCasesScroll`)
+4. **Cases** (`#work`) — pretitle **"Featured Projects"** (TH: ผลงานเด่น — ให้ตรงกับหัวข้อใน Resume; เมนูยังเป็น "Work"), การ์ด **5 ใบ** (ไม่มีการ์ด "View more projects" แล้ว — ซ่อน More Projects ไว้) เลื่อนแนวนอนแบบ sticky + scrub (`initCasesScroll`)
    - รูป cover **4:3 (640 × 480)**
    - ข้อความ (meta / ชื่อ / บรรทัดผลลัพธ์) **อยู่บนรูป ขึ้นตอน hover** — บนจอสัมผัส (`hover: none`) ย้ายไป**ใต้รูป**แสดงตลอด
    - ข้อความมาจาก `cardMeta` / `title` / `cardOutcome` ใน CSV → build → `js/cases-index.js`
 5. **Band** (พื้น navy `#020f27`, dark mode `#1a1f72`) เปิดด้วยวงกลม iris (`.band__circle`)
-   - About: pretitle "About me" (ขนาดเล็กแบบ section อื่น — เดิมตัวใหญ่ซ้อนกับ h2), h2, **ชิป LinkedIn** (icon + text ทรงเดียวกับชิป Toolbox, `.about__social-btn`), bio 2 ย่อหน้า, checklist, ตัวเลข 4 ช่อง (4+, 40%, 15+, +30%); รูปมีป้าย pill **"Based in Bangkok, Thailand"** (TH: ประจำอยู่ที่กรุงเทพฯ) สีการ์ด Services + หมุดฟ้าอ่อน (เดิมเป็นป้ายเหลือง "4+ Years" ซึ่งซ้ำกับตัวเลข) — ไม่มีปุ่ม Resume
+   - About: pretitle "About me" (ขนาดเล็กแบบ section อื่น — เดิมตัวใหญ่ซ้อนกับ h2), h2, **ชิป LinkedIn** (icon + text ทรงเดียวกับชิป Toolbox, `.about__social-btn`), bio 2 ย่อหน้า (**= Summary ของ Resume** แบ่งเป็น 2 ย่อหน้า, TH แปลจาก Resume), checklist, ตัวเลข 4 ช่อง (**3+** ตาม Resume — เดิม 4+, 40%, 15+, +30%); รูปมีป้าย pill **"Based in Bangkok, Thailand"** (TH: ประจำอยู่ที่กรุงเทพฯ) สีการ์ด Services + หมุดฟ้าอ่อน (เดิมเป็นป้ายเหลือง "4+ Years" ซึ่งซ้ำกับตัวเลข) — ไม่มีปุ่ม Resume
      - icon LinkedIn มาจาก Lucide **0.460** (Lucide 1.x และ Simple Icons ไม่มีโลโก้ LinkedIn แล้ว)
-   - Services "From strategy to handover": stack cards 5 ใบ (sticky) — **สีเดียวกันหมด** กรมท่าสว่างกว่าแถบหนึ่งระดับ ตัวขาว เลขฟ้าอ่อน กว้างสูงสุด 1120px
+   - Services "From strategy to handover": stack cards 5 ใบ (`skills.card1–5` = หมวด Skills & Tools ของ Resume ตรงกันทุกคำ — card 04 AI Productivity มี Claude Code, Codex แล้ว) (sticky) — **สีเดียวกันหมด** กรมท่าสว่างกว่าแถบหนึ่งระดับ ตัวขาว เลขฟ้าอ่อน กว้างสูงสุด 1120px
    - `.band` ใช้ `clip-path: inset(-400vw 0 0 0)` ตัดวงกลมเฉพาะขอบล่าง — **ห้ามเปลี่ยนเป็น `overflow: clip/hidden`** (วงกลมด้านบนวาดอยู่เหนือกรอบ .band เพราะ margin collapse → จะหายทั้งวง และ hidden ทำ sticky พัง)
-6. **Process** (`#process`) — rail 4 ขั้น Discover→Define→Design→Deliver + flow notes + ลูกศรวนกลับ
+6. **Process** (`#process`) — rail **5 ขั้น** Discover→Define→Design→**Test & Audit**→Deliver + flow notes 4 อัน + ลูกศรวนกลับ
+   - ผู้ใช้เคยลอง Test/Audit แยกเป็น 6 ขั้น แล้วขอรวมเป็นขั้นเดียว; Audit = ตรวจงานออกแบบ**ก่อน**ส่ง Dev (ไม่ใช่ Design QA หลัง Dev)
+   - เรียงแถวเมื่อจอ **≥ 75em (1200px)** (เดิม 56.25em) — `@media (max-width: 75em)` ใน style.css คู่กับ `isRailRow` matchMedia `75.01em` ใน `initRail` ต้องแก้คู่กัน; จอกว้าง flow notes เป็นคอลัมน์เท่ากัน (`flex: 1 1 0; max-width: 22ch`, nowrap) กันลูกศรค้างท้ายบรรทัด
+   - **ค้างถามผู้ใช้**: ชื่อขั้น 04 TH "ทดสอบและตรวจสอบ" ตก 2 บรรทัดที่จอ 1200–1440px — เสนอ "ทดสอบ & ตรวจ" ไว้ ยังไม่ได้คำตอบ
 7. **Toolbox** — หัว section แบบเดียวกับ Process (pretitle / "Tools I work with" / คำอธิบาย) + **ชิป icon 2 แถว** วิ่งสวนกัน 40px/s กลับทิศตาม scroll
    - icon: SVG sprite ใน index.html (Simple Icons CC0 + Lucide สำหรับ FigJam, Adobe XD, Slack, Design Systems, Usability Testing)
 8. **Experience & Education** — timeline 4 จุด (ไม่มีปุ่ม Resume):
-   - 01 UX/UI Designer, Swift Dynamics (Nov 2022–Present, Full time) — หัวข้อย่อย 3 กลุ่ม
-   - 02 **UX/UI Designer**, Yes Web Design Studio (Apr–Aug 2022, Full time) — 3 bullets
+   - 01 UX/UI Designer, Swift Dynamics (Nov 2022–Present, Full time) — **ตาม Resume ทุกคำ**: 2 กลุ่ม "Key Projects & Impact" (CM Sitearound / **Project Proposal (TOR Bidding)** — ไม่มีคำว่า Government / Government Unified Status Dashboard) และ "Data-Driven IoT & Custom Dashboards" (Design Systems & Workflow / Data-Driven IoT Dashboards / Stakeholder Collaboration) — ทุก bullet ขึ้นต้นด้วย `<strong>` จึงใช้ `data-i18n-html`
+     - `.job__card li` เป็น block + จุดแบบ absolute (เดิม flex ทำให้ตัวหนากับข้อความแยกเป็น 2 คอลัมน์)
+     - "Government Unified Status Dashboard" (+30%, n=12) **คนละโปรเจกต์** กับเคสกรมทรัพยากรน้ำบาดาล — ผู้ใช้ยืนยันแล้ว
+   - 02 **UX/UI Designer**, Yes Web Design Studio (Apr–Aug 2022, Full time) — **2 bullets** (รวม wireframe/prototype เข้า bullet แรก)
    - 03 UI Designer (Internship), Online Asset (Nov 2021–Mar 2022) — 3 bullets: **DR.in for Doctor** (ใช้ชื่อนี้ทุกที่), SUSCO.co.th, UX case study **MorPrompt / หมอพร้อม**
    - 04 Bachelor of Science, Computer Science, University of Phayao — ป้ายวันที่ **Jun 2020 – Oct 2021** (ช่วง Senior Project ตามที่ผู้ใช้เลือก ไม่ใช่ 2017–2022) + หัวข้อย่อย "Senior Project — Rental Camera Service Website" + 4 bullets
    - ระยะเวลาคำนวณอัตโนมัติ (`initJobDurations` จาก `data-start`/`data-end`); หัวข้อย่อย (`.job__group h4`) เป็นตัวพิมพ์ใหญ่ **สี ink** (ไม่ใช่ muted)
 9. **Contact** — อีเมล, ที่อยู่, LinkedIn + ปุ่ม **Download Resume**
-10. **Footer** — Currently focused on, nav, อีเมล, LinkedIn
+10. **Footer** — tagline "UX/UI Designer & Design System Lead based in Bangkok, Thailand." (fallback เขียนซ้ำในทุกหน้า + `footer.tagline`), Currently focused on, nav, อีเมล, LinkedIn
 
 ### Design tokens หลัก
 
@@ -177,16 +184,20 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
   - government: ย่อหน้าเดิม + การ์ด Primary Users / Scope แล้วค่อย Goal
   - **รอผู้ใช้ตรวจคำ (Claude ร่างจากเนื้อหาเดิมในเคส ไม่เพิ่มข้อเท็จจริง)**: `goalText` ของ government, platform, custom-dashboard และ `contextText` ของ custom-dashboard (หน้านี้ไม่เคยมี Context)
 
+### Resume ↔ เว็บ (2026-10-04, push แล้วที่ `dca30e7`)
+- `assets/Yuttana-Pati-Resume.pdf` = **ฉบับล่าสุดของผู้ใช้** (2 หน้า) — เปลี่ยนไฟล์ = วางทับชื่อเดิม ไม่ต้องแก้โค้ด; **อ่านทั้งไฟล์ก่อนวางทุกครั้ง** และเช็กลิงก์ใน PDF ด้วย regex `/URI\s*\(` บน bytes ของไฟล์
+- หลักที่ตกลงกับผู้ใช้: เว็บกับ Resume **ไม่ต้องตรงกันทุกคำ** (เว็บละเอียดกว่าได้) แต่ **ข้อเท็จจริงต้องตรง** — ตำแหน่ง, วันที่, ตัวเลข, ชื่อโปรเจกต์/ลูกค้า, ลิงก์
+- ผู้ใช้เลือกทีละข้อแล้ว (ให้ใช้แบบเว็บ): Yes Web = UX/UI Designer, Online Asset 3 bullets (DR.in for Doctor / SUSCO / MorPrompt), Education Jun 2020 – Oct 2021 + "Senior Project — Rental Camera Service Website", LinkedIn `…/yuttana-phati-5566042b5`
+- PDF ล่าสุดตรงกับเว็บแล้วเกือบทั้งหมด **เหลือ** (ไม่ด่วน รอไฟล์ใหม่จากผู้ใช้):
+  1. **เบอร์โทรยังอยู่ใน PDF** — ผู้ใช้เลือกให้เอาออกจากฉบับบนเว็บ
+  2. ข้อความ LinkedIn ที่**โชว์**ใน PDF ยังเป็น `linkedin.com/in/yuttana-phati` (ลิงก์ที่คลิกถูกแล้ว)
+  3. Yes Web 2 bullets ใน PDF คนละชุดกับเว็บ (PDF: WordPress / wireframe+prototype; เว็บ: WordPress+wireframe / PM+site map+design system) — ข้อเท็จจริงไม่ขัดกัน; ถามผู้ใช้แล้วว่าจะให้เว็บตาม PDF ไหม ยังไม่ได้คำตอบ
+
 ### ค้างรอข้อมูลจากผู้ใช้
-1. **Resume PDF เวอร์ชันใหม่** — ไฟล์อยู่ที่ `assets/Yuttana-Pati-Resume.pdf` (ใช้งานได้แล้วบนเว็บจริง ลิงก์จาก header ทุกหน้า + Contact; เปิดแท็บใหม่) แต่เนื้อหายังเป็นชุดเก่า ผู้ใช้จะแก้แล้วส่งไฟล์ใหม่มา — **วางทับชื่อเดิมได้เลย ไม่ต้องแก้โค้ด** จุดที่แจ้งผู้ใช้ไว้:
-   - มีเบอร์โทรส่วนตัว (เว็บไม่มี) — แนะนำเอาออกในเวอร์ชันที่ขึ้นเว็บ
-   - Summary ยังเขียน "3+ years" (เว็บเป็น 4+)
-   - LinkedIn ใน PDF เป็น `linkedin.com/in/yuttana-phati` แต่เว็บใช้ `…/yuttana-phati-5566042b5`
-   - Portfolio ใน PDF ชี้ Figma ยังไม่มีลิงก์เว็บนี้
-   - ข้อความ Experience ยังเก่า: "UI Designer" ที่ Yes Web, "DR.in (medical app)", ไม่มี MorPrompt, Education 2017–2022
-   - ก่อนเผยแพร่ไฟล์ใหม่ อ่านไฟล์ทั้งหมดก่อนทุกครั้ง
+1. Resume — ดู 3 ข้อด้านบน
 2. ตรวจข้อความที่ Claude ร่างและขึ้นเว็บแล้ว (ดู "Screenshot + Project Overview"): Goal ของ government/platform/custom-dashboard, Overview ของ custom-dashboard, caption EV 7–13, caption custom-dashboard, caption รูป 1 ของ JST — และรูป JST ความละเอียดสูงกว่านี้ (ถ้ามี) — และข้อมูลจริงของ More Projects 6 รายการ (ดูด้านบน)
 3. (ไม่ด่วน) ปีของงาน JST Group — ตอนนี้ใช้ Timeline แทนได้แล้ว
+4. ชื่อขั้น 04 ของ Process ภาษาไทย (ดู Section บนหน้า Home ข้อ 6)
 
 ### Build (เมื่อแก้ `content/cases.csv`)
 
@@ -230,6 +241,7 @@ powershell -ExecutionPolicy Bypass -File tools/build-cases.ps1
 - **Browser pane ของ Claude วาดหน้าจอไม่ได้บ่อยมาก** (screenshot ขาว/timeout) — ตรวจด้วย iframe same-origin ใน `javascript_tool` วัด `getBoundingClientRect` / computed style แทน และบอกผู้ใช้ตรงๆ ว่าภาพจริงยังไม่ได้เห็น; `resize_window` preset mobile จำลอง `hover: none` ได้และมักแคปหน้าจอได้
 - **ตรวจหลายขนาดจอเสมอ** โดยเฉพาะจอกว้าง 2560px — บั๊กวงกลมของแถบ navy โผล่เฉพาะจอกว้าง (1440 ไม่เห็น)
 - เชลล์ Bash ในบาง session หา `git`/`grep` ไม่เจอ (PATH) — ใช้ PowerShell หรือ Grep tool แทน; git push ใน PowerShell 5 คืน exit code 255 เพราะ stderr แต่ push สำเร็จ (เช็กด้วย `git status -sb`)
+- PowerShell 5 + ภาษาไทย: script `.ps1` ที่มีข้อความไทยต้องบันทึกเป็น **UTF-8 มี BOM** ไม่งั้นอ่านเพี้ยน; แต่ไฟล์ข้อความ commit ให้ใช้ `Set-Content -Encoding ascii` (ภาษาอังกฤษล้วน) — `-Encoding utf8` ใส่ BOM นำหน้า subject ของ commit (เคยหลุดไปแล้วใน `f2fb76f`)
 - Preview server: `.claude/launch.json` ตั้ง `autoPort: true` — ถ้า 8123 ถูกใช้อยู่ (serve.ps1 ค้าง หรือเพิ่งปิดแล้วเปิดใหม่) จะได้ port สุ่มแทน ผู้ใช้เคยถามว่าทำไม URL เปลี่ยน — บอก URL ที่ได้จริงทุกครั้ง
 - เช็กไฟล์ resume บนเว็บจริง: `Invoke-WebRequest https://yuttana-portfolio.vercel.app/assets/Yuttana-Pati-Resume.pdf -Method Head` ต้องได้ 200 `application/pdf`
 - เช็ก redirect เว็บจริง: `Invoke-WebRequest https://yuttana-portfolio.vercel.app/index.html -MaximumRedirection 0` ต้องได้ 308
