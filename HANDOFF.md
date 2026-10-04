@@ -1,7 +1,7 @@
 # Handoff — yuttana-portfolio
 
 เอกสารส่งต่องานสำหรับ Claude Code บนเครื่องอื่น อ่านไฟล์นี้ก่อนเริ่มงาน
-อัปเดตล่าสุด 2026-10-04 (ล่าสุดที่ commit `dca30e7` — push ขึ้น GitHub แล้ว)
+อัปเดตล่าสุด 2026-10-04 (ล่าสุดที่ commit `eb8bbac` — push ขึ้น GitHub แล้ว)
 
 > ไฟล์นี้รวม "ความรู้ที่ไม่อยู่ในโค้ด" ไว้ด้วย เพราะ memory ของ Claude บนเครื่องเดิม
 > ไม่ได้ติดมากับ repo — ส่วน "กฎการทำงาน" ด้านล่างสำคัญที่สุด
@@ -184,17 +184,19 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
   - government: ย่อหน้าเดิม + การ์ด Primary Users / Scope แล้วค่อย Goal
   - **รอผู้ใช้ตรวจคำ (Claude ร่างจากเนื้อหาเดิมในเคส ไม่เพิ่มข้อเท็จจริง)**: `goalText` ของ government, platform, custom-dashboard และ `contextText` ของ custom-dashboard (หน้านี้ไม่เคยมี Context)
 
-### Resume ↔ เว็บ (2026-10-04, push แล้วที่ `dca30e7`)
-- `assets/Yuttana-Pati-Resume.pdf` = **ฉบับล่าสุดของผู้ใช้** (2 หน้า) — เปลี่ยนไฟล์ = วางทับชื่อเดิม ไม่ต้องแก้โค้ด; **อ่านทั้งไฟล์ก่อนวางทุกครั้ง** และเช็กลิงก์ใน PDF ด้วย regex `/URI\s*\(` บน bytes ของไฟล์
+### Resume ↔ เว็บ (2026-10-04, push แล้วที่ `eb8bbac`)
+- `assets/Yuttana-Pati-Resume.pdf` = **ฉบับล่าสุดของผู้ใช้ ไม่มีเบอร์โทร** (ต้นฉบับชื่อ `Resume UXUI Designer_Yuttana Pati.pdf` ใน Downloads, 2 หน้า, ผู้ใช้ลบเบอร์ในไฟล์ต้นทางเอง) — เปลี่ยนไฟล์ = วางทับชื่อเดิม ไม่ต้องแก้โค้ด; **อ่านทั้งไฟล์ก่อนวางทุกครั้ง** และเช็กว่าไม่มีเบอร์โทร + ลิงก์ถูก
+  - **ห้ามขึ้น PDF ที่มีเบอร์โทร** — ผู้ใช้เลือกให้ฉบับบนเว็บไม่มีเบอร์
+  - เครื่องมือเช็ก PDF: npm `mupdf` (ติดตั้งใน scratchpad ไม่ใช่ใน repo) — `toStructuredText().asText()` ค้นข้อความ, `getLinks()` ดูลิงก์; ไม่มี python/poppler ในเครื่องนี้
+  - mupdf ลบข้อความใน PDF จริงได้ (Redact annotation + `applyRedactions`) แต่บรรทัดไม่จัดใหม่ เหลือช่องว่าง — เคยใช้ลบเบอร์แล้วผู้ใช้ส่งไฟล์ที่แก้จากต้นทางมาแทน → **ถ้าต้องแก้ PDF ให้ขอผู้ใช้ export ใหม่ดีกว่า**
 - หลักที่ตกลงกับผู้ใช้: เว็บกับ Resume **ไม่ต้องตรงกันทุกคำ** (เว็บละเอียดกว่าได้) แต่ **ข้อเท็จจริงต้องตรง** — ตำแหน่ง, วันที่, ตัวเลข, ชื่อโปรเจกต์/ลูกค้า, ลิงก์
 - ผู้ใช้เลือกทีละข้อแล้ว (ให้ใช้แบบเว็บ): Yes Web = UX/UI Designer, Online Asset 3 bullets (DR.in for Doctor / SUSCO / MorPrompt), Education Jun 2020 – Oct 2021 + "Senior Project — Rental Camera Service Website", LinkedIn `…/yuttana-phati-5566042b5`
-- PDF ล่าสุดตรงกับเว็บแล้วเกือบทั้งหมด **เหลือ** (ไม่ด่วน รอไฟล์ใหม่จากผู้ใช้):
-  1. **เบอร์โทรยังอยู่ใน PDF** — ผู้ใช้เลือกให้เอาออกจากฉบับบนเว็บ
-  2. ข้อความ LinkedIn ที่**โชว์**ใน PDF ยังเป็น `linkedin.com/in/yuttana-phati` (ลิงก์ที่คลิกถูกแล้ว)
-  3. Yes Web 2 bullets ใน PDF คนละชุดกับเว็บ (PDF: WordPress / wireframe+prototype; เว็บ: WordPress+wireframe / PM+site map+design system) — ข้อเท็จจริงไม่ขัดกัน; ถามผู้ใช้แล้วว่าจะให้เว็บตาม PDF ไหม ยังไม่ได้คำตอบ
+- PDF ล่าสุดตรงกับเว็บแล้วเกือบทั้งหมด **เหลือ** (ไม่ด่วน):
+  1. ข้อความ LinkedIn ที่**โชว์**ใน PDF ยังเป็น `linkedin.com/in/yuttana-phati` (ลิงก์ที่คลิกถูกแล้ว)
+  2. Yes Web 2 bullets ใน PDF คนละชุดกับเว็บ (PDF: WordPress / wireframe+prototype; เว็บ: WordPress+wireframe / PM+site map+design system) — ข้อเท็จจริงไม่ขัดกัน; ถามผู้ใช้แล้วว่าจะให้เว็บตาม PDF ไหม ยังไม่ได้คำตอบ
 
 ### ค้างรอข้อมูลจากผู้ใช้
-1. Resume — ดู 3 ข้อด้านบน
+1. Resume — ดู 2 ข้อด้านบน
 2. ตรวจข้อความที่ Claude ร่างและขึ้นเว็บแล้ว (ดู "Screenshot + Project Overview"): Goal ของ government/platform/custom-dashboard, Overview ของ custom-dashboard, caption EV 7–13, caption custom-dashboard, caption รูป 1 ของ JST — และรูป JST ความละเอียดสูงกว่านี้ (ถ้ามี) — และข้อมูลจริงของ More Projects 6 รายการ (ดูด้านบน)
 3. (ไม่ด่วน) ปีของงาน JST Group — ตอนนี้ใช้ Timeline แทนได้แล้ว
 4. ชื่อขั้น 04 ของ Process ภาษาไทย (ดู Section บนหน้า Home ข้อ 6)
