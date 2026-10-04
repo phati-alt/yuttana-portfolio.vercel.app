@@ -55,7 +55,7 @@ const translations = {
     "skills.card3.title": "Development",
     "skills.card3.desc": "React, Ant Design, shadcn/ui, Tailwind CSS, Apache ECharts, Design-to-Code Handover.",
     "skills.card4.title": "AI Productivity",
-    "skills.card4.desc": "Claude, Gemini, ChatGPT, Google Stitch — for research synthesis, prompt engineering, and rapid prototyping.",
+    "skills.card4.desc": "Claude, Claude Code, Gemini, Codex, ChatGPT, Google Stitch — for research synthesis, prompt engineering, and rapid prototyping.",
     "skills.card5.title": "Design Tools",
     "skills.card5.desc": "Figma (Advanced), FigJam, Adobe XD.",
 
@@ -248,7 +248,7 @@ const translations = {
     "skills.card3.title": "Development",
     "skills.card3.desc": "React, Ant Design, shadcn/ui, Tailwind CSS, Apache ECharts, การส่งมอบงานจาก Design สู่ Code",
     "skills.card4.title": "AI Productivity",
-    "skills.card4.desc": "Claude, Gemini, ChatGPT, Google Stitch — ใช้สังเคราะห์งานวิจัย, Prompt Engineering และทำ Prototype อย่างรวดเร็ว",
+    "skills.card4.desc": "Claude, Claude Code, Gemini, Codex, ChatGPT, Google Stitch — ใช้สังเคราะห์งานวิจัย, Prompt Engineering และทำ Prototype อย่างรวดเร็ว",
     "skills.card5.title": "เครื่องมือออกแบบ",
     "skills.card5.desc": "Figma (ระดับสูง), FigJam, Adobe XD",
 
