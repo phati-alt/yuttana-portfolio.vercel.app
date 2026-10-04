@@ -1095,8 +1095,12 @@ html.no-motion .job__date--current::after { animation: none; opacity: 0; }
 .job__group h4 { font-size: .85rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); margin-bottom: .75rem; }
 .job__card > ul { display: grid; gap: .6rem; margin-top: 1.25rem; }
 .job__group ul { display: grid; gap: .6rem; margin-top: 0; }
-.job__card li { display: flex; gap: .75rem; color: var(--muted); }
-.job__card li::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--primary); margin-top: .62em; }
+/* block + absolutely placed dot, not flex: a bullet led by a bold label
+   (<strong>) must flow as one sentence — as flex, the label and the rest
+   of the text became two side-by-side columns */
+.job__card li { position: relative; padding-left: calc(6px + .75rem); color: var(--muted); }
+.job__card li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+.job__card li strong { color: var(--ink); font-weight: 600; }
 
 /* ---------- 9. CTA block ---------- */
 /* ---------- 10. Contact ---------- */
