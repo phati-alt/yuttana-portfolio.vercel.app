@@ -1,7 +1,7 @@
 # Handoff — yuttana-portfolio
 
 เอกสารส่งต่องานสำหรับ Claude Code บนเครื่องอื่น อ่านไฟล์นี้ก่อนเริ่มงาน
-อัปเดตล่าสุด 2026-10-04 (ล่าสุดที่ commit `eb8bbac` — push ขึ้น GitHub แล้ว)
+อัปเดตล่าสุด 2026-10-04 (ล่าสุดที่ commit `a8cfec3` — push ขึ้น GitHub แล้ว)
 
 > ไฟล์นี้รวม "ความรู้ที่ไม่อยู่ในโค้ด" ไว้ด้วย เพราะ memory ของ Claude บนเครื่องเดิม
 > ไม่ได้ติดมากับ repo — ส่วน "กฎการทำงาน" ด้านล่างสำคัญที่สุด
@@ -72,7 +72,7 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
    - ข้อความ (meta / ชื่อ / บรรทัดผลลัพธ์) **อยู่บนรูป ขึ้นตอน hover** — บนจอสัมผัส (`hover: none`) ย้ายไป**ใต้รูป**แสดงตลอด
    - ข้อความมาจาก `cardMeta` / `title` / `cardOutcome` ใน CSV → build → `js/cases-index.js`
 5. **Band** (พื้น navy `#020f27`, dark mode `#1a1f72`) เปิดด้วยวงกลม iris (`.band__circle`)
-   - About: pretitle "About me" (ขนาดเล็กแบบ section อื่น — เดิมตัวใหญ่ซ้อนกับ h2), h2, **ชิป LinkedIn** (icon + text ทรงเดียวกับชิป Toolbox, `.about__social-btn`), bio 2 ย่อหน้า (**= Summary ของ Resume** แบ่งเป็น 2 ย่อหน้า, TH แปลจาก Resume), checklist, ตัวเลข 4 ช่อง (**3+** ตาม Resume — เดิม 4+, 40%, 15+, +30%); รูปมีป้าย pill **"Based in Bangkok, Thailand"** (TH: ประจำอยู่ที่กรุงเทพฯ) สีการ์ด Services + หมุดฟ้าอ่อน (เดิมเป็นป้ายเหลือง "4+ Years" ซึ่งซ้ำกับตัวเลข) — ไม่มีปุ่ม Resume
+   - About: pretitle "About me" (ขนาดเล็กแบบ section อื่น — เดิมตัวใหญ่ซ้อนกับ h2), h2, **ชิป LinkedIn** (icon + text ทรงเดียวกับชิป Toolbox, `.about__social-btn`), bio 2 ย่อหน้า (**= Summary ของ Resume** แบ่งเป็น 2 ย่อหน้า, TH แปลจาก Resume — ล่าสุด "…in Enterprise SaaS, Government project and IoT platforms" และ "helped close Enterprise deals" **ไม่มีตัวเลข 3** ตาม Resume; ผู้ใช้ทราบว่า "Government projects" เติม s จะลื่นกว่า แต่ยังใช้ตาม Resume), checklist, ตัวเลข 4 ช่อง (**3+** ตาม Resume — เดิม 4+, 40%, 15+, +30%); รูปมีป้าย pill **"Based in Bangkok, Thailand"** (TH: ประจำอยู่ที่กรุงเทพฯ) สีการ์ด Services + หมุดฟ้าอ่อน (เดิมเป็นป้ายเหลือง "4+ Years" ซึ่งซ้ำกับตัวเลข) — ไม่มีปุ่ม Resume
      - icon LinkedIn มาจาก Lucide **0.460** (Lucide 1.x และ Simple Icons ไม่มีโลโก้ LinkedIn แล้ว)
    - Services "From strategy to handover": stack cards 5 ใบ (`skills.card1–5` = หมวด Skills & Tools ของ Resume ตรงกันทุกคำ — card 04 AI Productivity มี Claude Code, Codex แล้ว) (sticky) — **สีเดียวกันหมด** กรมท่าสว่างกว่าแถบหนึ่งระดับ ตัวขาว เลขฟ้าอ่อน กว้างสูงสุด 1120px
    - `.band` ใช้ `clip-path: inset(-400vw 0 0 0)` ตัดวงกลมเฉพาะขอบล่าง — **ห้ามเปลี่ยนเป็น `overflow: clip/hidden`** (วงกลมด้านบนวาดอยู่เหนือกรอบ .band เพราะ margin collapse → จะหายทั้งวง และ hidden ทำ sticky พัง)
@@ -184,8 +184,8 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
   - government: ย่อหน้าเดิม + การ์ด Primary Users / Scope แล้วค่อย Goal
   - **รอผู้ใช้ตรวจคำ (Claude ร่างจากเนื้อหาเดิมในเคส ไม่เพิ่มข้อเท็จจริง)**: `goalText` ของ government, platform, custom-dashboard และ `contextText` ของ custom-dashboard (หน้านี้ไม่เคยมี Context)
 
-### Resume ↔ เว็บ (2026-10-04, push แล้วที่ `eb8bbac`)
-- `assets/Yuttana-Pati-Resume.pdf` = **ฉบับล่าสุดของผู้ใช้ ไม่มีเบอร์โทร** (ต้นฉบับชื่อ `Resume UXUI Designer_Yuttana Pati.pdf` ใน Downloads, 2 หน้า, ผู้ใช้ลบเบอร์ในไฟล์ต้นทางเอง) — เปลี่ยนไฟล์ = วางทับชื่อเดิม ไม่ต้องแก้โค้ด; **อ่านทั้งไฟล์ก่อนวางทุกครั้ง** และเช็กว่าไม่มีเบอร์โทร + ลิงก์ถูก
+### Resume ↔ เว็บ (2026-10-04, push แล้วที่ `a8cfec3`)
+- `assets/Yuttana-Pati-Resume.pdf` = **ฉบับล่าสุดของผู้ใช้** (ต้นฉบับชื่อ `Resume UXUI Designer_Yuttana Pati.pdf` ใน Downloads, 2 หน้า) — เปลี่ยนไฟล์ = วางทับชื่อเดิม ไม่ต้องแก้โค้ด; **อ่านทั้งไฟล์ก่อนวางทุกครั้ง** เทียบกับเว็บ แล้วปรับข้อความบนเว็บตามจุดที่เปลี่ยน (ผู้ใช้มักส่งไฟล์ใหม่มาพร้อมขอ "เช็คและปรับข้อมูลในเว็บ") + เช็กลิงก์ใน PDF
   - **เบอร์โทรใน PDF: ผู้ใช้อนุญาตแล้ว (2026-10-04)** — ฉบับที่ขึ้นเว็บตอนนี้มีเบอร์ 097-173-3443; เดิมผู้ใช้เลือกให้ไม่มีเบอร์ แล้วเปลี่ยนใจว่า "ไม่เป็นไร"
   - เครื่องมือเช็ก PDF: npm `mupdf` (ติดตั้งใน scratchpad ไม่ใช่ใน repo) — `toStructuredText().asText()` ค้นข้อความ, `getLinks()` ดูลิงก์; ไม่มี python/poppler ในเครื่องนี้
   - mupdf ลบข้อความใน PDF จริงได้ (Redact annotation + `applyRedactions`) แต่บรรทัดไม่จัดใหม่ เหลือช่องว่าง — เคยใช้ลบเบอร์แล้วผู้ใช้ส่งไฟล์ที่แก้จากต้นทางมาแทน → **ถ้าต้องแก้ PDF ให้ขอผู้ใช้ export ใหม่ดีกว่า**
