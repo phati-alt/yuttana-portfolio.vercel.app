@@ -19,7 +19,7 @@ const translations = {
     "nav.resume": "Resume",
 
     "hero.eyebrow": "Available for: Freelance & Full-time",
-    "hero.desc": "Hi, I'm Mick Yuttana — a UX/UI & Product Designer focused on simplifying complex systems into intuitive, trustworthy digital experiences.",
+    "hero.desc": "Hi, I'm Mick Yuttana — a UX/UI Designer & Design System Lead focused on simplifying complex systems into intuitive, trustworthy digital experiences.",
     "hero.ctaTalk": "Get in touch",
     "hero.scroll": "Scroll down",
     "hero.scrollMarquee": "SCROLL DOWN • SCROLL DOWN • ",
@@ -135,7 +135,7 @@ const translations = {
     "contact.desc": "Need a UX/UI or product designer for your next project<br>or just want to say hi? Email me directly below, I read and reply to every message myself.",
     "contact.wave": "👋 Say hi",
 
-    "footer.tagline": "UX/UI & Product Designer based in Bangkok, Thailand.",
+    "footer.tagline": "UX/UI Designer & Design System Lead based in Bangkok, Thailand.",
 
     "footer.available": "Available for: Freelance & Full-time",
     "notfound.title": "This page doesn't exist",
@@ -212,7 +212,7 @@ const translations = {
     "nav.resume": "เรซูเม่",
 
     "hero.eyebrow": "พร้อมรับงาน: ฟรีแลนซ์ และงานประจำ",
-    "hero.desc": "สวัสดีครับ ผมมิค ยุทธนา — UX/UI & Product Designer ที่เน้นแปลงระบบซับซ้อนให้กลายเป็นประสบการณ์ดิจิทัลที่ใช้งานง่ายและน่าเชื่อถือ",
+    "hero.desc": "สวัสดีครับ ผมมิค ยุทธนา — UX/UI Designer & Design System Lead ที่เน้นแปลงระบบซับซ้อนให้กลายเป็นประสบการณ์ดิจิทัลที่ใช้งานง่ายและน่าเชื่อถือ",
     "hero.ctaTalk": "ติดต่อผม",
     "hero.scroll": "เลื่อนลง",
     "hero.scrollMarquee": "เลื่อนลง • เลื่อนลง • ",
@@ -328,7 +328,7 @@ const translations = {
     "contact.desc": "กำลังมองหา UX/UI หรือ Product Designer สำหรับโปรเจกต์ถัดไป<br>หรือแค่อยากทักทาย? ส่งอีเมลมาหาผมได้เลยด้านล่างครับ ผมอ่านและตอบเองทุกข้อความ",
     "contact.wave": "👋 ทักทายกันครับ",
 
-    "footer.tagline": "UX/UI & Product Designer ประจำกรุงเทพฯ ประเทศไทย",
+    "footer.tagline": "UX/UI Designer & Design System Lead ประจำกรุงเทพฯ ประเทศไทย",
     "footer.available": "พร้อมรับงาน: ฟรีแลนซ์ และงานประจำ",
     "notfound.title": "ไม่พบหน้านี้",
     "notfound.desc": "ลิงก์อาจเก่าหรือพิมพ์ผิด ผลงานทั้งหมดยังอยู่ที่หน้าหลัก",
