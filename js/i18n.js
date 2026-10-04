@@ -61,7 +61,7 @@ const translations = {
 
     "about.eyebrow": "About me",
     "about.title": "I turn complex problems into simple, beautiful interfaces.",
-    "about.text1": "UX/UI Designer & Design System Lead with 3+ years in Enterprise SaaS and IoT platforms. Built scalable Design Systems that cut design-to-dev revision rounds from 4 to 1–2, and helped close 3 Enterprise deals through design-led product differentiation.",
+    "about.text1": "UX/UI Designer & Design System Lead with 3+ years in Enterprise SaaS, Government project and IoT platforms. Built scalable Design Systems that cut design-to-dev revision rounds from 4 to 1–2, and helped close 3 Enterprise deals through design-led product differentiation.",
     "about.text2": "CS background lets me collaborate in engineering language and ship systems that hold up at scale. Highly proficient in integrating AI tools to accelerate design workflows and rapid prototyping for competitive project bidding.",
     "about.list1": "User-Centered Design Process",
     "about.list2": "Cross-Platform Design Systems",
@@ -253,7 +253,7 @@ const translations = {
 
     "about.eyebrow": "เกี่ยวกับผม",
     "about.title": "ผมเปลี่ยนปัญหาที่ซับซ้อน ให้กลายเป็นอินเทอร์เฟซที่เรียบง่ายและสวยงาม",
-    "about.text1": "UX/UI Designer & Design System Lead ที่มีประสบการณ์กว่า 3 ปี ด้าน Enterprise SaaS และแพลตฟอร์ม IoT สร้าง Design System ที่ขยายได้ ลดรอบการแก้ไขระหว่างดีไซน์กับเดฟจาก 4 รอบ เหลือ 1–2 รอบ และช่วยปิดดีลลูกค้า Enterprise 3 รายด้วยงานออกแบบที่สร้างความแตกต่างให้โปรดักต์",
+    "about.text1": "UX/UI Designer & Design System Lead ที่มีประสบการณ์กว่า 3 ปี ด้าน Enterprise SaaS, โปรเจกต์ภาครัฐ และแพลตฟอร์ม IoT สร้าง Design System ที่ขยายได้ ลดรอบการแก้ไขระหว่างดีไซน์กับเดฟจาก 4 รอบ เหลือ 1–2 รอบ และช่วยปิดดีลลูกค้า Enterprise 3 รายด้วยงานออกแบบที่สร้างความแตกต่างให้โปรดักต์",
     "about.text2": "พื้นฐานด้าน Computer Science ทำให้ผมทำงานกับวิศวกรได้ในภาษาเดียวกัน และส่งมอบระบบที่รองรับการขยายตัวได้จริง พร้อมความชำนาญในการนำเครื่องมือ AI มาเร่งขั้นตอนออกแบบและการทำ Prototype อย่างรวดเร็ว สำหรับการแข่งขันประมูลโปรเจกต์",
     "about.list1": "กระบวนการออกแบบที่ยึดผู้ใช้เป็นศูนย์กลาง",
     "about.list2": "Design System ที่ใช้ได้ทุกแพลตฟอร์ม",
